@@ -1,0 +1,23 @@
+<div id="p-logo" class="iiskin-logo" role="banner">
+	<a href="{{link-mainpage}}" class="mw-wiki-logo" title="{{msg-sitetitle}}">
+		{{#data-logos}}
+			{{#icon}}
+			<img class="iiskin-logo-icon" src="{{.}}" alt="{{msg-sitetitle}}" width="50" height="50">
+			{{/icon}}
+			{{^icon}}
+				{{#1x}}
+				<img class="iiskin-logo-icon" src="{{.}}" alt="{{msg-sitetitle}}">
+				{{/1x}}
+			{{/icon}}
+			{{#wordmark}}
+			<img class="iiskin-logo-wordmark" src="{{src}}" width="{{width}}" height="{{height}}" alt="{{msg-sitetitle}}">
+			{{/wordmark}}
+			{{^wordmark}}{{^icon}}{{^1x}}
+			<span class="iiskin-logo-text">{{msg-sitetitle}}</span>
+			{{/1x}}{{/icon}}{{/wordmark}}
+		{{/data-logos}}
+		{{^data-logos}}
+		<span class="iiskin-logo-text">{{msg-sitetitle}}</span>
+		{{/data-logos}}
+	</a>
+</div>

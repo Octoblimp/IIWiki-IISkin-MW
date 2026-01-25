@@ -1,0 +1,261 @@
+/**
+ * IISkin Header
+ * Top bar with logo, search, and user tools
+ */
+
+.iiskin-header {
+	position: sticky;
+	top: 0;
+	background: @color-background-header;
+	border-bottom: 1px solid @color-border;
+	z-index: @z-index-header;
+	height: @height-header;
+}
+
+.iiskin-header-inner {
+	display: flex;
+	align-items: center;
+	max-width: @width-content-max + @width-sidebar;
+	margin: 0 auto;
+	padding: 0 @spacing-md;
+	height: 100%;
+	gap: @spacing-lg;
+}
+
+// Logo
+.iiskin-logo-container {
+	flex-shrink: 0;
+}
+
+.iiskin-logo {
+	display: flex;
+	align-items: center;
+
+	a {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		gap: @spacing-sm;
+	}
+}
+
+.iiskin-logo-icon {
+	height: 40px;
+	width: auto;
+	max-width: 50px;
+	object-fit: contain;
+}
+
+.iiskin-logo-wordmark {
+	max-height: 35px;
+	width: auto;
+}
+
+.iiskin-logo-text {
+	font-size: 1.3em;
+	font-weight: 600;
+	color: @color-primary-dark;
+}
+
+// Search
+.iiskin-search-container {
+	flex: 1;
+	max-width: 500px;
+}
+
+.iiskin-search {
+	width: 100%;
+}
+
+.iiskin-search-form {
+	margin: 0;
+}
+
+.iiskin-search-input-container {
+	display: flex;
+	align-items: center;
+	background: @color-background;
+	border: 1px solid @color-border;
+	border-radius: @border-radius-md;
+	overflow: hidden;
+	transition: border-color @transition-fast, box-shadow @transition-fast;
+
+	&:focus-within {
+		border-color: @color-accent;
+		box-shadow: 0 0 0 3px fade(@color-accent, 15%);
+	}
+}
+
+.iiskin-search-input {
+	flex: 1;
+	padding: @spacing-sm @spacing-md;
+	font-size: @font-size-base;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: @color-text;
+
+	&::placeholder {
+		color: @color-text-muted;
+	}
+}
+
+.iiskin-search-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: @spacing-sm @spacing-md;
+	background: @color-accent;
+	border: none;
+	color: white;
+	cursor: pointer;
+	transition: background-color @transition-fast;
+
+	&:hover {
+		background: @color-accent-dark;
+	}
+}
+
+.iiskin-search-icon {
+	width: 16px;
+	height: 16px;
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>') no-repeat center center;
+	background-size: contain;
+}
+
+.iiskin-search-button-text {
+	.visually-hidden();
+}
+
+// Personal tools / User area
+.iiskin-personal-container {
+	flex-shrink: 0;
+}
+
+.iiskin-personal-tools {
+	display: flex;
+	align-items: center;
+}
+
+.iiskin-personal-tools-inner {
+	display: flex;
+	align-items: center;
+	gap: @spacing-md;
+}
+
+// Notifications
+.iiskin-notifications {
+	display: flex;
+	align-items: center;
+	gap: @spacing-xs;
+
+	li {
+		list-style: none;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: @spacing-xs;
+		color: @color-text-secondary;
+		border-radius: @border-radius-md;
+		transition: background-color @transition-fast;
+
+		&:hover {
+			background: @color-background-hover;
+		}
+	}
+}
+
+// User menu dropdown
+.iiskin-user-menu {
+	.dropdown-container();
+}
+
+.iiskin-user-dropdown {
+	position: relative;
+}
+
+.iiskin-dropdown-checkbox {
+	.visually-hidden();
+}
+
+.iiskin-user-toggle {
+	.button-base();
+	.dropdown-toggle();
+	padding: @spacing-xs @spacing-sm;
+	gap: @spacing-sm;
+}
+
+.iiskin-user-icon {
+	width: 20px;
+	height: 20px;
+	background: @color-text-muted;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&::before {
+		content: '';
+		width: 16px;
+		height: 16px;
+		background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>') no-repeat center center;
+		background-size: contain;
+	}
+}
+
+.iiskin-user-name {
+	font-size: @font-size-small;
+	max-width: 120px;
+	.text-truncate();
+}
+
+.iiskin-dropdown-arrow {
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 4px solid @color-text-muted;
+	transition: transform @transition-fast;
+}
+
+.iiskin-dropdown-content {
+	.dropdown-content();
+	margin-top: @spacing-xs;
+
+	ul {
+		.list-reset();
+		padding: @spacing-xs 0;
+	}
+
+	li {
+		margin: 0;
+	}
+
+	a {
+		display: block;
+		padding: @spacing-sm @spacing-md;
+		color: @color-text;
+		font-size: @font-size-small;
+
+		&:hover {
+			background: @color-background-hover;
+			text-decoration: none;
+		}
+	}
+}
+
+// Show dropdown when checkbox is checked
+.iiskin-dropdown-checkbox:checked {
+	~ .iiskin-dropdown-content {
+		.dropdown-content-visible();
+	}
+
+	~ .iiskin-user-toggle .iiskin-dropdown-arrow,
+	~ .iiskin-actions-toggle .iiskin-dropdown-arrow,
+	~ .iiskin-variants-toggle .iiskin-dropdown-arrow {
+		transform: rotate(180deg);
+	}
+}

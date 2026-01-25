@@ -1,0 +1,122 @@
+/**
+ * IISkin Sidebar
+ * Navigation sidebar styles
+ */
+
+.iiskin-sidebar-toggle {
+	display: none; // Hidden by default, shown on mobile
+	position: absolute;
+	top: @spacing-md;
+	right: -40px;
+	width: 36px;
+	height: 36px;
+	padding: @spacing-sm;
+	background: @color-background;
+	border: 1px solid @color-border;
+	border-radius: @border-radius-md;
+	cursor: pointer;
+	z-index: @z-index-sidebar + 1;
+
+	&:hover {
+		background: @color-background-hover;
+	}
+}
+
+.iiskin-sidebar-toggle-icon {
+	display: block;
+	width: 20px;
+	height: 2px;
+	background: @color-text-secondary;
+	position: relative;
+
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: @color-text-secondary;
+	}
+
+	&::before {
+		top: -6px;
+	}
+
+	&::after {
+		top: 6px;
+	}
+}
+
+.iiskin-sidebar-inner {
+	padding: @spacing-md;
+}
+
+// Sidebar panel
+.iiskin-panel {
+	// No additional styles needed
+}
+
+// Portlets (navigation boxes)
+.iiskin-portlet {
+	.portlet-base();
+}
+
+.iiskin-nav-portlet {
+	// Primary navigation gets slightly different styling
+	h3 {
+		color: @color-primary-dark;
+	}
+}
+
+.iiskin-portlet-body {
+	ul {
+		.list-reset();
+	}
+}
+
+// Toolbox
+.iiskin-toolbox {
+	border-top: 1px solid @color-border-light;
+	padding-top: @spacing-md;
+	margin-top: @spacing-md;
+
+	h3 {
+		font-size: 11px;
+		color: @color-text-muted;
+	}
+}
+
+// Languages portlet
+.iiskin-languages {
+	h3 {
+		font-size: 11px;
+	}
+
+	a {
+		font-size: @font-size-small;
+	}
+}
+
+// Sidebar scrollbar styling
+.iiskin-sidebar {
+	scrollbar-width: thin;
+	scrollbar-color: @color-border @color-background-secondary;
+
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: @color-background-secondary;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: @color-border;
+		border-radius: 3px;
+
+		&:hover {
+			background: @color-border-dark;
+		}
+	}
+}

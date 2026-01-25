@@ -1,0 +1,88 @@
+<div id="mw-wrapper">
+	{{! Header with logo and personal tools }}
+	<header id="mw-header" class="iiskin-header" role="banner">
+		<div class="iiskin-header-inner">
+			{{! Logo section }}
+			<div class="iiskin-logo-container">
+				{{>Logo}}
+			</div>
+
+			{{! Search }}
+			<div class="iiskin-search-container">
+				{{>SearchBox}}
+			</div>
+
+			{{! Personal tools (user menu, notifications, etc.) }}
+			<div class="iiskin-personal-container">
+				{{>PersonalMenu}}
+			</div>
+		</div>
+	</header>
+
+	<div id="mw-content-wrapper" class="iiskin-content-wrapper">
+		{{! Sidebar / Navigation }}
+		<nav id="mw-sidebar" class="iiskin-sidebar" role="navigation">
+			<button id="iiskin-sidebar-toggle" class="iiskin-sidebar-toggle" aria-label="{{msg-iiskin-toggle-sidebar}}">
+				<span class="iiskin-sidebar-toggle-icon"></span>
+			</button>
+			<div class="iiskin-sidebar-inner">
+				{{>Sidebar}}
+			</div>
+		</nav>
+
+		{{! Main content area }}
+		<main id="mw-content" class="iiskin-content" role="main">
+			{{! Content actions (tabs: page, talk, edit, history, etc.) }}
+			<div class="iiskin-content-actions">
+				{{>ContentActions}}
+			</div>
+
+			{{! Page header (title, indicators) }}
+			<div class="iiskin-page-header">
+				{{#data-indicators}}
+				<div id="mw-indicators" class="mw-indicators">
+					{{{html}}}
+				</div>
+				{{/data-indicators}}
+				<h1 id="firstHeading" class="firstHeading mw-first-heading">
+					<span class="mw-page-title-main">{{{html-title}}}</span>
+				</h1>
+				{{#html-subtitle}}
+				<div id="contentSub" class="contentSub">{{{html-subtitle}}}</div>
+				{{/html-subtitle}}
+				{{#tagline}}
+				<div id="siteSub" class="siteSub">{{msg-tagline}}</div>
+				{{/tagline}}
+			</div>
+
+			{{! Site notices }}
+			{{#data-sitenotice}}
+			<div id="siteNotice">{{{html}}}</div>
+			{{/data-sitenotice}}
+
+			{{! Body content }}
+			<div id="bodyContent" class="mw-body-content">
+				{{#html-undelete-link}}
+				<div id="contentSub2">{{{html-undelete-link}}}</div>
+				{{/html-undelete-link}}
+
+				<div id="mw-content-text" class="mw-body-content mw-content-ltr">
+					{{{html-body-content}}}
+				</div>
+
+				{{#html-catlinks}}
+				<div id="catlinks" class="catlinks">{{{html-catlinks}}}</div>
+				{{/html-catlinks}}
+
+				{{#data-after-content}}
+				<div id="mw-data-after-content">{{{html}}}</div>
+				{{/data-after-content}}
+			</div>
+		</main>
+	</div>
+
+	{{! Footer }}
+	<footer id="mw-footer" class="iiskin-footer" role="contentinfo">
+		{{>Footer}}
+	</footer>
+</div>

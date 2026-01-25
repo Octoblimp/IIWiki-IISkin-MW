@@ -1,0 +1,343 @@
+/**
+ * IISkin Content Area
+ * Main content and content actions styling
+ */
+
+// Content actions (tabs)
+.iiskin-content-actions {
+	margin-bottom: @spacing-md;
+	border-bottom: 1px solid @color-border-light;
+}
+
+.iiskin-tabs-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: @spacing-sm;
+}
+
+.iiskin-tabs-right {
+	display: flex;
+	align-items: center;
+	gap: @spacing-sm;
+}
+
+// Tabs (namespaces, views)
+.iiskin-tabs {
+	ul {
+		.tabs-base();
+	}
+}
+
+.iiskin-namespaces {
+	ul li a {
+		font-weight: 500;
+	}
+
+	ul li.selected a {
+		font-weight: 600;
+	}
+}
+
+.iiskin-views {
+	ul li a {
+		padding: @spacing-sm @spacing-md;
+		font-size: @font-size-small;
+	}
+}
+
+// Actions dropdown
+.iiskin-actions-dropdown {
+	.dropdown-container();
+}
+
+.iiskin-actions-toggle {
+	.button-base();
+	.dropdown-toggle();
+	padding: @spacing-xs @spacing-sm;
+	font-size: @font-size-small;
+}
+
+.iiskin-variants-dropdown {
+	.dropdown-container();
+}
+
+.iiskin-variants-toggle {
+	.button-base();
+	.dropdown-toggle();
+	padding: @spacing-xs @spacing-sm;
+	font-size: @font-size-small;
+}
+
+// Page header
+.iiskin-page-header {
+	margin-bottom: @spacing-lg;
+}
+
+#mw-indicators {
+	float: right;
+	margin-left: @spacing-md;
+
+	.mw-indicator {
+		display: inline-block;
+		margin-left: @spacing-sm;
+	}
+}
+
+.contentSub {
+	color: @color-text-muted;
+	font-size: @font-size-small;
+	margin-bottom: @spacing-sm;
+
+	a {
+		color: @color-text-muted;
+
+		&:hover {
+			color: @color-link;
+		}
+	}
+}
+
+.siteSub {
+	color: @color-text-muted;
+	font-style: italic;
+	font-size: @font-size-small;
+	margin-bottom: @spacing-md;
+}
+
+// Site notice
+#siteNotice {
+	margin-bottom: @spacing-lg;
+	padding: @spacing-md;
+	background: @color-background-secondary;
+	border: 1px solid @color-border;
+	border-radius: @border-radius-md;
+}
+
+// Body content
+.mw-body-content {
+	line-height: @line-height-base;
+
+	// Paragraphs
+	p {
+		margin: 0 0 1em;
+	}
+
+	// Content headings
+	h2 {
+		margin-top: 1.5em;
+		padding-bottom: @spacing-xs;
+		border-bottom: 1px solid @color-border-light;
+	}
+
+	h3, h4, h5, h6 {
+		margin-top: 1.2em;
+	}
+
+	// Edit section links
+	.mw-editsection {
+		font-size: @font-size-small;
+		font-weight: normal;
+		margin-left: @spacing-sm;
+
+		a {
+			color: @color-text-muted;
+
+			&:hover {
+				color: @color-link;
+			}
+		}
+	}
+
+	// Lists
+	ul, ol {
+		margin: 0 0 1em 1.5em;
+		padding: 0;
+	}
+
+	li {
+		margin-bottom: 0.3em;
+	}
+
+	// Tables
+	table {
+		border-collapse: collapse;
+		margin: 1em 0;
+	}
+
+	th, td {
+		padding: @spacing-sm;
+		border: 1px solid @color-border;
+	}
+
+	th {
+		background: @color-background-secondary;
+		font-weight: 600;
+	}
+
+	// Blockquotes
+	blockquote {
+		margin: 1em 0;
+		padding: @spacing-sm @spacing-md;
+		border-left: 3px solid @color-accent;
+		background: @color-background-secondary;
+		color: @color-text-secondary;
+	}
+
+	// Code
+	code, pre {
+		font-family: @font-family-mono;
+		font-size: 0.9em;
+		background: @color-background-secondary;
+		border-radius: @border-radius-sm;
+	}
+
+	code {
+		padding: 2px 4px;
+	}
+
+	pre {
+		padding: @spacing-md;
+		overflow-x: auto;
+		border: 1px solid @color-border-light;
+	}
+
+	// Images
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	// Thumbnails
+	.thumb {
+		margin: 0.5em 0 1em 1em;
+
+		&.tleft {
+			margin: 0.5em 1em 1em 0;
+		}
+	}
+
+	.thumbinner {
+		padding: @spacing-xs;
+		background: @color-background-secondary;
+		border: 1px solid @color-border;
+		border-radius: @border-radius-md;
+	}
+
+	.thumbcaption {
+		padding: @spacing-xs;
+		font-size: @font-size-small;
+		color: @color-text-secondary;
+		text-align: center;
+	}
+
+	// Infoboxes
+	.infobox {
+		float: right;
+		clear: right;
+		margin: 0 0 1em 1em;
+		max-width: 300px;
+		background: @color-background-secondary;
+		border: 1px solid @color-border;
+		border-radius: @border-radius-md;
+		font-size: @font-size-small;
+
+		th, td {
+			padding: @spacing-sm;
+			border-color: @color-border-light;
+		}
+
+		th {
+			text-align: left;
+			background: transparent;
+		}
+
+		caption, .infobox-title {
+			padding: @spacing-sm;
+			font-weight: 600;
+			font-size: @font-size-base;
+			background: @color-primary;
+			color: white;
+		}
+	}
+
+	// NavBoxes
+	.navbox {
+		margin: 1em 0;
+		background: @color-background-secondary;
+		border: 1px solid @color-border;
+		border-radius: @border-radius-md;
+		font-size: @font-size-small;
+	}
+
+	// Table of contents
+	.toc {
+		display: table;
+		padding: @spacing-md;
+		background: @color-background-secondary;
+		border: 1px solid @color-border;
+		border-radius: @border-radius-md;
+		margin: 1em 0;
+
+		.toctitle {
+			font-weight: 600;
+			margin-bottom: @spacing-sm;
+		}
+
+		ul {
+			margin: 0;
+			list-style: none;
+		}
+
+		ul ul {
+			margin-left: 1.5em;
+		}
+
+		a {
+			color: @color-text-secondary;
+
+			&:hover {
+				color: @color-link;
+			}
+		}
+	}
+
+	// Hatnotes
+	.hatnote {
+		font-style: italic;
+		padding-left: 1.5em;
+		margin-bottom: 1em;
+		color: @color-text-secondary;
+	}
+
+	// Ambox (article message boxes)
+	.ambox {
+		margin: 1em 0;
+		border: 1px solid @color-border;
+		border-radius: @border-radius-md;
+		background: @color-background-secondary;
+
+		td {
+			padding: @spacing-md;
+		}
+	}
+}
+
+// Categories
+#catlinks {
+	margin-top: @spacing-xl;
+	padding: @spacing-md;
+	background: @color-background-secondary;
+	border: 1px solid @color-border-light;
+	border-radius: @border-radius-md;
+	font-size: @font-size-small;
+
+	a {
+		color: @color-text-secondary;
+
+		&:hover {
+			color: @color-link;
+		}
+	}
+}

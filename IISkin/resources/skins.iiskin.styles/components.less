@@ -1,0 +1,259 @@
+/**
+ * IISkin Components
+ * Miscellaneous UI components
+ */
+
+// Buttons
+.mw-ui-button {
+	.button-base();
+
+	&.mw-ui-progressive {
+		background: @color-accent;
+		color: white;
+		border-color: @color-accent;
+
+		&:hover {
+			background: @color-accent-dark;
+			border-color: @color-accent-dark;
+		}
+	}
+
+	&.mw-ui-destructive {
+		background: @color-error;
+		color: white;
+		border-color: @color-error;
+
+		&:hover {
+			background: darken(@color-error, 10%);
+			border-color: darken(@color-error, 10%);
+		}
+	}
+
+	&.mw-ui-quiet {
+		background: transparent;
+		border-color: transparent;
+
+		&:hover {
+			background: @color-background-hover;
+		}
+	}
+}
+
+// Forms
+.mw-input,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+textarea,
+select {
+	padding: @spacing-sm @spacing-md;
+	font-family: @font-family-sans;
+	font-size: @font-size-base;
+	color: @color-text;
+	background: @color-background;
+	border: 1px solid @color-border;
+	border-radius: @border-radius-md;
+	transition: border-color @transition-fast, box-shadow @transition-fast;
+
+	&:focus {
+		outline: none;
+		border-color: @color-accent;
+		box-shadow: 0 0 0 3px fade(@color-accent, 15%);
+	}
+
+	&:disabled {
+		background: @color-background-secondary;
+		color: @color-text-muted;
+		cursor: not-allowed;
+	}
+}
+
+textarea {
+	resize: vertical;
+	min-height: 100px;
+}
+
+select {
+	cursor: pointer;
+}
+
+// Labels
+label {
+	display: inline-block;
+	font-weight: 500;
+	margin-bottom: @spacing-xs;
+}
+
+// Fieldsets
+fieldset {
+	margin: @spacing-md 0;
+	padding: @spacing-md;
+	border: 1px solid @color-border;
+	border-radius: @border-radius-md;
+
+	legend {
+		padding: 0 @spacing-sm;
+		font-weight: 600;
+	}
+}
+
+// Messages
+.successbox,
+.warningbox,
+.errorbox {
+	padding: @spacing-md;
+	margin: @spacing-md 0;
+	border-radius: @border-radius-md;
+	border-left: 4px solid;
+}
+
+.successbox {
+	background: fade(@color-success, 10%);
+	border-color: @color-success;
+	color: darken(@color-success, 20%);
+}
+
+.warningbox {
+	background: fade(@color-warning, 10%);
+	border-color: @color-warning;
+	color: darken(@color-warning, 30%);
+}
+
+.errorbox {
+	background: fade(@color-error, 10%);
+	border-color: @color-error;
+	color: darken(@color-error, 10%);
+}
+
+// Loading indicator
+.mw-ajax-loader {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid @color-border;
+	border-top-color: @color-accent;
+	border-radius: 50%;
+	animation: iiskin-spin 0.8s linear infinite;
+}
+
+@keyframes iiskin-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// Tooltips
+[title] {
+	cursor: help;
+}
+
+// Diff styles
+.diff {
+	border-collapse: collapse;
+	width: 100%;
+
+	td {
+		padding: @spacing-xs @spacing-sm;
+		vertical-align: top;
+	}
+
+	.diff-context {
+		background: @color-background;
+	}
+
+	.diff-deletedline {
+		background: fade(@color-error, 15%);
+
+		.diffchange {
+			background: fade(@color-error, 30%);
+		}
+	}
+
+	.diff-addedline {
+		background: fade(@color-success, 15%);
+
+		.diffchange {
+			background: fade(@color-success, 30%);
+		}
+	}
+}
+
+// Preferences
+.mw-prefs-container {
+	fieldset {
+		margin-bottom: @spacing-lg;
+	}
+}
+
+// Special pages
+.mw-special {
+	.mw-spcontent {
+		margin-top: @spacing-lg;
+	}
+}
+
+// Watchlist
+.mw-changeslist {
+	.mw-changeslist-line {
+		padding: @spacing-xs 0;
+		border-bottom: 1px solid @color-border-light;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}
+
+// History
+#pagehistory {
+	.list-reset();
+
+	li {
+		padding: @spacing-sm 0;
+		border-bottom: 1px solid @color-border-light;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}
+
+// Contributions
+.mw-contributions-list {
+	.list-reset();
+
+	li {
+		padding: @spacing-sm 0;
+		border-bottom: 1px solid @color-border-light;
+	}
+}
+
+// Print styles
+@media print {
+	.iiskin-header,
+	.iiskin-sidebar,
+	.iiskin-content-actions,
+	.iiskin-footer,
+	.mw-editsection,
+	#catlinks {
+		display: none !important;
+	}
+
+	.iiskin-content {
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+	body {
+		background: white;
+		color: black;
+	}
+
+	a {
+		color: black;
+		text-decoration: underline;
+	}
+}

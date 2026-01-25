@@ -1,0 +1,60 @@
+<div id="mw-panel" class="iiskin-panel">
+	{{! Main navigation }}
+	{{#data-portlets-sidebar.data-portlets-first}}
+	<nav id="{{id}}" class="{{class}} iiskin-portlet iiskin-nav-portlet" 
+		aria-labelledby="{{id}}-label" {{{html-tooltip}}}>
+		<h3 id="{{id}}-label" {{{html-user-language-attributes}}}>{{label}}</h3>
+		<div class="mw-portlet-body iiskin-portlet-body">
+			<ul {{{html-user-language-attributes}}}>
+				{{{html-items}}}
+			</ul>
+		</div>
+	</nav>
+	{{/data-portlets-sidebar.data-portlets-first}}
+
+	{{! Additional navigation sections }}
+	{{#data-portlets-sidebar.array-portlets-rest}}
+	<nav id="{{id}}" class="{{class}} iiskin-portlet" 
+		aria-labelledby="{{id}}-label" {{{html-tooltip}}}>
+		<h3 id="{{id}}-label" {{{html-user-language-attributes}}}>{{label}}</h3>
+		<div class="mw-portlet-body iiskin-portlet-body">
+			<ul {{{html-user-language-attributes}}}>
+				{{{html-items}}}
+			</ul>
+		</div>
+	</nav>
+	{{/data-portlets-sidebar.array-portlets-rest}}
+
+	{{! Toolbox }}
+	{{#data-portlets}}
+		{{#data-tb}}
+		<nav id="{{id}}" class="{{class}} iiskin-portlet iiskin-toolbox" 
+			aria-labelledby="{{id}}-label" {{{html-tooltip}}}>
+			<h3 id="{{id}}-label" {{{html-user-language-attributes}}}>{{label}}</h3>
+			<div class="mw-portlet-body iiskin-portlet-body">
+				<ul {{{html-user-language-attributes}}}>
+					{{{html-items}}}
+				</ul>
+			</div>
+		</nav>
+		{{/data-tb}}
+	{{/data-portlets}}
+
+	{{! Languages }}
+	{{#data-portlets}}
+		{{#data-languages}}
+		{{#is-empty}}{{/is-empty}}
+		{{^is-empty}}
+		<nav id="{{id}}" class="{{class}} iiskin-portlet iiskin-languages" 
+			aria-labelledby="{{id}}-label" {{{html-tooltip}}}>
+			<h3 id="{{id}}-label" {{{html-user-language-attributes}}}>{{label}}</h3>
+			<div class="mw-portlet-body iiskin-portlet-body">
+				<ul {{{html-user-language-attributes}}}>
+					{{{html-items}}}
+				</ul>
+			</div>
+		</nav>
+		{{/is-empty}}
+		{{/data-languages}}
+	{{/data-portlets}}
+</div>

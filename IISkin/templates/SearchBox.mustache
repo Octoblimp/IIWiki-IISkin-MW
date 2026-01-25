@@ -1,0 +1,22 @@
+<div id="p-search" class="iiskin-search" role="search">
+	<form action="{{page-action-search}}" id="searchform" class="iiskin-search-form">
+		<div class="iiskin-search-input-container">
+			<input
+				type="search"
+				name="search"
+				id="searchInput"
+				class="iiskin-search-input"
+				placeholder="{{msg-search}}"
+				aria-label="{{msg-search}}"
+				autocomplete="off"
+				title="Search {{msg-sitetitle}} [alt-shift-f]"
+				accesskey="f"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<button type="submit" class="iiskin-search-button" title="{{msg-searchbutton}}">
+				<span class="iiskin-search-icon"></span>
+				<span class="iiskin-search-button-text">{{msg-searchbutton}}</span>
+			</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,23 @@
+<div class="iiskin-footer-inner">
+	{{! Footer info }}
+	<div class="iiskin-footer-info">
+		{{#data-footer.array-items}}
+		<ul id="footer-{{name}}" class="iiskin-footer-{{name}}">
+			{{#array-items}}
+			<li id="{{id}}">{{{html}}}</li>
+			{{/array-items}}
+		</ul>
+		{{/data-footer.array-items}}
+	</div>
+
+	{{! Footer icons }}
+	{{#data-footer.data-icons}}
+	<div class="iiskin-footer-icons">
+		{{#array-items}}
+		<div id="{{id}}" class="iiskin-footer-icon">
+			{{{html}}}
+		</div>
+		{{/array-items}}
+	</div>
+	{{/data-footer.data-icons}}
+</div>

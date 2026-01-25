@@ -1,0 +1,83 @@
+/**
+ * IISkin Footer
+ * Footer styling
+ */
+
+.iiskin-footer {
+	background: @color-background-header;
+	border-top: 1px solid @color-border;
+	padding: @spacing-lg 0;
+	margin-top: auto;
+}
+
+.iiskin-footer-inner {
+	max-width: @width-content-max + @width-sidebar;
+	margin: 0 auto;
+	padding: 0 @spacing-md;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: @spacing-md;
+}
+
+.iiskin-footer-info {
+	flex: 1;
+	min-width: 300px;
+
+	ul {
+		.list-reset();
+		display: flex;
+		flex-wrap: wrap;
+		gap: @spacing-sm @spacing-lg;
+	}
+
+	li {
+		font-size: @font-size-small;
+		color: @color-text-muted;
+
+		a {
+			color: @color-text-secondary;
+
+			&:hover {
+				color: @color-link;
+			}
+		}
+	}
+}
+
+.iiskin-footer-icons {
+	display: flex;
+	align-items: center;
+	gap: @spacing-md;
+}
+
+.iiskin-footer-icon {
+	a {
+		display: block;
+		opacity: 0.7;
+		transition: opacity @transition-fast;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	img {
+		height: 30px;
+		width: auto;
+	}
+}
+
+// Footer links sections
+#footer-info {
+	flex: 1;
+	min-width: 200px;
+}
+
+#footer-places {
+	display: flex;
+	flex-wrap: wrap;
+	gap: @spacing-sm @spacing-lg;
+	font-size: @font-size-small;
+}

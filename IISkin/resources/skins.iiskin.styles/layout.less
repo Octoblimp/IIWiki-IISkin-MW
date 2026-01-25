@@ -1,0 +1,95 @@
+/**
+ * IISkin Layout
+ * Main structural layout styles
+ */
+
+// Reset and base
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: @font-size-base;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: @font-family-sans;
+	font-size: @font-size-base;
+	line-height: @line-height-base;
+	color: @color-text;
+	background: @color-background-secondary;
+}
+
+// Main wrapper
+#mw-wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+// Content wrapper (sidebar + main content)
+.iiskin-content-wrapper {
+	display: flex;
+	flex: 1;
+	max-width: @width-content-max + @width-sidebar;
+	margin: 0 auto;
+	width: 100%;
+}
+
+// Sidebar
+.iiskin-sidebar {
+	position: sticky;
+	top: @height-header;
+	flex-shrink: 0;
+	width: @width-sidebar;
+	height: calc(100vh - @height-header);
+	overflow-y: auto;
+	background: @color-background-secondary;
+	border-right: 1px solid @color-border-light;
+	z-index: @z-index-sidebar;
+}
+
+// Main content
+.iiskin-content {
+	flex: 1;
+	min-width: 0; // Prevent flex overflow
+	padding: @spacing-lg @spacing-xl;
+	background: @color-background;
+}
+
+// Full width layouts
+.iiskin-main-page .iiskin-content {
+	max-width: none;
+}
+
+// Links
+a {
+	.link-base();
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+	font-family: @font-family-sans;
+	font-weight: 600;
+	line-height: @line-height-heading;
+	color: @color-text;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+h1 { font-size: @font-size-h1; }
+h2 { font-size: @font-size-h2; }
+h3 { font-size: @font-size-h3; }
+
+// First heading (page title)
+.firstHeading {
+	margin: 0 0 @spacing-sm;
+	padding-bottom: @spacing-sm;
+	border-bottom: 1px solid @color-border-light;
+}

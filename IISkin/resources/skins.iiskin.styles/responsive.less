@@ -1,0 +1,243 @@
+/**
+ * IISkin Responsive
+ * Mobile and tablet responsive styles
+ */
+
+// Tablet breakpoint
+@media screen and (max-width: @breakpoint-tablet) {
+	.iiskin-header-inner {
+		padding: 0 @spacing-sm;
+		gap: @spacing-sm;
+	}
+
+	.iiskin-search-container {
+		flex: 0 1 300px;
+	}
+
+	.iiskin-user-name {
+		display: none;
+	}
+
+	.iiskin-sidebar {
+		width: 200px;
+	}
+
+	.iiskin-content {
+		padding: @spacing-md;
+	}
+}
+
+// Mobile breakpoint
+@media screen and (max-width: @breakpoint-mobile) {
+	// Header adjustments
+	.iiskin-header {
+		height: auto;
+		min-height: @height-header;
+	}
+
+	.iiskin-header-inner {
+		flex-wrap: wrap;
+		padding: @spacing-sm;
+		gap: @spacing-sm;
+	}
+
+	.iiskin-logo-container {
+		order: 1;
+	}
+
+	.iiskin-personal-container {
+		order: 2;
+		margin-left: auto;
+	}
+
+	.iiskin-search-container {
+		order: 3;
+		flex: 1 1 100%;
+		max-width: none;
+	}
+
+	// Hide wordmark on mobile
+	.iiskin-logo-wordmark {
+		display: none;
+	}
+
+	// Content wrapper becomes column
+	.iiskin-content-wrapper {
+		flex-direction: column;
+	}
+
+	// Sidebar becomes collapsible
+	.iiskin-sidebar {
+		position: fixed;
+		left: -@width-sidebar;
+		top: 0;
+		height: 100vh;
+		width: @width-sidebar;
+		transition: left @transition-normal;
+		z-index: @z-index-sidebar;
+		box-shadow: @box-shadow-lg;
+
+		&.iiskin-sidebar-open {
+			left: 0;
+		}
+	}
+
+	.iiskin-sidebar-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		left: @spacing-sm;
+		top: @height-header + @spacing-sm;
+		right: auto;
+		z-index: @z-index-header - 1;
+	}
+
+	// Content takes full width
+	.iiskin-content {
+		width: 100%;
+		padding: @spacing-md @spacing-sm;
+	}
+
+	// Tabs wrap on mobile
+	.iiskin-tabs-container {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.iiskin-tabs-right {
+		width: 100%;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.iiskin-tabs ul {
+		flex-wrap: wrap;
+	}
+
+	.iiskin-tabs ul li a {
+		padding: @spacing-xs @spacing-sm;
+		font-size: @font-size-small;
+	}
+
+	// Page title
+	.firstHeading {
+		font-size: 1.5em;
+	}
+
+	// Infoboxes go full width
+	.mw-body-content .infobox {
+		float: none;
+		margin: 1em 0;
+		max-width: 100%;
+		width: 100%;
+	}
+
+	// Thumbnails
+	.mw-body-content .thumb.tright,
+	.mw-body-content .thumb.tleft {
+		float: none;
+		margin: 1em auto;
+		text-align: center;
+	}
+
+	// Footer stacks
+	.iiskin-footer-inner {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.iiskin-footer-info {
+		min-width: auto;
+	}
+
+	.iiskin-footer-info ul {
+		flex-direction: column;
+		gap: @spacing-sm;
+	}
+}
+
+// Very small screens
+@media screen and (max-width: 480px) {
+	.iiskin-logo-text {
+		font-size: 1.1em;
+	}
+
+	.iiskin-search-input {
+		padding: @spacing-xs @spacing-sm;
+	}
+
+	.iiskin-search-button {
+		padding: @spacing-xs @spacing-sm;
+	}
+
+	.iiskin-content {
+		padding: @spacing-sm;
+	}
+
+	.firstHeading {
+		font-size: 1.3em;
+	}
+
+	.mw-body-content {
+		font-size: 0.95em;
+	}
+
+	.mw-body-content h2 {
+		font-size: 1.3em;
+	}
+
+	.mw-body-content h3 {
+		font-size: 1.15em;
+	}
+}
+
+// Overlay for mobile sidebar
+.iiskin-sidebar-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: @z-index-sidebar - 1;
+
+	@media screen and (max-width: @breakpoint-mobile) {
+		&.iiskin-overlay-visible {
+			display: block;
+		}
+	}
+}
+
+// Landscape adjustments
+@media screen and (max-width: @breakpoint-mobile) and (orientation: landscape) {
+	.iiskin-sidebar {
+		width: 180px;
+	}
+}
+
+// High-resolution displays
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	.iiskin-logo-icon {
+		// Ensure crisp logo on retina
+		image-rendering: -webkit-optimize-contrast;
+	}
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+// Dark mode support (future-proofing)
+@media (prefers-color-scheme: dark) {
+	// Dark mode styles can be added here later
+	// For now, we keep the light theme as default
+}
