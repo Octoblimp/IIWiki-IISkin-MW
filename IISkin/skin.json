@@ -1,8 +1,8 @@
 {
 	"name": "IISkin",
-	"version": "1.0.0",
+	"version": "3.1.0",
 	"author": [
-		"IIWiki Contributors"
+		"Makko Oko"
 	],
 	"url": "https://iiwiki.com",
 	"descriptionmsg": "iiskin-desc",
@@ -21,7 +21,7 @@
 					"responsive": true,
 					"styles": [ "skins.iiskin" ],
 					"scripts": [ "skins.iiskin.js" ],
-					"templateDirectory": "skins/IISkin/templates"
+					"templateDirectory": "templates"
 				}
 			]
 		}

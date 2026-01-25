@@ -1,142 +1,155 @@
-<div id="mw-wrapper" class="mw-wrapper">
-	<!-- Header -->
-	<header id="mw-header" class="mw-header">
-		<div class="mw-header-container">
+<div id="mw-wrapper" class="iiskin">
+	<!-- Top Header Bar -->
+	<header id="iiskin-header" class="iiskin-header">
+		<div class="iiskin-header-left">
 			<!-- Logo -->
-			<div class="mw-logo">
-				<a href="{{{link-mainpage}}}" class="mw-logo-link">
-					{{#data-logos}}
-						{{#icon}}<img src="{{.}}" alt="" class="mw-logo-icon">{{/icon}}
-						{{^icon}}{{#1x}}<img src="{{.}}" alt="" class="mw-logo-icon">{{/1x}}{{/icon}}
-					{{/data-logos}}
-					<span class="mw-logo-text">IIWiki</span>
-				</a>
-			</div>
+			<a href="{{{link-mainpage}}}" class="iiskin-logo" title="IIWiki - SimFic & Alt-History Encyclopedia">
+				{{#data-logos}}
+					{{#icon}}<img src="{{.}}" alt="IIWiki" class="iiskin-logo-img">{{/icon}}
+					{{^icon}}{{#1x}}<img src="{{.}}" alt="IIWiki" class="iiskin-logo-img">{{/1x}}{{/icon}}
+				{{/data-logos}}
+				<span class="iiskin-logo-text">IIWiki</span>
+			</a>
+		</div>
 
-			<!-- Search -->
-			<div class="mw-search-area">
-				<form action="{{{page-action-search}}}" id="searchform" class="mw-search-form">
-					<input type="hidden" name="title" value="Special:Search">
-					<input type="search" name="search" id="searchInput" placeholder="Search IIWiki..." class="mw-search-input" autocomplete="off">
-					<button type="submit" class="mw-search-button">Search</button>
-				</form>
-			</div>
+		<!-- Search -->
+		<div class="iiskin-header-center">
+			<form action="{{{page-action-search}}}" id="searchform" class="iiskin-search">
+				<input type="hidden" name="title" value="Special:Search">
+				<span class="iiskin-search-icon">🔍</span>
+				<input type="search" name="search" id="searchInput" placeholder="Search worlds, nations, characters..." class="iiskin-search-input" autocomplete="off">
+				<button type="submit" class="iiskin-search-btn">Search</button>
+			</form>
+		</div>
 
-			<!-- Personal tools -->
-			<nav class="mw-personal-tools">
+		<!-- User Area with Notifications -->
+		<div class="iiskin-header-right">
+			<!-- Notifications (Echo) -->
+			{{#data-portlets}}
+				{{#data-notifications}}
+				<div id="iiskin-notifications" class="iiskin-notifications">
+					{{{html-items}}}
+				</div>
+				{{/data-notifications}}
+			{{/data-portlets}}
+
+			<!-- User Menu -->
+			<nav class="iiskin-user-nav">
 				{{#data-portlets}}
 					{{#data-personal}}
-						<ul class="mw-personal-tools-list">
-							{{{html-items}}}
-						</ul>
+					<ul class="iiskin-user-links">
+						{{{html-items}}}
+					</ul>
 					{{/data-personal}}
 				{{/data-portlets}}
 			</nav>
 		</div>
 	</header>
 
-	<div class="mw-body-container">
+	<!-- Main Layout -->
+	<div class="iiskin-main">
 		<!-- Sidebar -->
-		<aside id="mw-sidebar" class="mw-sidebar">
-			{{#data-portlets-sidebar.data-portlets-first}}
-			<nav class="mw-portlet" id="{{id}}">
-				<h3 class="mw-portlet-heading">{{label}}</h3>
-				<ul class="mw-portlet-list">
-					{{{html-items}}}
-				</ul>
-			</nav>
-			{{/data-portlets-sidebar.data-portlets-first}}
+		<aside id="iiskin-sidebar" class="iiskin-sidebar">
+			<div class="iiskin-sidebar-inner">
+				<!-- Worldbuilding Quick Links -->
+				<div class="iiskin-sidebar-section iiskin-quick-create">
+					<a href="/wiki/Special:CreatePage" class="iiskin-create-btn">+ Create Article</a>
+				</div>
 
-			{{#data-portlets-sidebar.array-portlets-rest}}
-			<nav class="mw-portlet" id="{{id}}">
-				<h3 class="mw-portlet-heading">{{label}}</h3>
-				<ul class="mw-portlet-list">
-					{{{html-items}}}
-				</ul>
-			</nav>
-			{{/data-portlets-sidebar.array-portlets-rest}}
-
-			{{#data-portlets}}
-				{{#data-tb}}
-				<nav class="mw-portlet" id="{{id}}">
-					<h3 class="mw-portlet-heading">{{label}}</h3>
-					<ul class="mw-portlet-list">
-						{{{html-items}}}
-					</ul>
+				{{#data-portlets-sidebar.data-portlets-first}}
+				<nav class="iiskin-nav-section" id="{{id}}">
+					<h3 class="iiskin-nav-heading">{{label}}</h3>
+					<ul class="iiskin-nav-list">{{{html-items}}}</ul>
 				</nav>
-				{{/data-tb}}
-			{{/data-portlets}}
+				{{/data-portlets-sidebar.data-portlets-first}}
+
+				{{#data-portlets-sidebar.array-portlets-rest}}
+				<nav class="iiskin-nav-section" id="{{id}}">
+					<h3 class="iiskin-nav-heading">{{label}}</h3>
+					<ul class="iiskin-nav-list">{{{html-items}}}</ul>
+				</nav>
+				{{/data-portlets-sidebar.array-portlets-rest}}
+
+				{{#data-portlets}}
+					{{#data-tb}}
+					<nav class="iiskin-nav-section iiskin-tools" id="{{id}}">
+						<h3 class="iiskin-nav-heading">{{label}}</h3>
+						<ul class="iiskin-nav-list">{{{html-items}}}</ul>
+					</nav>
+					{{/data-tb}}
+				{{/data-portlets}}
+			</div>
 		</aside>
 
-		<!-- Main content -->
-		<main id="mw-content" class="mw-content">
-			<!-- Content tabs -->
-			<nav class="mw-content-tabs">
-				{{#data-portlets}}
-					{{#data-namespaces}}
-					<ul class="mw-tabs mw-tabs-namespaces">
-						{{{html-items}}}
-					</ul>
-					{{/data-namespaces}}
-				{{/data-portlets}}
-
-				<div class="mw-tabs-right">
+		<!-- Content Area -->
+		<main id="iiskin-content" class="iiskin-content">
+			<!-- Page Actions Bar -->
+			<div class="iiskin-page-actions">
+				<div class="iiskin-tabs-left">
+					{{#data-portlets}}
+						{{#data-namespaces}}
+						<ul class="iiskin-tabs">{{{html-items}}}</ul>
+						{{/data-namespaces}}
+					{{/data-portlets}}
+				</div>
+				<div class="iiskin-tabs-right">
 					{{#data-portlets}}
 						{{#data-views}}
-						<ul class="mw-tabs mw-tabs-views">
-							{{{html-items}}}
-						</ul>
+						<ul class="iiskin-tabs iiskin-views">{{{html-items}}}</ul>
 						{{/data-views}}
 					{{/data-portlets}}
-
 					{{#data-portlets}}
 						{{#data-actions}}
 						{{^is-empty}}
-						<div class="mw-dropdown">
-							<button class="mw-dropdown-toggle">More ▾</button>
-							<ul class="mw-dropdown-menu">
-								{{{html-items}}}
-							</ul>
+						<div class="iiskin-more-menu">
+							<button class="iiskin-more-btn">More ▾</button>
+							<ul class="iiskin-more-dropdown">{{{html-items}}}</ul>
 						</div>
 						{{/is-empty}}
 						{{/data-actions}}
 					{{/data-portlets}}
 				</div>
-			</nav>
-
-			<!-- Page heading -->
-			<div class="mw-page-header">
-				{{#data-indicators}}
-				<div class="mw-indicators">{{{html}}}</div>
-				{{/data-indicators}}
-				<h1 id="firstHeading" class="mw-first-heading">{{{html-title}}}</h1>
 			</div>
+
+			<!-- Article Header -->
+			<header class="iiskin-article-header">
+				{{#data-indicators}}
+				<div class="iiskin-indicators">{{{html}}}</div>
+				{{/data-indicators}}
+				<h1 id="firstHeading" class="iiskin-title">{{{html-title}}}</h1>
+			</header>
 
 			{{#data-sitenotice}}
-			<div id="siteNotice" class="mw-sitenotice">{{{html}}}</div>
+			<div id="siteNotice" class="iiskin-notice">{{{html}}}</div>
 			{{/data-sitenotice}}
 
-			<!-- Body content -->
-			<div id="bodyContent" class="mw-body-content">
+			<!-- Article Body -->
+			<article id="bodyContent" class="iiskin-article">
 				{{{html-body-content}}}
+			</article>
 
-				{{#html-catlinks}}
-				<div id="catlinks" class="mw-catlinks">{{{html-catlinks}}}</div>
-				{{/html-catlinks}}
-			</div>
+			{{#html-catlinks}}
+			<nav id="catlinks" class="iiskin-categories">{{{html-catlinks}}}</nav>
+			{{/html-catlinks}}
 		</main>
 	</div>
 
 	<!-- Footer -->
-	<footer id="mw-footer" class="mw-footer">
-		<div class="mw-footer-container">
-			{{#data-footer.array-items}}
-			<ul class="mw-footer-list">
-				{{#array-items}}
-				<li>{{{html}}}</li>
-				{{/array-items}}
-			</ul>
-			{{/data-footer.array-items}}
+	<footer id="iiskin-footer" class="iiskin-footer">
+		<div class="iiskin-footer-inner">
+			<div class="iiskin-footer-brand">
+				<span class="iiskin-footer-logo">IIWiki</span>
+				<span class="iiskin-footer-tagline">SimFic & Alt-History Encyclopedia</span>
+			</div>
+			<div class="iiskin-footer-links">
+				{{#data-footer.array-items}}
+				<ul class="iiskin-footer-list">
+					{{#array-items}}
+					<li>{{{html}}}</li>
+					{{/array-items}}
+				</ul>
+				{{/data-footer.array-items}}
+			</div>
 		</div>
 	</footer>
 </div>

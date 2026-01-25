@@ -5,5 +5,8 @@
 		]
 	},
 	"skinname-iiskin": "IISkin",
-	"iiskin-desc": "A clean, unobtrusive MediaWiki skin for IIWiki with light blue-grey colors."
+	"iiskin-desc": "A modern, unobtrusive MediaWiki skin for IIWiki - the SimFic & Alt-History Encyclopedia. Features a clean light blue-grey design with notifications support and worldbuilding-focused navigation.",
+	"iiskin-create-article": "Create Article",
+	"iiskin-search-placeholder": "Search worlds, nations, characters...",
+	"iiskin-tagline": "SimFic & Alt-History Encyclopedia"
 }
