@@ -1,0 +1,17 @@
+/**
+ * Styles for redirect pages
+ */
+.redirectText {
+	font-size: 1.1em;
+	margin: 1em 0;
+}
+
+.redirectText a {
+	font-weight: 500;
+}
+
+.mw-redirectedfrom {
+	font-style: italic;
+	color: var(--iiwiki-text-secondary, #4a5568);
+	margin-bottom: 0.5em;
+}

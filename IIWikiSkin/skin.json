@@ -41,8 +41,7 @@
         "MediaWiki\\Skins\\IIWiki\\": "includes/"
     },
     "AutoloadClasses": {
-        "SkinIIWiki": "includes/SkinIIWiki.php",
-        "IIWikiTemplate": "includes/IIWikiTemplate.php"
+        "SkinIIWiki": "includes/SkinIIWiki.php"
     },
     "ResourceModules": {
         "skins.iiwiki.styles": {
