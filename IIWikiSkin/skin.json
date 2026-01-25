@@ -1,0 +1,112 @@
+{
+    "name": "IIWikiSkin",
+    "version": "1.0.0",
+    "author": [
+        "Makko Oko"
+    ],
+    "url": "https://iiwiki.com",
+    "descriptionmsg": "iiwikiskin-desc",
+    "namemsg": "skinname-iiwikiskin",
+    "license-name": "GPL-2.0-or-later",
+    "type": "skin",
+    "requires": {
+        "MediaWiki": ">= 1.43.0"
+    },
+    "ValidSkinNames": {
+        "iiwikiskin": {
+            "displayname": "IIWiki",
+            "class": "SkinIIWiki",
+            "args": [
+                {
+                    "name": "iiwikiskin",
+                    "templateDirectory": "skins/IIWikiSkin/templates",
+                    "template": "skin",
+                    "responsive": true,
+                    "link": {
+                        "text-hierarchylink": "hierarchy-link"
+                    },
+                    "bodyClasses": [
+                        "skin-iiwiki"
+                    ]
+                }
+            ]
+        }
+    },
+    "MessagesDirs": {
+        "IIWikiSkin": [
+            "i18n"
+        ]
+    },
+    "AutoloadNamespaces": {
+        "MediaWiki\\Skins\\IIWiki\\": "includes/"
+    },
+    "AutoloadClasses": {
+        "SkinIIWiki": "includes/SkinIIWiki.php",
+        "IIWikiTemplate": "includes/IIWikiTemplate.php"
+    },
+    "ResourceModules": {
+        "skins.iiwiki.styles": {
+            "class": "MediaWiki\\ResourceLoader\\SkinModule",
+            "features": {
+                "normalize": true,
+                "elements": true,
+                "content": true,
+                "content-links": true,
+                "content-media": true,
+                "content-tables": true,
+                "interface": true,
+                "interface-message-box": true,
+                "interface-category": true,
+                "i18n-ordered-lists": true,
+                "i18n-all-lists-hierarchical": true,
+                "i18n-headings": true,
+                "toc": true
+            },
+            "styles": [
+                "resources/skins.iiwiki.styles.css"
+            ]
+        },
+        "skins.iiwiki.js": {
+            "scripts": [
+                "resources/skins.iiwiki.js"
+            ],
+            "dependencies": [
+                "mediawiki.page.ready",
+                "mediawiki.util"
+            ]
+        }
+    },
+    "ResourceFileModulePaths": {
+        "localBasePath": "",
+        "remoteSkinPath": "IIWikiSkin"
+    },
+    "ResourceModuleSkinStyles": {
+        "iiwikiskin": {
+            "+mediawiki.action.view.redirectPage": "resources/mediawiki.action.view.redirectPage.css"
+        }
+    },
+    "Hooks": {
+        "SkinPageReadyConfig": "IIWikiHooks::onSkinPageReadyConfig",
+        "BeforePageDisplay": "IIWikiHooks::onBeforePageDisplay"
+    },
+    "HookHandlers": {
+        "IIWikiHooks": {
+            "class": "MediaWiki\\Skins\\IIWiki\\Hooks"
+        }
+    },
+    "config": {
+        "IIWikiShowPortalLinks": {
+            "value": true,
+            "description": "Show portal community links in sidebar"
+        },
+        "IIWikiEnableWorldbuildingFeatures": {
+            "value": true,
+            "description": "Enable special worldbuilding-focused UI elements"
+        },
+        "IIWikiFeaturedArticle": {
+            "value": "",
+            "description": "Current featured article page name"
+        }
+    },
+    "manifest_version": 2
+}

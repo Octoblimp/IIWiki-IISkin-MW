@@ -1,0 +1,249 @@
+{{!-- filepath: skins/IIWikiSkin/templates/skin.mustache --}}
+<!DOCTYPE html>
+<html class="client-nojs" lang="{{ html-lang }}" dir="{{ html-lang-dir }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ html-title }}</title>
+    {{{ html-headelement }}}
+</head>
+<body class="skin-iiwiki {{ html-body-class }}" id="iiwiki-body">
+    <div id="iiwiki-wrapper">
+        {{! ===== HEADER ===== }}
+        <header id="iiwiki-header" role="banner">
+            <div class="iiwiki-header-inner">
+                {{! Logo and Site Title }}
+                <div class="iiwiki-branding">
+                    <a href="{{ data-main-page-url }}" class="iiwiki-logo-link" title="{{ msg-mainpage-title }}">
+                        <div class="iiwiki-logo">
+                            <span class="iiwiki-logo-icon">II</span>
+                            <span class="iiwiki-logo-text">Wiki</span>
+                        </div>
+                    </a>
+                    <div class="iiwiki-tagline">SimFic & Alt-History Encyclopedia</div>
+                </div>
+
+                {{! Search }}
+                <div class="iiwiki-search-container">
+                    {{{ html-search }}}
+                </div>
+
+                {{! User Menu }}
+                <div class="iiwiki-user-menu">
+                    {{#data-personal-tools}}
+                        <nav class="iiwiki-personal-tools" aria-label="{{ msg-personaltools }}">
+                            <ul>
+                                {{#items}}
+                                    <li id="{{ id }}" class="{{ class }}">
+                                        <a href="{{ href }}" {{{ html-item-link-attributes }}}>{{{ text }}}</a>
+                                    </li>
+                                {{/items}}
+                            </ul>
+                        </nav>
+                    {{/data-personal-tools}}
+                </div>
+            </div>
+
+            {{! Category Navigation Bar }}
+            <nav class="iiwiki-category-nav" aria-label="Category Navigation">
+                <ul class="iiwiki-category-list">
+                    {{#data-categories-nav}}
+                        <li class="iiwiki-category-item">
+                            <a href="{{ href }}" class="iiwiki-category-link" data-icon="{{ icon }}">
+                                <span class="iiwiki-category-text">{{ text }}</span>
+                            </a>
+                        </li>
+                    {{/data-categories-nav}}
+                    <li class="iiwiki-category-item iiwiki-category-more">
+                        <a href="/w/Category:Browse" class="iiwiki-category-link">
+                            <span class="iiwiki-category-text">See All</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        {{! ===== MAIN LAYOUT ===== }}
+        <div id="iiwiki-main-container">
+            {{! ===== SIDEBAR ===== }}
+            <aside id="iiwiki-sidebar" role="navigation">
+                <div class="iiwiki-sidebar-inner">
+                    {{! Navigation }}
+                    <nav class="iiwiki-nav-section" aria-label="Navigation">
+                        <h3 class="iiwiki-nav-heading">Navigation</h3>
+                        <ul class="iiwiki-nav-list">
+                            <li><a href="{{ data-main-page-url }}">Main page</a></li>
+                            <li><a href="/w/Special:RecentChanges">Recent changes</a></li>
+                            <li><a href="/w/Special:Random">Random page</a></li>
+                            <li><a href="/w/IIWiki:NewArticle">Create a Page</a></li>
+                        </ul>
+                    </nav>
+
+                    {{! Community Portals }}
+                    {{#data-iiwiki.show-portal-links}}
+                    <nav class="iiwiki-nav-section iiwiki-portals" aria-label="Communities">
+                        <h3 class="iiwiki-nav-heading">Communities</h3>
+                        <ul class="iiwiki-nav-list iiwiki-portal-list">
+                            {{#data-portals}}
+                                <li class="{{ class }}">
+                                    <a href="{{ href }}">{{ text }}</a>
+                                </li>
+                            {{/data-portals}}
+                        </ul>
+                    </nav>
+                    {{/data-iiwiki.show-portal-links}}
+
+                    {{! Tools }}
+                    <nav class="iiwiki-nav-section iiwiki-tools" aria-label="Tools">
+                        <h3 class="iiwiki-nav-heading">Tools</h3>
+                        {{#data-portlets.data-tb}}
+                            <ul class="iiwiki-nav-list">
+                                {{#html-items}}
+                                    {{{ . }}}
+                                {{/html-items}}
+                            </ul>
+                        {{/data-portlets.data-tb}}
+                    </nav>
+
+                    {{! Resources }}
+                    <nav class="iiwiki-nav-section" aria-label="Resources">
+                        <h3 class="iiwiki-nav-heading">Resources</h3>
+                        <ul class="iiwiki-nav-list">
+                            <li><a href="/w/IIWiki:Standards_and_Conventions">Rules & Standards</a></li>
+                            <li><a href="/w/IIWiki:Library">Library</a></li>
+                            <li><a href="/w/OOC:Main_Page">OOC</a></li>
+                            <li><a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents" target="_blank" rel="noopener">Help</a></li>
+                        </ul>
+                    </nav>
+
+                    {{! External Links }}
+                    <nav class="iiwiki-nav-section iiwiki-external" aria-label="External">
+                        <h3 class="iiwiki-nav-heading">Connect</h3>
+                        <ul class="iiwiki-nav-list">
+                            <li><a href="https://discord.gg/J5qH7Pv" target="_blank" rel="noopener" class="iiwiki-external-link iiwiki-discord">Discord</a></li>
+                            <li><a href="https://www.patreon.com/iiwiki/overview" target="_blank" rel="noopener" class="iiwiki-external-link iiwiki-patreon">Patreon</a></li>
+                            <li><a href="https://forum.nationstates.net/viewtopic.php?f=5&t=349466" target="_blank" rel="noopener" class="iiwiki-external-link iiwiki-forum">NSForums</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </aside>
+
+            {{! ===== CONTENT AREA ===== }}
+            <main id="iiwiki-content" role="main">
+                {{! Content Actions (Tabs) }}
+                <div class="iiwiki-content-actions">
+                    <nav class="iiwiki-namespaces" aria-label="Namespaces">
+                        {{#data-namespaces}}
+                            <ul>
+                                {{#items}}
+                                    <li id="{{ id }}" class="{{ class }}">
+                                        <a href="{{ href }}" {{{ html-item-link-attributes }}}>{{{ text }}}</a>
+                                    </li>
+                                {{/items}}
+                            </ul>
+                        {{/data-namespaces}}
+                    </nav>
+                    <nav class="iiwiki-views" aria-label="Views">
+                        {{#data-views}}
+                            <ul>
+                                {{#items}}
+                                    <li id="{{ id }}" class="{{ class }}">
+                                        <a href="{{ href }}" {{{ html-item-link-attributes }}}>{{{ text }}}</a>
+                                    </li>
+                                {{/items}}
+                            </ul>
+                        {{/data-views}}
+                    </nav>
+                    <nav class="iiwiki-actions" aria-label="More actions">
+                        {{#data-actions}}
+                            <ul>
+                                {{#items}}
+                                    <li id="{{ id }}" class="{{ class }}">
+                                        <a href="{{ href }}" {{{ html-item-link-attributes }}}>{{{ text }}}</a>
+                                    </li>
+                                {{/items}}
+                            </ul>
+                        {{/data-actions}}
+                    </nav>
+                </div>
+
+                {{! Article Content }}
+                <article id="iiwiki-article">
+                    {{! Site notices }}
+                    {{#data-sitenotice}}
+                        <div id="siteNotice" class="iiwiki-sitenotice">{{{ html }}}</div>
+                    {{/data-sitenotice}}
+
+                    {{! Page Title }}
+                    <header class="iiwiki-article-header">
+                        <h1 id="firstHeading" class="iiwiki-page-title">{{{ html-title }}}</h1>
+                        {{#html-subtitle}}
+                            <div id="contentSub" class="iiwiki-subtitle">{{{ . }}}</div>
+                        {{/html-subtitle}}
+                    </header>
+
+                    {{! Main Content }}
+                    <div id="bodyContent" class="iiwiki-body-content">
+                        {{#html-undelete-link}}
+                            <div id="contentSub2" class="iiwiki-undelete">{{{ . }}}</div>
+                        {{/html-undelete-link}}
+
+                        <div id="mw-content-text" class="mw-body-content">
+                            {{{ html-body-content }}}
+                        </div>
+
+                        {{! Categories }}
+                        {{#html-categories}}
+                            <div id="catlinks" class="iiwiki-catlinks">{{{ . }}}</div>
+                        {{/html-categories}}
+                    </div>
+                </article>
+            </main>
+        </div>
+
+        {{! ===== FOOTER ===== }}
+        <footer id="iiwiki-footer" role="contentinfo">
+            <div class="iiwiki-footer-inner">
+                <div class="iiwiki-footer-branding">
+                    <div class="iiwiki-footer-logo">
+                        <span class="iiwiki-logo-icon">II</span>
+                        <span class="iiwiki-logo-text">Wiki</span>
+                    </div>
+                    <p class="iiwiki-footer-tagline">{{ data-iiwiki-footer.tagline }}</p>
+                    <p class="iiwiki-footer-stats">
+                        <a href="/w/Special:Statistics">59,047 articles</a> · 
+                        <a href="/w/Special:ListUsers">4,397 registered users</a>
+                    </p>
+                </div>
+
+                <div class="iiwiki-footer-links">
+                    {{#data-iiwiki-footer.links}}
+                        <a href="{{ href }}" class="iiwiki-footer-link iiwiki-{{ icon }}" target="_blank" rel="noopener">{{ text }}</a>
+                    {{/data-iiwiki-footer.links}}
+                </div>
+
+                <div class="iiwiki-footer-info">
+                    {{#data-footer.data-info}}
+                        {{{ html }}}
+                    {{/data-footer.data-info}}
+                </div>
+
+                <div class="iiwiki-footer-icons">
+                    {{#data-footer.data-icons}}
+                        {{{ html }}}
+                    {{/data-footer.data-icons}}
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    {{! Mobile Menu Toggle }}
+    <button id="iiwiki-mobile-menu-toggle" class="iiwiki-mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="iiwiki-hamburger"></span>
+    </button>
+
+    {{{ html-bodycontent }}}
+    {{{ html-printfooter }}}
+    {{{ html-debuglog }}}
+</body>
+</html>
