@@ -1,23 +1,22 @@
 # IIWiki-IISkin-MW
 
-A custom MediaWiki skin designed for [IIWiki](https://iiwiki.com), a SimFic and Alt-History Encyclopedia.
+A custom MediaWiki skin for [IIWiki](https://iiwiki.com), the SimFic and Alt-History Encyclopedia.
 
 ## Overview
 
-**IISkin** is a clean, unobtrusive MediaWiki skin based on the classic Vector design. It features a neutral blue-grey color palette that provides a professional, wiki-appropriate appearance without being distracting.
+**IISkin** is a clean, minimal MediaWiki skin with a light blue-grey color palette. It's designed to be unobtrusive and professional, keeping the focus on the content.
 
 ## Features
 
-- 🎨 **Classic Vector-inspired design** - Familiar layout with sidebar navigation and content tabs
-- 🔵 **Neutral blue-grey colors** - Professional, unobtrusive palette
-- 📱 **Fully responsive** - Works on desktop, tablet, and mobile
-- ♿ **Accessible** - Skip links, keyboard navigation, proper ARIA attributes
-- 🔔 **Extension support** - Styled Echo notifications and other extensions
-- 🖼️ **Logo support** - Uses `$wgLogos` or `$wgLogo` configuration
+- 🎨 Clean, minimal design
+- 🔵 Light blue-grey color palette  
+- 📱 Fully responsive (desktop, tablet, mobile)
+- ⚡ Simple, lightweight structure
+- 🖼️ Supports `$wgLogos` for custom logos
 
-## Installation
+## Quick Install
 
-1. Copy the `IISkin` folder to your MediaWiki `skins/` directory
+1. Copy the `IISkin` folder to `skins/IISkin` in your MediaWiki installation
 
 2. Add to `LocalSettings.php`:
    ```php
@@ -25,25 +24,15 @@ A custom MediaWiki skin designed for [IIWiki](https://iiwiki.com), a SimFic and 
    $wgDefaultSkin = 'iiskin';
    ```
 
-3. Configure your logo:
-   ```php
-   $wgLogos = [
-       'icon' => "$wgResourceBasePath/resources/assets/your-logo.png",
-   ];
-   ```
+3. Clear your cache and reload
 
 ## Requirements
 
 - MediaWiki 1.43.0+
-- PHP 8.0+
 
 ## Documentation
 
-See [IISkin/README.md](IISkin/README.md) for full documentation including:
-- Detailed installation instructions
-- Configuration options
-- Customization guide
-- Color palette reference
+See [IISkin/README.md](IISkin/README.md) for detailed documentation.
 
 ## License
 

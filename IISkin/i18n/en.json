@@ -5,6 +5,5 @@
 		]
 	},
 	"skinname-iiskin": "IISkin",
-	"iiskin-desc": "A clean, unobtrusive MediaWiki skin for IIWiki - the SimFic and Alt-History Encyclopedia. Based on the classic Vector design with neutral blue-grey colors.",
-	"iiskin-toggle-sidebar": "Toggle sidebar navigation"
+	"iiskin-desc": "A clean, unobtrusive MediaWiki skin for IIWiki with light blue-grey colors."
 }

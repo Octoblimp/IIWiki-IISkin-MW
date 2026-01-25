@@ -1,88 +1,142 @@
-<div id="mw-wrapper">
-	{{! Header with logo and personal tools }}
-	<header id="mw-header" class="iiskin-header" role="banner">
-		<div class="iiskin-header-inner">
-			{{! Logo section }}
-			<div class="iiskin-logo-container">
-				{{>Logo}}
+<div id="mw-wrapper" class="mw-wrapper">
+	<!-- Header -->
+	<header id="mw-header" class="mw-header">
+		<div class="mw-header-container">
+			<!-- Logo -->
+			<div class="mw-logo">
+				<a href="{{{link-mainpage}}}" class="mw-logo-link">
+					{{#data-logos}}
+						{{#icon}}<img src="{{.}}" alt="" class="mw-logo-icon">{{/icon}}
+						{{^icon}}{{#1x}}<img src="{{.}}" alt="" class="mw-logo-icon">{{/1x}}{{/icon}}
+					{{/data-logos}}
+					<span class="mw-logo-text">IIWiki</span>
+				</a>
 			</div>
 
-			{{! Search }}
-			<div class="iiskin-search-container">
-				{{>SearchBox}}
+			<!-- Search -->
+			<div class="mw-search-area">
+				<form action="{{{page-action-search}}}" id="searchform" class="mw-search-form">
+					<input type="hidden" name="title" value="Special:Search">
+					<input type="search" name="search" id="searchInput" placeholder="Search IIWiki..." class="mw-search-input" autocomplete="off">
+					<button type="submit" class="mw-search-button">Search</button>
+				</form>
 			</div>
 
-			{{! Personal tools (user menu, notifications, etc.) }}
-			<div class="iiskin-personal-container">
-				{{>PersonalMenu}}
-			</div>
+			<!-- Personal tools -->
+			<nav class="mw-personal-tools">
+				{{#data-portlets}}
+					{{#data-personal}}
+						<ul class="mw-personal-tools-list">
+							{{{html-items}}}
+						</ul>
+					{{/data-personal}}
+				{{/data-portlets}}
+			</nav>
 		</div>
 	</header>
 
-	<div id="mw-content-wrapper" class="iiskin-content-wrapper">
-		{{! Sidebar / Navigation }}
-		<nav id="mw-sidebar" class="iiskin-sidebar" role="navigation">
-			<button id="iiskin-sidebar-toggle" class="iiskin-sidebar-toggle" aria-label="{{msg-iiskin-toggle-sidebar}}">
-				<span class="iiskin-sidebar-toggle-icon"></span>
-			</button>
-			<div class="iiskin-sidebar-inner">
-				{{>Sidebar}}
-			</div>
-		</nav>
+	<div class="mw-body-container">
+		<!-- Sidebar -->
+		<aside id="mw-sidebar" class="mw-sidebar">
+			{{#data-portlets-sidebar.data-portlets-first}}
+			<nav class="mw-portlet" id="{{id}}">
+				<h3 class="mw-portlet-heading">{{label}}</h3>
+				<ul class="mw-portlet-list">
+					{{{html-items}}}
+				</ul>
+			</nav>
+			{{/data-portlets-sidebar.data-portlets-first}}
 
-		{{! Main content area }}
-		<main id="mw-content" class="iiskin-content" role="main">
-			{{! Content actions (tabs: page, talk, edit, history, etc.) }}
-			<div class="iiskin-content-actions">
-				{{>ContentActions}}
-			</div>
+			{{#data-portlets-sidebar.array-portlets-rest}}
+			<nav class="mw-portlet" id="{{id}}">
+				<h3 class="mw-portlet-heading">{{label}}</h3>
+				<ul class="mw-portlet-list">
+					{{{html-items}}}
+				</ul>
+			</nav>
+			{{/data-portlets-sidebar.array-portlets-rest}}
 
-			{{! Page header (title, indicators) }}
-			<div class="iiskin-page-header">
-				{{#data-indicators}}
-				<div id="mw-indicators" class="mw-indicators">
-					{{{html}}}
+			{{#data-portlets}}
+				{{#data-tb}}
+				<nav class="mw-portlet" id="{{id}}">
+					<h3 class="mw-portlet-heading">{{label}}</h3>
+					<ul class="mw-portlet-list">
+						{{{html-items}}}
+					</ul>
+				</nav>
+				{{/data-tb}}
+			{{/data-portlets}}
+		</aside>
+
+		<!-- Main content -->
+		<main id="mw-content" class="mw-content">
+			<!-- Content tabs -->
+			<nav class="mw-content-tabs">
+				{{#data-portlets}}
+					{{#data-namespaces}}
+					<ul class="mw-tabs mw-tabs-namespaces">
+						{{{html-items}}}
+					</ul>
+					{{/data-namespaces}}
+				{{/data-portlets}}
+
+				<div class="mw-tabs-right">
+					{{#data-portlets}}
+						{{#data-views}}
+						<ul class="mw-tabs mw-tabs-views">
+							{{{html-items}}}
+						</ul>
+						{{/data-views}}
+					{{/data-portlets}}
+
+					{{#data-portlets}}
+						{{#data-actions}}
+						{{^is-empty}}
+						<div class="mw-dropdown">
+							<button class="mw-dropdown-toggle">More ▾</button>
+							<ul class="mw-dropdown-menu">
+								{{{html-items}}}
+							</ul>
+						</div>
+						{{/is-empty}}
+						{{/data-actions}}
+					{{/data-portlets}}
 				</div>
+			</nav>
+
+			<!-- Page heading -->
+			<div class="mw-page-header">
+				{{#data-indicators}}
+				<div class="mw-indicators">{{{html}}}</div>
 				{{/data-indicators}}
-				<h1 id="firstHeading" class="firstHeading mw-first-heading">
-					<span class="mw-page-title-main">{{{html-title}}}</span>
-				</h1>
-				{{#html-subtitle}}
-				<div id="contentSub" class="contentSub">{{{html-subtitle}}}</div>
-				{{/html-subtitle}}
-				{{#tagline}}
-				<div id="siteSub" class="siteSub">{{msg-tagline}}</div>
-				{{/tagline}}
+				<h1 id="firstHeading" class="mw-first-heading">{{{html-title}}}</h1>
 			</div>
 
-			{{! Site notices }}
 			{{#data-sitenotice}}
-			<div id="siteNotice">{{{html}}}</div>
+			<div id="siteNotice" class="mw-sitenotice">{{{html}}}</div>
 			{{/data-sitenotice}}
 
-			{{! Body content }}
+			<!-- Body content -->
 			<div id="bodyContent" class="mw-body-content">
-				{{#html-undelete-link}}
-				<div id="contentSub2">{{{html-undelete-link}}}</div>
-				{{/html-undelete-link}}
-
-				<div id="mw-content-text" class="mw-body-content mw-content-ltr">
-					{{{html-body-content}}}
-				</div>
+				{{{html-body-content}}}
 
 				{{#html-catlinks}}
-				<div id="catlinks" class="catlinks">{{{html-catlinks}}}</div>
+				<div id="catlinks" class="mw-catlinks">{{{html-catlinks}}}</div>
 				{{/html-catlinks}}
-
-				{{#data-after-content}}
-				<div id="mw-data-after-content">{{{html}}}</div>
-				{{/data-after-content}}
 			</div>
 		</main>
 	</div>
 
-	{{! Footer }}
-	<footer id="mw-footer" class="iiskin-footer" role="contentinfo">
-		{{>Footer}}
+	<!-- Footer -->
+	<footer id="mw-footer" class="mw-footer">
+		<div class="mw-footer-container">
+			{{#data-footer.array-items}}
+			<ul class="mw-footer-list">
+				{{#array-items}}
+				<li>{{{html}}}</li>
+				{{/array-items}}
+			</ul>
+			{{/data-footer.array-items}}
+		</div>
 	</footer>
 </div>

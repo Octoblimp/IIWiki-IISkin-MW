@@ -14,31 +14,14 @@
 	},
 	"ValidSkinNames": {
 		"iiskin": {
-			"class": "MediaWiki\\Skins\\IISkin\\IISkin",
+			"class": "SkinMustache",
 			"args": [
 				{
 					"name": "iiskin",
 					"responsive": true,
-					"toc": true,
-					"messages": [
-						"sitetitle",
-						"search",
-						"searcharticle",
-						"searchbutton",
-						"tagline",
-						"navigation",
-						"navigation-heading",
-						"personaltools",
-						"toolbox",
-						"otherlanguages",
-						"jumpto",
-						"jumptonavigation",
-						"jumptosearch",
-						"views",
-						"actions",
-						"notloggedin",
-						"iiskin-toggle-sidebar"
-					]
+					"styles": [ "skins.iiskin" ],
+					"scripts": [ "skins.iiskin.js" ],
+					"templateDirectory": "skins/IISkin/templates"
 				}
 			]
 		}
@@ -48,11 +31,8 @@
 			"i18n"
 		]
 	},
-	"AutoloadNamespaces": {
-		"MediaWiki\\Skins\\IISkin\\": "includes/"
-	},
 	"ResourceModules": {
-		"skins.iiskin.styles": {
+		"skins.iiskin": {
 			"class": "MediaWiki\\ResourceLoader\\SkinModule",
 			"features": {
 				"normalize": true,
@@ -62,52 +42,22 @@
 				"interface": true,
 				"interface-category": true,
 				"interface-message-box": true,
-				"logo": true,
+				"logo": false,
 				"toc": true
 			},
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"styles": [
-				"resources/skins.iiskin.styles/main.less"
+				"resources/skin.css"
 			]
 		},
 		"skins.iiskin.js": {
-			"targets": [
-				"desktop",
-				"mobile"
-			],
 			"scripts": [
-				"resources/skins.iiskin.js/main.js"
-			],
-			"dependencies": [
-				"mediawiki.util",
-				"mediawiki.page.ready"
+				"resources/skin.js"
 			]
 		}
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteSkinPath": "IISkin"
-	},
-	"ResourceModuleSkinStyles": {
-		"iiskin": {
-			"+ext.echo.styles.badge": "resources/skins.iiskin.styles/ext.echo.less",
-			"+mediawiki.action.view.postEdit": "resources/skins.iiskin.styles/mediawiki.action.view.postEdit.less"
-		}
-	},
-	"ConfigRegistry": {
-		"iiskin": "GlobalVarConfig::newInstance"
-	},
-	"config": {
-		"IISkinShowFooterIcons": {
-			"value": true,
-			"description": "Whether to show footer icons"
-		}
-	},
-	"SkinLessImportPaths": {
-		"iiskin": "resources/mediawiki.less"
 	},
 	"manifest_version": 2
 }
