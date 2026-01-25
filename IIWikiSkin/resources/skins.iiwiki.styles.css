@@ -1,656 +1,901 @@
 /* ============================================
    IIWiki Skin Styles
-   A modern skin for worldbuilding wikis
+   A rustic, worldbuilding encyclopedia theme
    ============================================ */
 
 /* === CSS Variables === */
 :root {
-    /* Primary Colors - Deep blue/indigo palette fitting for worldbuilding */
-    --iiwiki-primary: #1a365d;
-    --iiwiki-primary-light: #2a4a7f;
-    --iiwiki-primary-dark: #0f2340;
-    --iiwiki-accent: #3182ce;
-    --iiwiki-accent-hover: #2b6cb0;
-    
-    /* Secondary Colors */
-    --iiwiki-gold: #d69e2e;
-    --iiwiki-gold-light: #ecc94b;
-    
-    /* Neutral Colors */
-    --iiwiki-white: #ffffff;
-    --iiwiki-gray-50: #f7fafc;
-    --iiwiki-gray-100: #edf2f7;
-    --iiwiki-gray-200: #e2e8f0;
-    --iiwiki-gray-300: #cbd5e0;
-    --iiwiki-gray-400: #a0aec0;
-    --iiwiki-gray-500: #718096;
-    --iiwiki-gray-600: #4a5568;
-    --iiwiki-gray-700: #2d3748;
-    --iiwiki-gray-800: #1a202c;
-    --iiwiki-gray-900: #171923;
-    
-    /* Text Colors */
-    --iiwiki-text-primary: #1a202c;
-    --iiwiki-text-secondary: #4a5568;
-    --iiwiki-text-muted: #718096;
-    --iiwiki-text-inverse: #ffffff;
-    
-    /* Link Colors */
-    --iiwiki-link: #2b6cb0;
-    --iiwiki-link-hover: #1a4971;
-    --iiwiki-link-visited: #553c9a;
-    --iiwiki-link-new: #c53030;
-    
-    /* Background Colors */
-    --iiwiki-bg-body: #f0f4f8;
-    --iiwiki-bg-content: #ffffff;
-    --iiwiki-bg-sidebar: #1a365d;
-    --iiwiki-bg-header: #0f2340;
-    --iiwiki-bg-footer: #1a202c;
-    
-    /* Borders */
-    --iiwiki-border-color: #e2e8f0;
-    --iiwiki-border-radius: 6px;
-    --iiwiki-border-radius-lg: 10px;
-    
-    /* Shadows */
-    --iiwiki-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --iiwiki-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --iiwiki-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --iiwiki-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    
-    /* Layout */
-    --iiwiki-sidebar-width: 240px;
-    --iiwiki-content-max-width: 1200px;
-    --iiwiki-header-height: 60px;
-    --iiwiki-category-nav-height: 44px;
-    
-    /* Transitions */
-    --iiwiki-transition: 0.2s ease-in-out;
-    --iiwiki-transition-fast: 0.15s ease-in-out;
-    
-    /* Typography */
-    --iiwiki-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --iiwiki-font-serif: Georgia, 'Times New Roman', Times, serif;
-    --iiwiki-font-mono: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+	/* Primary Colors - Warm, aged parchment tones */
+	--iiwiki-primary: #4a3728;
+	--iiwiki-primary-light: #5d4637;
+	--iiwiki-primary-dark: #2d221a;
+	--iiwiki-accent: #8b4513;
+	--iiwiki-accent-hover: #a0522d;
+	
+	/* Secondary Colors - Gold and brass */
+	--iiwiki-gold: #c9a227;
+	--iiwiki-gold-light: #d4af37;
+	--iiwiki-gold-dark: #996515;
+	--iiwiki-copper: #b87333;
+	
+	/* Parchment Colors */
+	--iiwiki-parchment: #f4e4c1;
+	--iiwiki-parchment-light: #faf6eb;
+	--iiwiki-parchment-dark: #e8d5a3;
+	--iiwiki-parchment-aged: #d4c4a0;
+	
+	/* Ink Colors */
+	--iiwiki-ink: #2c1810;
+	--iiwiki-ink-light: #4a3728;
+	--iiwiki-ink-faded: #6b5344;
+	
+	/* Text Colors */
+	--iiwiki-text-primary: #2c1810;
+	--iiwiki-text-secondary: #4a3728;
+	--iiwiki-text-muted: #6b5344;
+	--iiwiki-text-inverse: #f4e4c1;
+	
+	/* Link Colors */
+	--iiwiki-link: #6b3a1f;
+	--iiwiki-link-hover: #8b4513;
+	--iiwiki-link-visited: #5c4033;
+	--iiwiki-link-new: #a52a2a;
+	
+	/* Background Colors */
+	--iiwiki-bg-body: #e8dcc8;
+	--iiwiki-bg-content: #f8f3e8;
+	--iiwiki-bg-sidebar: #3d2b1f;
+	--iiwiki-bg-header: #2d1f15;
+	--iiwiki-bg-footer: #1a1209;
+	
+	/* Borders */
+	--iiwiki-border-color: #c9b896;
+	--iiwiki-border-dark: #8b7355;
+	--iiwiki-border-radius: 4px;
+	--iiwiki-border-radius-lg: 6px;
+	
+	/* Shadows */
+	--iiwiki-shadow-sm: 0 1px 2px rgba(44, 24, 16, 0.1);
+	--iiwiki-shadow: 0 2px 4px rgba(44, 24, 16, 0.15);
+	--iiwiki-shadow-md: 0 4px 8px rgba(44, 24, 16, 0.2);
+	--iiwiki-shadow-lg: 0 8px 16px rgba(44, 24, 16, 0.25);
+	--iiwiki-shadow-inset: inset 0 1px 3px rgba(44, 24, 16, 0.1);
+	
+	/* Layout */
+	--iiwiki-sidebar-width: 220px;
+	--iiwiki-content-max-width: 1400px;
+	--iiwiki-header-height: 70px;
+	--iiwiki-category-nav-height: 42px;
+	
+	/* Transitions */
+	--iiwiki-transition: 0.2s ease-in-out;
+	--iiwiki-transition-fast: 0.15s ease-in-out;
+	
+	/* Typography - Old-world fonts */
+	--iiwiki-font-heading: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+	--iiwiki-font-body: 'Crimson Text', Georgia, 'Times New Roman', serif;
+	--iiwiki-font-ui: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	--iiwiki-font-mono: 'Courier New', Courier, monospace;
 }
 
 /* === Base Reset & Typography === */
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-    font-size: 16px;
-    scroll-behavior: smooth;
+	font-size: 16px;
+	scroll-behavior: smooth;
 }
 
 body.skin-iiwiki {
-    margin: 0;
-    padding: 0;
-    font-family: var(--iiwiki-font-sans);
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--iiwiki-text-primary);
-    background-color: var(--iiwiki-bg-body);
+	margin: 0;
+	padding: 0;
+	font-family: var(--iiwiki-font-body);
+	font-size: 1rem;
+	line-height: 1.7;
+	color: var(--iiwiki-text-primary);
+	background-color: var(--iiwiki-bg-body);
+	background-image: 
+		url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Skip link */
+.mw-jump-link {
+	position: absolute;
+	top: -100px;
+	left: 0;
+	padding: 0.5rem 1rem;
+	background: var(--iiwiki-primary);
+	color: var(--iiwiki-text-inverse);
+	z-index: 9999;
+}
+
+.mw-jump-link:focus {
+	top: 0;
 }
 
 /* === Main Wrapper === */
 #iiwiki-wrapper {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 /* === Header === */
 #iiwiki-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background: var(--iiwiki-bg-header);
-    box-shadow: var(--iiwiki-shadow-md);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background: var(--iiwiki-bg-header);
+	background-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+	box-shadow: var(--iiwiki-shadow-lg);
+	border-bottom: 3px solid var(--iiwiki-gold-dark);
 }
 
 .iiwiki-header-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--iiwiki-header-height);
-    padding: 0 1.5rem;
-    max-width: 1600px;
-    margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: var(--iiwiki-header-height);
+	padding: 0 1.5rem;
+	max-width: var(--iiwiki-content-max-width);
+	margin: 0 auto;
 }
 
 /* Logo & Branding */
 .iiwiki-branding {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.15rem;
 }
 
 .iiwiki-logo-link {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
 }
 
 .iiwiki-logo {
-    display: flex;
-    align-items: baseline;
-    font-weight: 700;
-    font-size: 1.75rem;
-    letter-spacing: -0.02em;
+	display: flex;
+	align-items: baseline;
+	font-family: var(--iiwiki-font-heading);
+	font-weight: 700;
+	font-size: 2rem;
+	letter-spacing: 0.02em;
+}
+
+.iiwiki-logo-img {
+	height: 48px;
+	width: auto;
 }
 
 .iiwiki-logo-icon {
-    color: var(--iiwiki-gold);
-    font-style: italic;
+	color: var(--iiwiki-gold);
+	font-style: italic;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .iiwiki-logo-text {
-    color: var(--iiwiki-text-inverse);
+	color: var(--iiwiki-parchment);
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .iiwiki-tagline {
-    color: var(--iiwiki-gray-400);
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: none;
+	color: var(--iiwiki-parchment-dark);
+	font-family: var(--iiwiki-font-heading);
+	font-size: 0.7rem;
+	font-style: italic;
+	letter-spacing: 0.1em;
+	opacity: 0.9;
 }
 
-@media (min-width: 1024px) {
-    .iiwiki-tagline {
-        display: block;
-    }
+@media (max-width: 768px) {
+	.iiwiki-tagline {
+		display: none;
+	}
 }
 
 /* Search Container */
 .iiwiki-search-container {
-    flex: 1;
-    max-width: 500px;
-    margin: 0 2rem;
+	flex: 1;
+	max-width: 400px;
+	margin: 0 1.5rem;
 }
 
-.iiwiki-search-container form {
-    display: flex;
-    align-items: center;
+.iiwiki-search-form {
+	display: flex;
+	align-items: center;
 }
 
-.iiwiki-search-container input[type="search"],
-.iiwiki-search-container #searchInput {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border: 2px solid transparent;
-    border-radius: var(--iiwiki-border-radius);
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--iiwiki-text-inverse);
-    font-size: 0.9rem;
-    transition: var(--iiwiki-transition);
+.iiwiki-search-input-wrapper {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	background: rgba(244, 228, 193, 0.15);
+	border: 1px solid var(--iiwiki-gold-dark);
+	border-radius: var(--iiwiki-border-radius);
+	overflow: hidden;
 }
 
-.iiwiki-search-container input[type="search"]::placeholder,
-.iiwiki-search-container #searchInput::placeholder {
-    color: var(--iiwiki-gray-400);
+.iiwiki-search-input {
+	flex: 1;
+	padding: 0.6rem 1rem;
+	border: none;
+	background: transparent;
+	color: var(--iiwiki-parchment);
+	font-family: var(--iiwiki-font-body);
+	font-size: 0.9rem;
 }
 
-.iiwiki-search-container input[type="search"]:focus,
-.iiwiki-search-container #searchInput:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--iiwiki-accent);
+.iiwiki-search-input::placeholder {
+	color: var(--iiwiki-parchment-dark);
+	font-style: italic;
 }
 
-.iiwiki-search-container button[type="submit"] {
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
-    background: var(--iiwiki-accent);
-    color: var(--iiwiki-text-inverse);
-    border: none;
-    border-radius: var(--iiwiki-border-radius);
-    cursor: pointer;
-    font-weight: 500;
-    transition: var(--iiwiki-transition);
+.iiwiki-search-input:focus {
+	outline: none;
 }
 
-.iiwiki-search-container button[type="submit"]:hover {
-    background: var(--iiwiki-accent-hover);
+.iiwiki-search-input-wrapper:focus-within {
+	border-color: var(--iiwiki-gold);
+	box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.3);
+}
+
+.iiwiki-search-button {
+	padding: 0.6rem 1rem;
+	background: var(--iiwiki-gold-dark);
+	color: var(--iiwiki-parchment);
+	border: none;
+	cursor: pointer;
+	transition: var(--iiwiki-transition);
+}
+
+.iiwiki-search-button:hover {
+	background: var(--iiwiki-gold);
+}
+
+.iiwiki-search-icon {
+	font-size: 1.1rem;
+}
+
+/* User Tools */
+.iiwiki-user-tools {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.iiwiki-notifications {
+	display: flex;
+	align-items: center;
+}
+
+.iiwiki-notifications ul {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 0.5rem;
+}
+
+.iiwiki-notifications li a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	background: rgba(244, 228, 193, 0.1);
+	border: 1px solid var(--iiwiki-gold-dark);
+	border-radius: 50%;
+	color: var(--iiwiki-parchment);
+	text-decoration: none;
+	transition: var(--iiwiki-transition);
+}
+
+.iiwiki-notifications li a:hover {
+	background: var(--iiwiki-gold-dark);
 }
 
 /* User Menu */
 .iiwiki-user-menu {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
-.iiwiki-personal-tools ul {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.iiwiki-anon-tools {
+	display: flex;
+	gap: 0.5rem;
 }
 
-.iiwiki-personal-tools li {
-    margin: 0;
+.iiwiki-register-btn,
+.iiwiki-login-btn {
+	padding: 0.5rem 1rem;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
+	text-decoration: none;
+	border-radius: var(--iiwiki-border-radius);
+	transition: var(--iiwiki-transition);
 }
 
-.iiwiki-personal-tools a {
-    display: block;
-    padding: 0.5rem 0.75rem;
-    color: var(--iiwiki-gray-300);
-    text-decoration: none;
-    font-size: 0.875rem;
-    border-radius: var(--iiwiki-border-radius);
-    transition: var(--iiwiki-transition);
+.iiwiki-register-btn {
+	background: transparent;
+	color: var(--iiwiki-parchment);
+	border: 1px solid var(--iiwiki-gold-dark);
 }
 
-.iiwiki-personal-tools a:hover {
-    color: var(--iiwiki-text-inverse);
-    background: rgba(255, 255, 255, 0.1);
+.iiwiki-register-btn:hover {
+	background: rgba(244, 228, 193, 0.1);
+	border-color: var(--iiwiki-gold);
+}
+
+.iiwiki-login-btn {
+	background: var(--iiwiki-gold-dark);
+	color: var(--iiwiki-parchment);
+	border: 1px solid var(--iiwiki-gold);
+}
+
+.iiwiki-login-btn:hover {
+	background: var(--iiwiki-gold);
+	color: var(--iiwiki-ink);
+}
+
+.iiwiki-user-dropdown {
+	position: relative;
+}
+
+.iiwiki-user-toggle {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.75rem;
+	background: rgba(244, 228, 193, 0.1);
+	border: 1px solid var(--iiwiki-gold-dark);
+	border-radius: var(--iiwiki-border-radius);
+	color: var(--iiwiki-parchment);
+	cursor: pointer;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
+	transition: var(--iiwiki-transition);
+}
+
+.iiwiki-user-toggle:hover {
+	background: rgba(244, 228, 193, 0.15);
+	border-color: var(--iiwiki-gold);
+}
+
+.iiwiki-user-icon {
+	font-size: 1.1rem;
+}
+
+.iiwiki-dropdown-arrow {
+	font-size: 0.7rem;
+	opacity: 0.7;
+}
+
+.iiwiki-user-dropdown-menu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	margin-top: 0.5rem;
+	min-width: 180px;
+	background: var(--iiwiki-parchment);
+	border: 1px solid var(--iiwiki-border-dark);
+	border-radius: var(--iiwiki-border-radius);
+	box-shadow: var(--iiwiki-shadow-lg);
+	z-index: 1000;
+}
+
+.iiwiki-user-dropdown.open .iiwiki-user-dropdown-menu {
+	display: block;
+}
+
+.iiwiki-user-dropdown-menu ul {
+	list-style: none;
+	margin: 0;
+	padding: 0.5rem 0;
+}
+
+.iiwiki-user-dropdown-menu li a {
+	display: block;
+	padding: 0.5rem 1rem;
+	color: var(--iiwiki-text-primary);
+	text-decoration: none;
+	font-size: 0.9rem;
+	transition: var(--iiwiki-transition-fast);
+}
+
+.iiwiki-user-dropdown-menu li a:hover {
+	background: var(--iiwiki-parchment-dark);
+}
+
+/* Personal tools fallback */
+.iiwiki-personal-tools {
+	display: flex;
+	align-items: center;
+}
+
+.iiwiki-personal-list {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.iiwiki-personal-list li a {
+	display: block;
+	padding: 0.5rem 0.75rem;
+	color: var(--iiwiki-parchment-dark);
+	text-decoration: none;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
+	border-radius: var(--iiwiki-border-radius);
+	transition: var(--iiwiki-transition);
+}
+
+.iiwiki-personal-list li a:hover {
+	color: var(--iiwiki-parchment);
+	background: rgba(244, 228, 193, 0.1);
 }
 
 /* Category Navigation Bar */
 .iiwiki-category-nav {
-    background: var(--iiwiki-primary);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+	background: var(--iiwiki-primary);
+	background-image: linear-gradient(180deg, var(--iiwiki-primary-light) 0%, var(--iiwiki-primary) 100%);
+	border-top: 1px solid rgba(201, 162, 39, 0.3);
 }
 
 .iiwiki-category-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: var(--iiwiki-category-nav-height);
-    overflow-x: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: var(--iiwiki-category-nav-height);
+	overflow-x: auto;
 }
 
 .iiwiki-category-item {
-    margin: 0;
-    flex-shrink: 0;
+	margin: 0;
+	flex-shrink: 0;
 }
 
 .iiwiki-category-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.25rem;
-    color: var(--iiwiki-gray-200);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: var(--iiwiki-transition);
-    border-bottom: 3px solid transparent;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.65rem 1rem;
+	color: var(--iiwiki-parchment-dark);
+	text-decoration: none;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.8rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	transition: var(--iiwiki-transition);
+	border-bottom: 2px solid transparent;
 }
 
 .iiwiki-category-link:hover {
-    color: var(--iiwiki-text-inverse);
-    background: rgba(255, 255, 255, 0.05);
-    border-bottom-color: var(--iiwiki-gold);
+	color: var(--iiwiki-parchment);
+	background: rgba(244, 228, 193, 0.08);
+	border-bottom-color: var(--iiwiki-gold);
 }
 
 .iiwiki-category-more .iiwiki-category-link {
-    color: var(--iiwiki-gold);
+	color: var(--iiwiki-gold);
 }
 
-/* Category Icons (using Unicode/emoji as fallback) */
-.iiwiki-category-link[data-icon="globe"]::before { content: "🌍"; margin-right: 0.25rem; }
-.iiwiki-category-link[data-icon="map"]::before { content: "🗺️"; margin-right: 0.25rem; }
-.iiwiki-category-link[data-icon="organization"]::before { content: "🏛️"; margin-right: 0.25rem; }
-.iiwiki-category-link[data-icon="user"]::before { content: "👤"; margin-right: 0.25rem; }
-.iiwiki-category-link[data-icon="palette"]::before { content: "🎨"; margin-right: 0.25rem; }
-.iiwiki-category-link[data-icon="clock"]::before { content: "📜"; margin-right: 0.25rem; }
-.iiwiki-category-link[data-icon="gavel"]::before { content: "⚖️"; margin-right: 0.25rem; }
-.iiwiki-category-link[data-icon="shield"]::before { content: "🛡️"; margin-right: 0.25rem; }
+/* Category Icons */
+.iiwiki-category-link[data-icon="globe"]::before { content: "🌍"; font-size: 0.9em; }
+.iiwiki-category-link[data-icon="map"]::before { content: "🗺️"; font-size: 0.9em; }
+.iiwiki-category-link[data-icon="organization"]::before { content: "🏛️"; font-size: 0.9em; }
+.iiwiki-category-link[data-icon="user"]::before { content: "👤"; font-size: 0.9em; }
+.iiwiki-category-link[data-icon="palette"]::before { content: "🎨"; font-size: 0.9em; }
+.iiwiki-category-link[data-icon="clock"]::before { content: "📜"; font-size: 0.9em; }
+.iiwiki-category-link[data-icon="gavel"]::before { content: "⚖️"; font-size: 0.9em; }
+.iiwiki-category-link[data-icon="shield"]::before { content: "🛡️"; font-size: 0.9em; }
 
 /* === Main Container === */
 #iiwiki-main-container {
-    display: flex;
-    flex: 1;
-    max-width: 1600px;
-    margin: 0 auto;
-    width: 100%;
+	display: flex;
+	flex: 1;
+	max-width: var(--iiwiki-content-max-width);
+	margin: 0 auto;
+	width: 100%;
 }
 
 /* === Sidebar === */
 #iiwiki-sidebar {
-    position: sticky;
-    top: calc(var(--iiwiki-header-height) + var(--iiwiki-category-nav-height));
-    width: var(--iiwiki-sidebar-width);
-    height: calc(100vh - var(--iiwiki-header-height) - var(--iiwiki-category-nav-height));
-    flex-shrink: 0;
-    background: var(--iiwiki-bg-sidebar);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--iiwiki-primary-light) transparent;
+	position: sticky;
+	top: calc(var(--iiwiki-header-height) + var(--iiwiki-category-nav-height));
+	width: var(--iiwiki-sidebar-width);
+	height: calc(100vh - var(--iiwiki-header-height) - var(--iiwiki-category-nav-height));
+	flex-shrink: 0;
+	background: var(--iiwiki-bg-sidebar);
+	background-image: 
+		linear-gradient(180deg, var(--iiwiki-primary-dark) 0%, var(--iiwiki-bg-sidebar) 100%),
+		url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30L30 0z' fill='%23000' fill-opacity='0.03'/%3E%3C/svg%3E");
+	border-right: 1px solid rgba(201, 162, 39, 0.2);
+	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: var(--iiwiki-gold-dark) transparent;
 }
 
 #iiwiki-sidebar::-webkit-scrollbar {
-    width: 6px;
+	width: 6px;
 }
 
 #iiwiki-sidebar::-webkit-scrollbar-track {
-    background: transparent;
+	background: transparent;
 }
 
 #iiwiki-sidebar::-webkit-scrollbar-thumb {
-    background: var(--iiwiki-primary-light);
-    border-radius: 3px;
+	background: var(--iiwiki-gold-dark);
+	border-radius: 3px;
 }
 
 .iiwiki-sidebar-inner {
-    padding: 1.5rem 0;
+	padding: 1.25rem 0;
 }
 
 /* Navigation Sections */
 .iiwiki-nav-section {
-    margin-bottom: 1.5rem;
-    padding: 0 1rem;
+	margin-bottom: 1.5rem;
+	padding: 0 0.75rem;
 }
 
 .iiwiki-nav-heading {
-    margin: 0 0 0.75rem 0;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 0 0 0.6rem 0;
     padding: 0 0.5rem;
+    font-family: var(--iiwiki-font-heading);
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--iiwiki-gray-400);
+    letter-spacing: 0.08em;
+    color: var(--iiwiki-gold);
+    border-bottom: 1px solid rgba(201, 162, 39, 0.3);
+    padding-bottom: 0.4rem;
+}
+
+.iiwiki-nav-icon {
+	font-size: 0.9em;
 }
 
 .iiwiki-nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .iiwiki-nav-list li {
-    margin: 0;
+	margin: 0;
 }
 
-.iiwiki-nav-list a {
-    display: block;
-    padding: 0.5rem 0.75rem;
-    color: var(--iiwiki-gray-200);
-    text-decoration: none;
-    font-size: 0.875rem;
-    border-radius: var(--iiwiki-border-radius);
-    transition: var(--iiwiki-transition-fast);
+.iiwiki-nav-list li a {
+	display: block;
+	padding: 0.45rem 0.6rem;
+	color: var(--iiwiki-parchment-dark);
+	text-decoration: none;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
+	border-radius: var(--iiwiki-border-radius);
+	transition: var(--iiwiki-transition-fast);
+	border-left: 2px solid transparent;
 }
 
-.iiwiki-nav-list a:hover {
-    color: var(--iiwiki-text-inverse);
-    background: rgba(255, 255, 255, 0.1);
+.iiwiki-nav-list li a:hover {
+	color: var(--iiwiki-parchment);
+	background: rgba(244, 228, 193, 0.08);
+	border-left-color: var(--iiwiki-gold);
+}
+
+.nav-icon {
+	margin-right: 0.4rem;
 }
 
 /* Portal Links */
-.iiwiki-portal-list a::before {
-    content: "◆";
-    margin-right: 0.5rem;
-    color: var(--iiwiki-gold);
-    font-size: 0.6em;
+.iiwiki-portal-list li a::before {
+	content: "◈";
+	margin-right: 0.4rem;
+	color: var(--iiwiki-gold);
+	font-size: 0.7em;
 }
 
 /* External Links */
 .iiwiki-external-link::after {
-    content: "↗";
-    margin-left: 0.25rem;
-    font-size: 0.75em;
-    opacity: 0.7;
-}
-
-.iiwiki-discord::before {
-    content: "💬";
-    margin-right: 0.5rem;
-}
-
-.iiwiki-patreon::before {
-    content: "❤️";
-    margin-right: 0.5rem;
-}
-
-.iiwiki-forum::before {
-    content: "📝";
-    margin-right: 0.5rem;
+	content: " ↗";
+	font-size: 0.7em;
+	opacity: 0.6;
 }
 
 /* === Content Area === */
 #iiwiki-content {
-    flex: 1;
-    min-width: 0;
-    background: var(--iiwiki-bg-content);
-    box-shadow: var(--iiwiki-shadow);
+	flex: 1;
+	min-width: 0;
+	background: var(--iiwiki-bg-content);
+	background-image: 
+		url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+	box-shadow: var(--iiwiki-shadow-md);
+	border-left: 1px solid var(--iiwiki-border-color);
 }
 
 /* Content Actions (Tabs) */
 .iiwiki-content-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1.5rem;
-    background: var(--iiwiki-gray-50);
-    border-bottom: 1px solid var(--iiwiki-border-color);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1.5rem;
+	background: var(--iiwiki-parchment-dark);
+	background-image: linear-gradient(180deg, var(--iiwiki-parchment) 0%, var(--iiwiki-parchment-dark) 100%);
+	border-bottom: 2px solid var(--iiwiki-border-dark);
 }
 
 .iiwiki-namespaces,
+.iiwiki-page-tools {
+	display: flex;
+	align-items: center;
+}
+
+.iiwiki-page-tools {
+	gap: 0.5rem;
+}
+
 .iiwiki-views,
 .iiwiki-actions {
-    display: flex;
+	display: flex;
 }
 
 .iiwiki-namespaces ul,
 .iiwiki-views ul,
 .iiwiki-actions ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .iiwiki-namespaces li,
 .iiwiki-views li,
 .iiwiki-actions li {
-    margin: 0;
+	margin: 0;
 }
 
-.iiwiki-namespaces a,
-.iiwiki-views a,
-.iiwiki-actions a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: var(--iiwiki-text-secondary);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-bottom: 3px solid transparent;
-    transition: var(--iiwiki-transition-fast);
+.iiwiki-namespaces li a,
+.iiwiki-views li a,
+.iiwiki-actions li a {
+	display: block;
+	padding: 0.7rem 0.9rem;
+	color: var(--iiwiki-text-secondary);
+	text-decoration: none;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
+	font-weight: 500;
+	border-bottom: 2px solid transparent;
+	transition: var(--iiwiki-transition-fast);
 }
 
-.iiwiki-namespaces a:hover,
-.iiwiki-views a:hover,
-.iiwiki-actions a:hover {
-    color: var(--iiwiki-text-primary);
-    border-bottom-color: var(--iiwiki-gray-300);
+.iiwiki-namespaces li a:hover,
+.iiwiki-views li a:hover,
+.iiwiki-actions li a:hover {
+	color: var(--iiwiki-text-primary);
+	background: rgba(139, 69, 19, 0.08);
+	border-bottom-color: var(--iiwiki-copper);
 }
 
-.iiwiki-namespaces .selected a,
-.iiwiki-views .selected a {
-    color: var(--iiwiki-primary);
-    border-bottom-color: var(--iiwiki-primary);
-    background: var(--iiwiki-bg-content);
+.iiwiki-namespaces li.selected a,
+.iiwiki-views li.selected a {
+	color: var(--iiwiki-primary);
+	border-bottom-color: var(--iiwiki-gold-dark);
+	background: var(--iiwiki-bg-content);
 }
 
 /* Article */
 #iiwiki-article {
-    padding: 2rem;
+	padding: 2rem 2.5rem;
 }
 
 /* Site Notice */
 .iiwiki-sitenotice {
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, var(--iiwiki-gray-50), var(--iiwiki-gray-100));
-    border: 1px solid var(--iiwiki-border-color);
-    border-left: 4px solid var(--iiwiki-accent);
-    border-radius: var(--iiwiki-border-radius);
+	padding: 1rem 1.25rem;
+	margin-bottom: 1.5rem;
+	background: linear-gradient(135deg, var(--iiwiki-parchment-light) 0%, var(--iiwiki-parchment) 100%);
+	border: 1px solid var(--iiwiki-border-color);
+	border-left: 4px solid var(--iiwiki-gold);
+	border-radius: var(--iiwiki-border-radius);
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.9rem;
+}
+
+/* Indicators */
+.iiwiki-indicators {
+	float: right;
+	margin-left: 1rem;
 }
 
 /* Page Title */
 .iiwiki-article-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--iiwiki-border-color);
+	margin-bottom: 1.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 2px solid var(--iiwiki-border-color);
 }
 
 .iiwiki-page-title {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--iiwiki-text-primary);
-    line-height: 1.2;
+	margin: 0;
+	font-family: var(--iiwiki-font-heading);
+	font-size: 2.2rem;
+	font-weight: 600;
+	color: var(--iiwiki-ink);
+	line-height: 1.25;
+	letter-spacing: -0.01em;
 }
 
 .iiwiki-subtitle {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-    color: var(--iiwiki-text-secondary);
+	margin-top: 0.5rem;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.9rem;
+	color: var(--iiwiki-text-muted);
+	font-style: italic;
 }
 
 /* Body Content */
 .iiwiki-body-content {
-    font-family: var(--iiwiki-font-serif);
-    font-size: 1rem;
-    line-height: 1.7;
+	font-family: var(--iiwiki-font-body);
+	font-size: 1rem;
+	line-height: 1.75;
+	color: var(--iiwiki-ink-light);
 }
 
 /* Content Typography */
 .iiwiki-body-content h2 {
-    margin: 2rem 0 1rem 0;
-    padding-bottom: 0.5rem;
-    font-family: var(--iiwiki-font-sans);
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--iiwiki-text-primary);
-    border-bottom: 2px solid var(--iiwiki-gray-200);
+	margin: 2.5rem 0 1rem 0;
+	padding-bottom: 0.4rem;
+	font-family: var(--iiwiki-font-heading);
+	font-size: 1.6rem;
+	font-weight: 600;
+	color: var(--iiwiki-ink);
+	border-bottom: 2px solid var(--iiwiki-border-color);
 }
 
 .iiwiki-body-content h3 {
-    margin: 1.5rem 0 0.75rem 0;
-    font-family: var(--iiwiki-font-sans);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--iiwiki-text-primary);
+	margin: 2rem 0 0.75rem 0;
+	font-family: var(--iiwiki-font-heading);
+	font-size: 1.3rem;
+	font-weight: 600;
+	color: var(--iiwiki-ink);
 }
 
 .iiwiki-body-content h4 {
-    margin: 1.25rem 0 0.5rem 0;
-    font-family: var(--iiwiki-font-sans);
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--iiwiki-text-primary);
+	margin: 1.5rem 0 0.5rem 0;
+	font-family: var(--iiwiki-font-heading);
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: var(--iiwiki-ink);
 }
 
 .iiwiki-body-content p {
-    margin: 0 0 1rem 0;
+	margin: 0 0 1.1rem 0;
+	text-align: justify;
+	hyphens: auto;
 }
 
 .iiwiki-body-content a {
-    color: var(--iiwiki-link);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: var(--iiwiki-transition-fast);
+	color: var(--iiwiki-link);
+	text-decoration: none;
+	border-bottom: 1px dotted var(--iiwiki-link);
+	transition: var(--iiwiki-transition-fast);
 }
 
 .iiwiki-body-content a:hover {
-    color: var(--iiwiki-link-hover);
-    border-bottom-color: var(--iiwiki-link-hover);
+	color: var(--iiwiki-link-hover);
+	border-bottom-style: solid;
+	border-bottom-color: var(--iiwiki-link-hover);
 }
 
 .iiwiki-body-content a:visited {
-    color: var(--iiwiki-link-visited);
+	color: var(--iiwiki-link-visited);
+	border-bottom-color: var(--iiwiki-link-visited);
 }
 
 .iiwiki-body-content a.new {
-    color: var(--iiwiki-link-new);
+	color: var(--iiwiki-link-new);
+	border-bottom-color: var(--iiwiki-link-new);
 }
 
 /* Lists */
 .iiwiki-body-content ul,
 .iiwiki-body-content ol {
-    margin: 0 0 1rem 0;
-    padding-left: 1.5rem;
+	margin: 0 0 1.1rem 0;
+	padding-left: 1.75rem;
 }
 
 .iiwiki-body-content li {
-    margin-bottom: 0.25rem;
+	margin-bottom: 0.3rem;
 }
 
 /* Tables */
 .iiwiki-body-content table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1.5rem 0;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 1.5rem 0;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.9rem;
 }
 
 .iiwiki-body-content th,
 .iiwiki-body-content td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border: 1px solid var(--iiwiki-border-color);
+	padding: 0.6rem 0.8rem;
+	text-align: left;
+	border: 1px solid var(--iiwiki-border-dark);
 }
 
 .iiwiki-body-content th {
-    background: var(--iiwiki-gray-50);
-    font-family: var(--iiwiki-font-sans);
-    font-weight: 600;
+	background: var(--iiwiki-parchment-dark);
+	font-weight: 600;
+	color: var(--iiwiki-ink);
 }
 
 .iiwiki-body-content tr:nth-child(even) td {
-    background: var(--iiwiki-gray-50);
+	background: var(--iiwiki-parchment-light);
 }
 
-/* Infobox Styles */
+/* Infobox Styles - Worldbuilding encyclopedia style */
 .iiwiki-body-content .infobox {
-    float: right;
-    clear: right;
-    width: 300px;
-    margin: 0 0 1.5rem 1.5rem;
-    padding: 0;
-    background: var(--iiwiki-gray-50);
-    border: 1px solid var(--iiwiki-border-color);
-    border-radius: var(--iiwiki-border-radius-lg);
-    box-shadow: var(--iiwiki-shadow);
-    font-family: var(--iiwiki-font-sans);
-    font-size: 0.875rem;
+	float: right;
+	clear: right;
+	width: 320px;
+	margin: 0.5rem 0 1.5rem 1.5rem;
+	padding: 0;
+	background: var(--iiwiki-parchment);
+	border: 2px solid var(--iiwiki-border-dark);
+	border-radius: var(--iiwiki-border-radius);
+	box-shadow: var(--iiwiki-shadow-md);
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
 }
 
 .iiwiki-body-content .infobox th,
 .iiwiki-body-content .infobox td {
-    padding: 0.5rem 0.75rem;
-    border: none;
-    border-bottom: 1px solid var(--iiwiki-border-color);
+	padding: 0.4rem 0.6rem;
+	border: none;
+	border-bottom: 1px solid var(--iiwiki-border-color);
+	vertical-align: top;
+}
+
+.iiwiki-body-content .infobox th {
+	background: var(--iiwiki-parchment-dark);
+	text-align: right;
+	width: 35%;
+	font-weight: 600;
 }
 
 .iiwiki-body-content .infobox tr:last-child th,
 .iiwiki-body-content .infobox tr:last-child td {
-    border-bottom: none;
+	border-bottom: none;
 }
 
 .iiwiki-body-content .infobox caption,
-.iiwiki-body-content .infobox .infobox-title {
-    padding: 0.75rem;
-    background: var(--iiwiki-primary);
-    color: var(--iiwiki-text-inverse);
-    font-size: 1.1rem;
-    font-weight: 600;
+.iiwiki-body-content .infobox .infobox-title,
+.iiwiki-body-content .infobox > tbody > tr:first-child > th {
+	padding: 0.7rem;
+	background: var(--iiwiki-primary);
+	background-image: linear-gradient(180deg, var(--iiwiki-primary-light) 0%, var(--iiwiki-primary) 100%);
+	color: var(--iiwiki-parchment);
+	font-family: var(--iiwiki-font-heading);
+	font-size: 1.05rem;
+	font-weight: 600;
     text-align: center;
     border-radius: var(--iiwiki-border-radius-lg) var(--iiwiki-border-radius-lg) 0 0;
 }
@@ -703,519 +948,549 @@ body.skin-iiwiki {
 }
 
 .iiwiki-body-content pre {
-    padding: 1rem;
-    background: var(--iiwiki-gray-800);
-    color: var(--iiwiki-gray-100);
-    border-radius: var(--iiwiki-border-radius);
-    overflow-x: auto;
+	padding: 1rem;
+	background: var(--iiwiki-ink);
+	color: var(--iiwiki-parchment);
+	border-radius: var(--iiwiki-border-radius);
+	overflow-x: auto;
+	border: 1px solid var(--iiwiki-ink-light);
 }
 
 .iiwiki-body-content pre code {
-    padding: 0;
-    background: none;
+	padding: 0;
+	background: none;
 }
 
 /* Blockquotes */
 .iiwiki-body-content blockquote {
-    margin: 1.5rem 0;
-    padding: 1rem 1.5rem;
-    background: var(--iiwiki-gray-50);
-    border-left: 4px solid var(--iiwiki-gold);
-    font-style: italic;
+	margin: 1.5rem 0;
+	padding: 1rem 1.5rem;
+	background: var(--iiwiki-parchment-light);
+	border-left: 4px solid var(--iiwiki-gold);
+	font-style: italic;
+	color: var(--iiwiki-ink-faded);
 }
 
 /* Table of Contents */
 .iiwiki-body-content #toc,
 .iiwiki-body-content .toc {
-    display: inline-block;
-    padding: 1rem 1.5rem;
-    background: var(--iiwiki-gray-50);
-    border: 1px solid var(--iiwiki-border-color);
-    border-radius: var(--iiwiki-border-radius);
-    font-family: var(--iiwiki-font-sans);
-    font-size: 0.9rem;
+	display: inline-block;
+	padding: 1rem 1.5rem;
+	margin: 0 0 1.5rem 0;
+	background: var(--iiwiki-parchment);
+	border: 2px solid var(--iiwiki-border-dark);
+	border-radius: var(--iiwiki-border-radius);
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.9rem;
 }
 
 .iiwiki-body-content .toctitle {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+	font-family: var(--iiwiki-font-heading);
+	font-weight: 600;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+	color: var(--iiwiki-ink);
 }
 
 .iiwiki-body-content .toctogglecheckbox {
-    display: none;
+	display: none;
 }
 
 /* Categories */
 .iiwiki-catlinks {
-    margin-top: 2rem;
-    padding: 1rem;
-    background: var(--iiwiki-gray-50);
-    border: 1px solid var(--iiwiki-border-color);
-    border-radius: var(--iiwiki-border-radius);
-    font-family: var(--iiwiki-font-sans);
-    font-size: 0.875rem;
+	margin-top: 2.5rem;
+	padding: 0.8rem 1rem;
+	background: var(--iiwiki-parchment);
+	border: 1px solid var(--iiwiki-border-color);
+	border-radius: var(--iiwiki-border-radius);
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
 }
 
 .iiwiki-catlinks a {
-    color: var(--iiwiki-link);
-    text-decoration: none;
+	color: var(--iiwiki-link);
+	text-decoration: none;
 }
 
 .iiwiki-catlinks a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 /* === Footer === */
 #iiwiki-footer {
-    background: var(--iiwiki-bg-footer);
-    color: var(--iiwiki-gray-400);
-    padding: 2.5rem 1.5rem;
-    margin-top: auto;
+	background: var(--iiwiki-bg-footer);
+	background-image: linear-gradient(180deg, var(--iiwiki-primary-dark) 0%, var(--iiwiki-bg-footer) 100%);
+	color: var(--iiwiki-parchment-dark);
+	padding: 2.5rem 1.5rem;
+	margin-top: auto;
+	border-top: 3px solid var(--iiwiki-gold-dark);
 }
 
 .iiwiki-footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+	max-width: var(--iiwiki-content-max-width);
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2rem;
 }
 
 .iiwiki-footer-branding {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
 }
 
 .iiwiki-footer-logo {
-    display: flex;
-    align-items: baseline;
-    font-weight: 700;
-    font-size: 1.5rem;
+	display: flex;
+	align-items: baseline;
+	font-family: var(--iiwiki-font-heading);
+	font-weight: 700;
+	font-size: 1.5rem;
 }
 
 .iiwiki-footer-logo .iiwiki-logo-icon {
-    color: var(--iiwiki-gold);
-    font-style: italic;
+	color: var(--iiwiki-gold);
+	font-style: italic;
 }
 
 .iiwiki-footer-logo .iiwiki-logo-text {
-    color: var(--iiwiki-gray-200);
+	color: var(--iiwiki-parchment);
 }
 
 .iiwiki-footer-tagline {
-    margin: 0;
-    font-size: 0.875rem;
-    color: var(--iiwiki-gray-500);
-}
-
-.iiwiki-footer-stats {
-    margin: 0.5rem 0 0 0;
-    font-size: 0.8rem;
-}
-
-.iiwiki-footer-stats a {
-    color: var(--iiwiki-gray-400);
-    text-decoration: none;
-}
-
-.iiwiki-footer-stats a:hover {
-    color: var(--iiwiki-gray-200);
+	margin: 0;
+	font-family: var(--iiwiki-font-heading);
+	font-size: 0.85rem;
+	font-style: italic;
+	color: var(--iiwiki-parchment-aged);
 }
 
 .iiwiki-footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
 }
 
 .iiwiki-footer-link {
-    color: var(--iiwiki-gray-300);
-    text-decoration: none;
-    font-size: 0.875rem;
-    transition: var(--iiwiki-transition-fast);
+	color: var(--iiwiki-parchment-dark);
+	text-decoration: none;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.85rem;
+	padding: 0.4rem 0.8rem;
+	background: rgba(244, 228, 193, 0.1);
+	border: 1px solid var(--iiwiki-gold-dark);
+	border-radius: var(--iiwiki-border-radius);
+	transition: var(--iiwiki-transition-fast);
 }
 
 .iiwiki-footer-link:hover {
-    color: var(--iiwiki-text-inverse);
-}
-
-.iiwiki-footer-link::after {
-    content: "↗";
-    margin-left: 0.25rem;
-    font-size: 0.75em;
-    opacity: 0.7;
+	color: var(--iiwiki-parchment);
+	background: rgba(244, 228, 193, 0.15);
+	border-color: var(--iiwiki-gold);
 }
 
 .iiwiki-footer-info {
-    font-size: 0.8rem;
-    line-height: 1.6;
+	font-family: var(--iiwiki-font-ui);
+	font-size: 0.75rem;
+	line-height: 1.6;
+}
+
+.iiwiki-footer-info ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+}
+
+.iiwiki-footer-info li {
+	margin: 0;
 }
 
 .iiwiki-footer-info a {
-    color: var(--iiwiki-gray-400);
+	color: var(--iiwiki-parchment-aged);
+	text-decoration: none;
 }
 
 .iiwiki-footer-info a:hover {
-    color: var(--iiwiki-gray-200);
+	color: var(--iiwiki-parchment);
 }
 
 .iiwiki-footer-icons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.iiwiki-footer-icons ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	gap: 0.75rem;
 }
 
 .iiwiki-footer-icons img {
-    height: 30px;
-    opacity: 0.7;
-    transition: var(--iiwiki-transition);
+	height: 28px;
+	opacity: 0.7;
+	transition: var(--iiwiki-transition);
 }
 
 .iiwiki-footer-icons img:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 /* === Mobile Menu Toggle === */
 .iiwiki-mobile-toggle {
-    display: none;
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    z-index: 1001;
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    background: var(--iiwiki-primary);
-    border: none;
-    border-radius: 50%;
-    box-shadow: var(--iiwiki-shadow-lg);
-    cursor: pointer;
-    transition: var(--iiwiki-transition);
+	display: none;
+	position: fixed;
+	bottom: 1.5rem;
+	right: 1.5rem;
+	z-index: 1001;
+	width: 52px;
+	height: 52px;
+	padding: 0;
+	background: var(--iiwiki-primary);
+	border: 2px solid var(--iiwiki-gold-dark);
+	border-radius: 50%;
+	box-shadow: var(--iiwiki-shadow-lg);
+	cursor: pointer;
+	transition: var(--iiwiki-transition);
 }
 
 .iiwiki-mobile-toggle:hover {
-    background: var(--iiwiki-primary-light);
-    transform: scale(1.05);
+	background: var(--iiwiki-primary-light);
+	transform: scale(1.05);
+	box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
 }
 
 .iiwiki-hamburger {
-    display: block;
-    position: relative;
-    width: 24px;
-    height: 2px;
-    margin: 0 auto;
-    background: var(--iiwiki-text-inverse);
-    transition: var(--iiwiki-transition);
+	display: block;
+	position: relative;
+	width: 22px;
+	height: 2px;
+	margin: 0 auto;
+	background: var(--iiwiki-parchment);
+	transition: var(--iiwiki-transition);
 }
 
 .iiwiki-hamburger::before,
 .iiwiki-hamburger::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    width: 24px;
-    height: 2px;
-    background: var(--iiwiki-text-inverse);
-    transition: var(--iiwiki-transition);
+	content: "";
+	position: absolute;
+	left: 0;
+	width: 22px;
+	height: 2px;
+	background: var(--iiwiki-parchment);
+	transition: var(--iiwiki-transition);
 }
 
 .iiwiki-hamburger::before {
-    top: -8px;
+	top: -7px;
 }
 
 .iiwiki-hamburger::after {
-    top: 8px;
+	top: 7px;
 }
 
 /* Open state */
 .iiwiki-mobile-toggle[aria-expanded="true"] .iiwiki-hamburger {
-    background: transparent;
+	background: transparent;
 }
 
 .iiwiki-mobile-toggle[aria-expanded="true"] .iiwiki-hamburger::before {
-    top: 0;
-    transform: rotate(45deg);
+	top: 0;
+	transform: rotate(45deg);
 }
 
 .iiwiki-mobile-toggle[aria-expanded="true"] .iiwiki-hamburger::after {
-    top: 0;
-    transform: rotate(-45deg);
+	top: 0;
+	transform: rotate(-45deg);
 }
 
 /* === Responsive Design === */
 @media (max-width: 1024px) {
-    .iiwiki-mobile-toggle {
-        display: block;
-    }
+	.iiwiki-mobile-toggle {
+		display: block;
+	}
 
-    #iiwiki-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100vh;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 999;
-    }
+	#iiwiki-sidebar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100vh;
+		transform: translateX(-100%);
+		transition: transform 0.3s ease-in-out;
+		z-index: 999;
+		background: linear-gradient(180deg, var(--iiwiki-primary) 0%, var(--iiwiki-primary-dark) 100%);
+	}
 
-    #iiwiki-sidebar.open {
-        transform: translateX(0);
-    }
+	#iiwiki-sidebar.open {
+		transform: translateX(0);
+	}
 
-    .iiwiki-sidebar-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 998;
-    }
+	.iiwiki-sidebar-overlay {
+		display: none;
+		position: fixed;
+		inset: 0;
+		background: rgba(44, 24, 16, 0.7);
+		z-index: 998;
+	}
 
-    .iiwiki-sidebar-overlay.active {
-        display: block;
-    }
+	.iiwiki-sidebar-overlay.active {
+		display: block;
+	}
 
-    #iiwiki-content {
-        width: 100%;
-    }
+	#iiwiki-content {
+		width: 100%;
+	}
 
-    .iiwiki-category-list {
-        justify-content: flex-start;
-        padding: 0 1rem;
-    }
+	.iiwiki-category-list {
+		justify-content: flex-start;
+		padding: 0 1rem;
+	}
 
-    .iiwiki-header-inner {
-        padding: 0 1rem;
-    }
+	.iiwiki-header-inner {
+		padding: 0 1rem;
+	}
 
-    .iiwiki-search-container {
-        margin: 0 1rem;
-    }
+	.iiwiki-search-container {
+		margin: 0 1rem;
+	}
 
-    .iiwiki-personal-tools {
-        display: none;
-    }
+	.iiwiki-personal-tools {
+		display: none;
+	}
 }
 
 @media (max-width: 768px) {
-    :root {
-        --iiwiki-header-height: 56px;
-        --iiwiki-category-nav-height: 40px;
-    }
+	:root {
+		--iiwiki-header-height: 56px;
+		--iiwiki-category-nav-height: 40px;
+	}
 
-    .iiwiki-tagline {
-        display: none;
-    }
+	.iiwiki-tagline {
+		display: none;
+	}
 
-    .iiwiki-logo {
-        font-size: 1.5rem;
-    }
+	.iiwiki-logo {
+		font-size: 1.5rem;
+	}
 
-    .iiwiki-search-container {
-        flex: 1;
-        margin: 0 0.5rem;
-    }
+	.iiwiki-search-container {
+		flex: 1;
+		margin: 0 0.5rem;
+	}
 
-    .iiwiki-search-container button[type="submit"] {
-        display: none;
-    }
+	.iiwiki-search-container button[type="submit"] {
+		display: none;
+	}
 
-    .iiwiki-category-link {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.8rem;
-    }
+	.iiwiki-category-link {
+		padding: 0.5rem 0.75rem;
+		font-size: 0.8rem;
+	}
 
-    .iiwiki-category-link::before {
-        display: none;
-    }
+	.iiwiki-category-link::before {
+		display: none;
+	}
 
-    #iiwiki-article {
-        padding: 1.5rem 1rem;
-    }
+	#iiwiki-article {
+		padding: 1.5rem 1rem;
+	}
 
-    .iiwiki-page-title {
-        font-size: 1.5rem;
-    }
+	.iiwiki-page-title {
+		font-size: 1.5rem;
+	}
 
-    .iiwiki-body-content {
-        font-size: 0.95rem;
-    }
+	.iiwiki-body-content {
+		font-size: 0.95rem;
+	}
 
-    .iiwiki-body-content .infobox {
-        float: none;
-        width: 100%;
-        margin: 1rem 0;
-    }
+	.iiwiki-body-content .infobox {
+		float: none;
+		width: 100%;
+		margin: 1rem 0;
+	}
 
-    .iiwiki-body-content .tright,
-    .iiwiki-body-content .tleft {
-        float: none;
-        margin: 1rem 0;
-    }
+	.iiwiki-body-content .tright,
+	.iiwiki-body-content .tleft {
+		float: none;
+		margin: 1rem 0;
+	}
 
-    .iiwiki-content-actions {
-        padding: 0 0.5rem;
-        overflow-x: auto;
-    }
+	.iiwiki-content-actions {
+		padding: 0 0.5rem;
+		overflow-x: auto;
+	}
 
-    .iiwiki-namespaces a,
-    .iiwiki-views a,
-    .iiwiki-actions a {
-        padding: 0.5rem 0.75rem;
-        font-size: 0.8rem;
-    }
+	.iiwiki-namespaces a,
+	.iiwiki-views a,
+	.iiwiki-actions a {
+		padding: 0.5rem 0.75rem;
+		font-size: 0.8rem;
+	}
 
-    .iiwiki-footer-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
+	.iiwiki-footer-inner {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
 
-    .iiwiki-footer-links {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem;
-    }
+	.iiwiki-footer-links {
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1rem;
+	}
 }
 
 /* === Print Styles === */
 @media print {
-    #iiwiki-header,
-    #iiwiki-sidebar,
-    #iiwiki-footer,
-    .iiwiki-content-actions,
-    .iiwiki-mobile-toggle,
-    .iiwiki-catlinks,
-    .noprint {
-        display: none !important;
-    }
+	#iiwiki-header,
+	#iiwiki-sidebar,
+	#iiwiki-footer,
+	.iiwiki-content-actions,
+	.iiwiki-mobile-toggle,
+	.iiwiki-catlinks,
+	.noprint {
+		display: none !important;
+	}
 
-    #iiwiki-content {
-        width: 100%;
-        box-shadow: none;
-    }
+	#iiwiki-content {
+		width: 100%;
+		box-shadow: none;
+	}
 
-    #iiwiki-article {
-        padding: 0;
-    }
+	#iiwiki-article {
+		padding: 0;
+	}
 
-    .iiwiki-body-content a {
-        color: inherit;
-        text-decoration: underline;
-    }
+	.iiwiki-body-content a {
+		color: inherit;
+		text-decoration: underline;
+	}
 
-    .iiwiki-body-content a::after {
-        content: " (" attr(href) ")";
-        font-size: 0.8em;
-    }
+	.iiwiki-body-content a::after {
+		content: " (" attr(href) ")";
+		font-size: 0.8em;
+	}
 }
 
-/* === Dark Mode Support (User Preference) === */
+/* === Dark Mode Support (Candlelit Parchment Theme) === */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --iiwiki-bg-body: #0d1117;
-        --iiwiki-bg-content: #161b22;
-        --iiwiki-text-primary: #c9d1d9;
-        --iiwiki-text-secondary: #8b949e;
-        --iiwiki-border-color: #30363d;
-        --iiwiki-gray-50: #21262d;
-        --iiwiki-gray-100: #30363d;
-        --iiwiki-link: #58a6ff;
-        --iiwiki-link-hover: #79b8ff;
-        --iiwiki-link-visited: #a371f7;
-    }
+	:root {
+		--iiwiki-bg-body: #1a120d;
+		--iiwiki-bg-content: #241a13;
+		--iiwiki-text-primary: #d4c4a8;
+		--iiwiki-text-secondary: #a89070;
+		--iiwiki-border-color: #3d2a1c;
+		--iiwiki-gray-50: #2a1e15;
+		--iiwiki-gray-100: #3d2a1c;
+		--iiwiki-link: #d4a54a;
+		--iiwiki-link-hover: #e8c06a;
+		--iiwiki-link-visited: #b87333;
+		--iiwiki-parchment: #2a1e15;
+		--iiwiki-parchment-dark: #1a120d;
+		--iiwiki-parchment-light: #3d2a1c;
+		--iiwiki-parchment-aged: #241a13;
+		--iiwiki-ink: #d4c4a8;
+		--iiwiki-ink-light: #a89070;
+	}
 }
 
 /* === Utility Classes === */
 .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
 }
 
 .clearfix::after {
-    content: "";
-    display: table;
-    clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
 
 /* === Animation Keyframes === */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes slideInLeft {
-    from {
-        transform: translateX(-100%);
-    }
-    to {
-        transform: translateX(0);
-    }
+	from {
+		transform: translateX(-100%);
+	}
+	to {
+		transform: translateX(0);
+	}
 }
 
 /* === Special Page Styles === */
 .ns-special #iiwiki-article {
-    padding-top: 1rem;
+	padding-top: 1rem;
 }
 
 .ns-special .iiwiki-page-title {
-    font-size: 1.75rem;
+	font-size: 1.75rem;
 }
 
 /* === Portal Page Styles === */
 .iiwiki-portal-page #iiwiki-article {
-    padding: 1.5rem;
+	padding: 1.5rem;
 }
 
 .iiwiki-portal-page .iiwiki-body-content {
-    font-family: var(--iiwiki-font-sans);
+	font-family: var(--iiwiki-font-body);
 }
 
 /* === Edit Page Styles === */
 .action-edit #iiwiki-article,
 .action-submit #iiwiki-article {
-    padding: 1rem;
+	padding: 1rem;
 }
 
 .action-edit .iiwiki-body-content,
 .action-submit .iiwiki-body-content {
-    font-family: var(--iiwiki-font-sans);
+	font-family: var(--iiwiki-font-ui);
 }
 
 /* === Search Suggestions === */
 .suggestions {
-    background: var(--iiwiki-bg-content);
-    border: 1px solid var(--iiwiki-border-color);
-    border-radius: var(--iiwiki-border-radius);
-    box-shadow: var(--iiwiki-shadow-lg);
-    overflow: hidden;
+	background: var(--iiwiki-parchment);
+	border: 1px solid var(--iiwiki-gold-dark);
+	border-radius: var(--iiwiki-border-radius);
+	box-shadow: var(--iiwiki-shadow-lg);
+	overflow: hidden;
 }
 
 .suggestions-result {
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    transition: var(--iiwiki-transition-fast);
+	padding: 0.75rem 1rem;
+	cursor: pointer;
+	font-family: var(--iiwiki-font-ui);
+	color: var(--iiwiki-ink);
+	transition: var(--iiwiki-transition-fast);
 }
 
 .suggestions-result:hover,
 .suggestions-result-current {
-    background: var(--iiwiki-gray-50);
+	background: var(--iiwiki-parchment-aged);
 }
 
 .suggestions-result-current {
-    background: var(--iiwiki-accent);
-    color: var(--iiwiki-text-inverse);
+	background: var(--iiwiki-gold-dark);
+	color: var(--iiwiki-parchment);
 }
