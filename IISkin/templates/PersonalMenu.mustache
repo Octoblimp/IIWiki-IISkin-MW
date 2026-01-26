@@ -1,13 +1,6 @@
 <div id="p-personal" class="iiskin-personal-tools" role="navigation" aria-label="{{msg-personaltools}}">
 	<div class="iiskin-personal-tools-inner">
-		{{! User notifications (if logged in and Echo is enabled) }}
-		{{#data-portlets}}
-			{{#data-notifications}}
-			<div id="pt-notifications" class="iiskin-notifications">
-				{{{html-items}}}
-			</div>
-			{{/data-notifications}}
-		{{/data-portlets}}
+		   {{! User notifications removed from dropdown, handled in header }}
 
 		{{! User menu }}
 		<div class="iiskin-user-menu">
@@ -16,7 +9,7 @@
 				<div id="{{id}}" class="{{class}} iiskin-user-dropdown">
 					<input type="checkbox" id="iiskin-user-menu-checkbox" class="iiskin-dropdown-checkbox" aria-hidden="true">
 					<label for="iiskin-user-menu-checkbox" class="iiskin-user-toggle" id="{{id}}-label" {{{html-user-language-attributes}}}>
-						<span class="iiskin-user-icon"></span>
+
 						<span class="iiskin-user-name">{{label}}</span>
 						<span class="iiskin-dropdown-arrow"></span>
 					</label>

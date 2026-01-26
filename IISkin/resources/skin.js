@@ -16,7 +16,63 @@
 		initSidebar();
 		initSearch();
 		initCategoryLinks();
+		initNotificationsCleanup();
 		buildTableOfContents();
+	}
+
+	/**
+	 * Remove duplicate Echo notification items from personal links and ensure header has the notifications
+	 */
+	function initNotificationsCleanup() {
+		// Remove any notification nodes that appear in the personal links to avoid duplication
+		var userLinks = document.querySelector( '.ii-user-links' );
+		if ( userLinks ) {
+			var duplicates = userLinks.querySelectorAll( '[id^="pt-notifications"] , li[id^="pt-notifications"]' );
+			duplicates.forEach( function ( node ) {
+				node.remove();
+			} );
+
+			// Mark anchors that contain native icons or images so we don't show our pseudo-icon as well
+			// Collect anchors and mark/remove items as needed
+			var anchors = Array.prototype.slice.call( userLinks.querySelectorAll( 'a' ) );
+			anchors.forEach( function ( a ) {
+				if ( a.querySelector( 'img' ) || a.querySelector( '.mw-echo-notifications-badge' ) || a.querySelector( 'svg' ) || a.querySelector( '.iiskin-user-icon' ) ) {
+					a.classList.add( 'has-native-icon' );
+				}
+
+				// Remove any Talk links in the personal links (user talk/profile talk)
+				var href = a.getAttribute( 'href' ) || '';
+				if ( /(^|\?|\/)index\.php\?title=Talk:|\/wiki\/Talk:/i.test( href ) || a.textContent.trim() === 'Talk' ) {
+					var li = a.closest( 'li' );
+					if ( li ) {
+						li.remove();
+					} else {
+						a.remove();
+					}
+				}
+			} );
+
+			// If a dropdown user menu is present, remove the duplicate 'User page' link from the header links
+			if ( document.querySelector( '.iiskin-user-dropdown' ) ) {
+				anchors.forEach( function ( a ) {
+					var href = a.getAttribute( 'href' ) || '';
+					if ( /index\.php\?title=User:|\/wiki\/User:/i.test( href ) ) {
+						var li = a.closest( 'li' );
+						if ( li ) li.remove(); else a.remove();
+					}
+				} );
+			}
+		}
+
+		// If the header notification container exists but some notification anchors have no visible content,
+		// add an accessible aria-label so CSS pseudo-icons can target them.
+		var headerNotifs = document.querySelectorAll( '#ii-notifications a, #ii-notifications li > a' );
+		headerNotifs.forEach( function ( a ) {
+			if ( a && !a.textContent.trim() && !a.querySelector( '.mw-echo-notifications-badge' ) ) {
+				a.setAttribute( 'aria-hidden', 'false' );
+				// leave content to CSS pseudo-elements
+			}
+		} );
 	}
 
 	/**

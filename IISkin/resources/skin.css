@@ -524,6 +524,57 @@ a.new, a.new:visited {
 	border-color: var(--ii-accent);
 }
 
+/* Fallback pseudo-icons for notification anchors when Echo didn't insert visible content */
+#ii-notifications a:empty::before,
+#pt-notifications-alert a:empty::before,
+#pt-notifications-notice a:empty::before {
+	content: '🔔';
+	display: inline-block;
+	font-size: 16px;
+	line-height: 1;
+}
+
+/* General user-link icon area */
+.ii-user-links a::before {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 6px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 16px;
+	color: var(--ii-text-inverse);
+	opacity: 0.95;
+}
+
+/* Hide pseudo-icons when the link already contains a native image/icon */
+.ii-user-links a.has-native-icon::before {
+	display: none;
+}
+
+/* Specific icons for common personal links */
+#pt-watchlist a::before { content: '★'; }
+#pt-preferences a::before { content: '⚙'; }
+#pt-contributions a::before { content: '✍'; }
+#pt-login a::before { content: '⎆'; }
+#pt-logout a::before { content: '⎋'; }
+#pt-userpage a::before { content: '👤'; }
+#pt-notifications-alert a::before { content: '🔔'; }
+#pt-notifications-notice a::before { content: '✉'; }
+
+/* Attribute-based fallbacks for links that may not use the predictable portlet IDs */
+.ii-user-links a[href*="Special:Preferences"]::before { content: '⚙'; }
+.ii-user-links a[href*="Watchlist"]::before { content: '★'; }
+.ii-user-links a[href*="Contributions"]::before { content: '✍'; }
+.ii-user-links a[href*="Special:UserLogin"]::before, .ii-user-links a[href*="Special:UserLogout"]::before { content: '⎆'; }
+.ii-user-links a[href*="Talk:"]::before { content: '💬'; }
+.ii-user-links a[href*="User:"]::before { content: '👤'; }
+
+/* If an anchor has its own image, hide the pseudo icon */
+.ii-user-links a img + span,
+.ii-user-links a img::before,
+.ii-user-links a img { vertical-align: middle; }
+
 /* Echo notification badges */
 .mw-echo-notifications-badge {
 	font-size: 10px !important;
