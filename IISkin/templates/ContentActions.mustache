@@ -5,7 +5,8 @@
 		<nav id="{{id}}" class="{{class}} iiskin-tabs iiskin-namespaces" 
 			aria-labelledby="{{id}}-label" {{{html-tooltip}}}>
 			<ul {{{html-user-language-attributes}}}>
-				{{{html-items}}}
+				   {{{html-items}}}
+				   {{! Remove Talk tab via CSS or JS, but ideally filter here if possible }}
 			</ul>
 		</nav>
 		{{/data-namespaces}}
