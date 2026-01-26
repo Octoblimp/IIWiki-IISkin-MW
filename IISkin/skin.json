@@ -1,6 +1,6 @@
 {
 	"name": "IISkin",
-	"version": "4.0.0",
+	"version": "4.0.2",
 	"author": [
 		"Makko Oko"
 	],
@@ -19,8 +19,8 @@
 				{
 					"name": "iiskin",
 					"responsive": true,
-					"styles": [ "skins.iiskin" ],
-					"scripts": [ "skins.iiskin.js" ],
+					"styles": ["skins.iiskin"],
+					"scripts": ["skins.iiskin.js"],
 					"templateDirectory": "templates",
 					"toc": false
 				}
@@ -56,7 +56,8 @@
 			],
 			"dependencies": [
 				"mediawiki.cookie",
-				"mediawiki.storage"
+				"mediawiki.storage",
+				"mediawiki.util"
 			]
 		}
 	},

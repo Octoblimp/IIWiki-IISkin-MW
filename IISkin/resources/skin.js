@@ -15,7 +15,35 @@
 		initTheme();
 		initSidebar();
 		initSearch();
+		initCategoryLinks();
 		buildTableOfContents();
+	}
+
+	/**
+	 * Fix category links to use proper wiki article path
+	 */
+	function initCategoryLinks() {
+		var catLinks = document.querySelectorAll( '.ii-cat-btn[data-category]' );
+		if ( !catLinks.length ) return;
+
+		// Get article path from mw.config if available
+		var articlePath = '/wiki/$1'; // fallback
+		if ( typeof mw !== 'undefined' && mw.config ) {
+			articlePath = mw.config.get( 'wgArticlePath' ) || articlePath;
+		}
+
+		catLinks.forEach( function ( link ) {
+			var category = link.getAttribute( 'data-category' );
+			if ( category ) {
+				if ( category === 'Browse' ) {
+					// Special:Categories page
+					link.href = articlePath.replace( '$1', 'Special:Categories' );
+				} else {
+					// Category pages
+					link.href = articlePath.replace( '$1', 'Category:' + category );
+				}
+			}
+		});
 	}
 
 	/**

@@ -79,36 +79,41 @@
    Dark Mode Variables
    ======================================== */
 .ii-skin--dark {
-	--ii-bg-page: #0f172a;
-	--ii-bg-content: #1e293b;
-	--ii-bg-header: #0f172a;
-	--ii-bg-header-accent: #1e293b;
-	--ii-bg-sidebar: #1e293b;
-	--ii-bg-category-bar: #1e293b;
-	--ii-bg-footer: #0f172a;
-	
-	--ii-text: #e2e8f0;
-	--ii-text-secondary: #94a3b8;
-	--ii-text-muted: #64748b;
-	--ii-text-inverse: #0f172a;
-	
-	--ii-link: #60a5fa;
-	--ii-link-hover: #93c5fd;
-	--ii-link-visited: #a78bfa;
-	--ii-link-new: #f87171;
-	
+	--ii-bg-page: #181f2a;
+	--ii-bg-content: #232a38;
+	--ii-bg-header: #232a38;
+	--ii-bg-header-accent: #232a38;
+	--ii-bg-sidebar: #232a38;
+	--ii-bg-category-bar: #232a38;
+	--ii-bg-footer: #181f2a;
+
+	--ii-text: #eaf1fa;
+	--ii-text-secondary: #b8c2d1;
+	--ii-text-muted: #8ca0b3;
+	--ii-text-inverse: #232a38;
+
+	--ii-link: #7ab8ff;
+	--ii-link-hover: #b3e0ff;
+	--ii-link-visited: #c4b5fd;
+	--ii-link-new: #ff6b6b;
+
 	--ii-border: #334155;
-	--ii-border-light: #1e293b;
+	--ii-border-light: #232a38;
 	--ii-border-dark: #475569;
-	
+
 	--ii-accent: #6b8fc5;
 	--ii-accent-hover: #8bacd4;
 	--ii-accent-light: #4a6fa5;
-	
+
 	--ii-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
 	--ii-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
 	--ii-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 	--ii-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Remove Talk button from user menu */
+.ii-user-links li#pt-talk, .ii-user-links li#pt-user-talk {
+  display: none !important;
 }
 
 /* ========================================
@@ -702,6 +707,12 @@ a.new, a.new:visited {
 	color: var(--ii-accent);
 	border-bottom-color: var(--ii-accent);
 	background: transparent;
+}
+
+/* Hide Talk tab from namespace tabs */
+.ii-tabs li#ca-talk,
+.ii-tabs li#ca-nstab-talk {
+	display: none;
 }
 
 /* More Menu */
