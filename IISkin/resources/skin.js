@@ -1,44 +1,210 @@
 /**
- * IISkin JavaScript
- * Modern interactions for IIWiki
+ * IISkin v4.0 JavaScript
+ * Worldbuilder's Paradise - IIWiki
  */
 ( function () {
 	'use strict';
+
+	var STORAGE_KEY_THEME = 'iiskin-theme';
+	var STORAGE_KEY_SIDEBAR = 'iiskin-sidebar';
 
 	/**
 	 * Initialize IISkin functionality
 	 */
 	function init() {
-		setupSearch();
-		setupStickyHeader();
-		setupMobileNav();
+		initTheme();
+		initSidebar();
+		initSearch();
+		buildTableOfContents();
+	}
+
+	/**
+	 * Dark/Light Theme Toggle
+	 */
+	function initTheme() {
+		var wrapper = document.getElementById( 'ii-wrapper' );
+		var toggle = document.getElementById( 'ii-theme-toggle' );
+		
+		if ( !wrapper || !toggle ) return;
+
+		// Load saved theme preference
+		var savedTheme = localStorage.getItem( STORAGE_KEY_THEME );
+		if ( savedTheme === 'dark' ) {
+			wrapper.classList.add( 'ii-skin--dark' );
+		} else if ( savedTheme === null ) {
+			// Check system preference
+			if ( window.matchMedia && window.matchMedia( '(prefers-color-scheme: dark)' ).matches ) {
+				wrapper.classList.add( 'ii-skin--dark' );
+			}
+		}
+
+		// Toggle button click
+		toggle.addEventListener( 'click', function () {
+			var isDark = wrapper.classList.toggle( 'ii-skin--dark' );
+			localStorage.setItem( STORAGE_KEY_THEME, isDark ? 'dark' : 'light' );
+		});
+
+		// Listen for system theme changes
+		if ( window.matchMedia ) {
+			window.matchMedia( '(prefers-color-scheme: dark)' ).addEventListener( 'change', function ( e ) {
+				if ( localStorage.getItem( STORAGE_KEY_THEME ) === null ) {
+					if ( e.matches ) {
+						wrapper.classList.add( 'ii-skin--dark' );
+					} else {
+						wrapper.classList.remove( 'ii-skin--dark' );
+					}
+				}
+			});
+		}
+	}
+
+	/**
+	 * Collapsible Sidebar with TOC
+	 */
+	function initSidebar() {
+		var wrapper = document.getElementById( 'ii-wrapper' );
+		var sidebar = document.getElementById( 'ii-sidebar' );
+		var toggle = document.getElementById( 'ii-sidebar-toggle' );
+		
+		if ( !wrapper || !sidebar || !toggle ) return;
+
+		// Load saved sidebar state
+		var savedState = localStorage.getItem( STORAGE_KEY_SIDEBAR );
+		if ( savedState === 'open' ) {
+			wrapper.classList.add( 'ii-sidebar--open' );
+		}
+
+		// Toggle sidebar
+		toggle.addEventListener( 'click', function () {
+			var isOpen = wrapper.classList.toggle( 'ii-sidebar--open' );
+			localStorage.setItem( STORAGE_KEY_SIDEBAR, isOpen ? 'open' : 'closed' );
+		});
+
+		// Close sidebar when clicking outside on mobile
+		document.addEventListener( 'click', function ( e ) {
+			if ( window.innerWidth <= 768 && 
+				wrapper.classList.contains( 'ii-sidebar--open' ) &&
+				!sidebar.contains( e.target ) && 
+				!toggle.contains( e.target ) ) {
+				wrapper.classList.remove( 'ii-sidebar--open' );
+				localStorage.setItem( STORAGE_KEY_SIDEBAR, 'closed' );
+			}
+		});
+	}
+
+	/**
+	 * Build Table of Contents from article headings
+	 */
+	function buildTableOfContents() {
+		var tocList = document.getElementById( 'ii-toc-list' );
+		var article = document.querySelector( '.ii-article' );
+		
+		if ( !tocList || !article ) return;
+
+		var headings = article.querySelectorAll( 'h2, h3, h4' );
+		
+		if ( headings.length === 0 ) {
+			// Hide TOC section if no headings
+			var tocSection = document.getElementById( 'ii-toc' );
+			if ( tocSection ) {
+				tocSection.style.display = 'none';
+			}
+			return;
+		}
+
+		var tocHTML = '';
+		var counter = { h2: 0, h3: 0, h4: 0 };
+
+		headings.forEach( function ( heading ) {
+			var text = '';
+			var level = heading.tagName.toLowerCase();
+			
+			// Get heading text (excluding edit section links)
+			var clone = heading.cloneNode( true );
+			var editSection = clone.querySelector( '.mw-editsection' );
+			if ( editSection ) {
+				editSection.remove();
+			}
+			text = clone.textContent.trim();
+
+			// Get or create ID for heading
+			var id = heading.id;
+			if ( !id ) {
+				id = text.toLowerCase().replace( /[^a-z0-9]+/g, '-' ).replace( /^-|-$/g, '' );
+				heading.id = id;
+			}
+
+			// Build number prefix
+			var prefix = '';
+			if ( level === 'h2' ) {
+				counter.h2++;
+				counter.h3 = 0;
+				counter.h4 = 0;
+				prefix = counter.h2 + '. ';
+			} else if ( level === 'h3' ) {
+				counter.h3++;
+				counter.h4 = 0;
+				prefix = counter.h2 + '.' + counter.h3 + ' ';
+			} else if ( level === 'h4' ) {
+				counter.h4++;
+				prefix = counter.h2 + '.' + counter.h3 + '.' + counter.h4 + ' ';
+			}
+
+			tocHTML += '<a href="#' + id + '" class="ii-toc-' + level + '">' + prefix + text + '</a>';
+		});
+
+		tocList.innerHTML = tocHTML;
+
+		// Smooth scroll for TOC links
+		tocList.querySelectorAll( 'a' ).forEach( function ( link ) {
+			link.addEventListener( 'click', function ( e ) {
+				e.preventDefault();
+				var targetId = this.getAttribute( 'href' ).slice( 1 );
+				var target = document.getElementById( targetId );
+				if ( target ) {
+					var headerOffset = 100; // Account for sticky header + category bar
+					var elementPosition = target.getBoundingClientRect().top;
+					var offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+					window.scrollTo({
+						top: offsetPosition,
+						behavior: 'smooth'
+					});
+
+					// Close sidebar on mobile after clicking
+					if ( window.innerWidth <= 768 ) {
+						var wrapper = document.getElementById( 'ii-wrapper' );
+						if ( wrapper ) {
+							wrapper.classList.remove( 'ii-sidebar--open' );
+						}
+					}
+				}
+			});
+		});
 	}
 
 	/**
 	 * Enhanced search functionality
 	 */
-	function setupSearch() {
+	function initSearch() {
 		var searchInput = document.getElementById( 'searchInput' );
-		var searchForm = document.getElementById( 'searchform' );
 		
-		if ( searchInput ) {
-			// Focus search on keyboard shortcut (Alt+Shift+F or just /)
-			document.addEventListener( 'keydown', function ( e ) {
-				// Press / to focus search (when not in input/textarea)
-				if ( e.key === '/' && !isEditableElement( e.target ) ) {
-					e.preventDefault();
-					searchInput.focus();
-				}
-			});
+		if ( !searchInput ) return;
+
+		// Keyboard shortcuts
+		document.addEventListener( 'keydown', function ( e ) {
+			// Press / to focus search (when not in input/textarea)
+			if ( e.key === '/' && !isEditableElement( e.target ) ) {
+				e.preventDefault();
+				searchInput.focus();
+				searchInput.select();
+			}
 			
-			// Clear search on Escape
-			searchInput.addEventListener( 'keydown', function ( e ) {
-				if ( e.key === 'Escape' ) {
-					this.value = '';
-					this.blur();
-				}
-			});
-		}
+			// Press Escape to blur search
+			if ( e.key === 'Escape' && document.activeElement === searchInput ) {
+				searchInput.blur();
+			}
+		});
 	}
 
 	/**
@@ -49,89 +215,6 @@
 		return tagName === 'input' || 
 			   tagName === 'textarea' || 
 			   element.contentEditable === 'true';
-	}
-
-	/**
-	 * Sticky header with hide on scroll down, show on scroll up
-	 */
-	function setupStickyHeader() {
-		var header = document.getElementById( 'iiskin-header' );
-		if ( !header ) return;
-
-		var lastScrollY = 0;
-		var ticking = false;
-
-		function onScroll() {
-			var currentScrollY = window.scrollY;
-			
-			// Only hide header after scrolling 100px
-			if ( currentScrollY > 100 ) {
-				// Scrolling down - hide header
-				if ( currentScrollY > lastScrollY ) {
-					header.classList.add( 'iiskin-header--hidden' );
-				} else {
-					// Scrolling up - show header
-					header.classList.remove( 'iiskin-header--hidden' );
-				}
-			} else {
-				header.classList.remove( 'iiskin-header--hidden' );
-			}
-			
-			lastScrollY = currentScrollY;
-			ticking = false;
-		}
-
-		window.addEventListener( 'scroll', function () {
-			if ( !ticking ) {
-				requestAnimationFrame( onScroll );
-				ticking = true;
-			}
-		}, { passive: true });
-	}
-
-	/**
-	 * Mobile navigation toggle
-	 */
-	function setupMobileNav() {
-		// Create mobile menu button if on small screen
-		if ( window.innerWidth <= 768 ) {
-			var sidebar = document.getElementById( 'iiskin-sidebar' );
-			var header = document.getElementById( 'iiskin-header' );
-			
-			if ( sidebar && header ) {
-				// Create toggle button
-				var toggleBtn = document.createElement( 'button' );
-				toggleBtn.className = 'iiskin-mobile-menu-btn';
-				toggleBtn.innerHTML = '☰';
-				toggleBtn.setAttribute( 'aria-label', 'Toggle menu' );
-				toggleBtn.style.cssText = 'display:none; padding:8px 12px; background:transparent; border:1px solid var(--ii-border); border-radius:var(--ii-radius-sm); font-size:18px; cursor:pointer; margin-right:8px;';
-				
-				// Check viewport and show/hide
-				function checkViewport() {
-					if ( window.innerWidth <= 768 ) {
-						toggleBtn.style.display = 'block';
-						sidebar.classList.add( 'iiskin-sidebar--collapsed' );
-					} else {
-						toggleBtn.style.display = 'none';
-						sidebar.classList.remove( 'iiskin-sidebar--collapsed' );
-					}
-				}
-				
-				toggleBtn.addEventListener( 'click', function () {
-					sidebar.classList.toggle( 'iiskin-sidebar--collapsed' );
-					sidebar.classList.toggle( 'iiskin-sidebar--open' );
-				});
-				
-				// Insert at start of header
-				var headerLeft = header.querySelector( '.iiskin-header-left' );
-				if ( headerLeft ) {
-					headerLeft.insertBefore( toggleBtn, headerLeft.firstChild );
-				}
-				
-				checkViewport();
-				window.addEventListener( 'resize', checkViewport );
-			}
-		}
 	}
 
 	// Initialize when DOM is ready

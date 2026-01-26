@@ -5,8 +5,19 @@
 		]
 	},
 	"skinname-iiskin": "IISkin",
-	"iiskin-desc": "A modern, unobtrusive MediaWiki skin for IIWiki - the SimFic & Alt-History Encyclopedia. Features a clean light blue-grey design with notifications support and worldbuilding-focused navigation.",
-	"iiskin-create-article": "Create Article",
+	"iiskin-desc": "IISkin v4 - Worldbuilder's Paradise. A distinguished, retro-styled MediaWiki skin for IIWiki with dark mode support, collapsible sidebar with TOC, category navigation, and blue-grey theme.",
+	"iiskin-tagline": "SimFic & Alt-History Encyclopedia",
+	"iiskin-toggle-sidebar": "Toggle sidebar",
+	"iiskin-toggle-theme": "Toggle dark mode",
+	"iiskin-table-of-contents": "Contents",
 	"iiskin-search-placeholder": "Search worlds, nations, characters...",
-	"iiskin-tagline": "SimFic & Alt-History Encyclopedia"
+	"iiskin-category-countries": "Countries",
+	"iiskin-category-regions": "Regions",
+	"iiskin-category-organizations": "Organizations",
+	"iiskin-category-people": "People",
+	"iiskin-category-culture": "Culture",
+	"iiskin-category-history": "History",
+	"iiskin-category-politics": "Politics",
+	"iiskin-category-military": "Military",
+	"iiskin-all-categories": "All Categories"
 }

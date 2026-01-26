@@ -1,109 +1,140 @@
-<div id="mw-wrapper" class="iiskin">
-	<!-- Top Header Bar -->
-	<header id="iiskin-header" class="iiskin-header">
-		<div class="iiskin-header-left">
-			<!-- Logo -->
-			<a href="{{{link-mainpage}}}" class="iiskin-logo" title="IIWiki - SimFic & Alt-History Encyclopedia">
-				{{#data-logos}}
-					{{#icon}}<img src="{{.}}" alt="IIWiki" class="iiskin-logo-img">{{/icon}}
-					{{^icon}}{{#1x}}<img src="{{.}}" alt="IIWiki" class="iiskin-logo-img">{{/1x}}{{/icon}}
-				{{/data-logos}}
-				<span class="iiskin-logo-text">IIWiki</span>
-			</a>
-		</div>
-
-		<!-- Search -->
-		<div class="iiskin-header-center">
-			<form action="{{{page-action-search}}}" id="searchform" class="iiskin-search">
-				<input type="hidden" name="title" value="Special:Search">
-				<span class="iiskin-search-icon">🔍</span>
-				<input type="search" name="search" id="searchInput" placeholder="Search worlds, nations, characters..." class="iiskin-search-input" autocomplete="off">
-				<button type="submit" class="iiskin-search-btn">Search</button>
-			</form>
-		</div>
-
-		<!-- User Area with Notifications -->
-		<div class="iiskin-header-right">
-			<!-- Notifications (Echo) -->
-			{{#data-portlets}}
-				{{#data-notifications}}
-				<div id="iiskin-notifications" class="iiskin-notifications">
-					{{{html-items}}}
+<div id="ii-wrapper" class="ii-skin">
+	<!-- Collapsible Sidebar (TOC + Navigation) -->
+	<aside id="ii-sidebar" class="ii-sidebar ii-sidebar--collapsed">
+		<button id="ii-sidebar-toggle" class="ii-sidebar-toggle" aria-label="Toggle sidebar">
+			<span class="ii-sidebar-toggle-icon">❯</span>
+		</button>
+		<div class="ii-sidebar-content">
+			<!-- Table of Contents (moved here) -->
+			<div id="ii-toc" class="ii-toc">
+				<h3 class="ii-toc-title">Contents</h3>
+				<div id="ii-toc-list" class="ii-toc-list">
+					<!-- TOC populated by JS from article -->
 				</div>
-				{{/data-notifications}}
-			{{/data-portlets}}
-
-			<!-- User Menu -->
-			<nav class="iiskin-user-nav">
-				{{#data-portlets}}
-					{{#data-personal}}
-					<ul class="iiskin-user-links">
-						{{{html-items}}}
-					</ul>
-					{{/data-personal}}
-				{{/data-portlets}}
-			</nav>
-		</div>
-	</header>
-
-	<!-- Main Layout -->
-	<div class="iiskin-main">
-		<!-- Sidebar -->
-		<aside id="iiskin-sidebar" class="iiskin-sidebar">
-			<div class="iiskin-sidebar-inner">
-				<!-- Worldbuilding Quick Links -->
-				<div class="iiskin-sidebar-section iiskin-quick-create">
-					<a href="/wiki/Special:CreatePage" class="iiskin-create-btn">+ Create Article</a>
-				</div>
-
-				{{#data-portlets-sidebar.data-portlets-first}}
-				<nav class="iiskin-nav-section" id="{{id}}">
-					<h3 class="iiskin-nav-heading">{{label}}</h3>
-					<ul class="iiskin-nav-list">{{{html-items}}}</ul>
-				</nav>
-				{{/data-portlets-sidebar.data-portlets-first}}
-
-				{{#data-portlets-sidebar.array-portlets-rest}}
-				<nav class="iiskin-nav-section" id="{{id}}">
-					<h3 class="iiskin-nav-heading">{{label}}</h3>
-					<ul class="iiskin-nav-list">{{{html-items}}}</ul>
-				</nav>
-				{{/data-portlets-sidebar.array-portlets-rest}}
-
-				{{#data-portlets}}
-					{{#data-tb}}
-					<nav class="iiskin-nav-section iiskin-tools" id="{{id}}">
-						<h3 class="iiskin-nav-heading">{{label}}</h3>
-						<ul class="iiskin-nav-list">{{{html-items}}}</ul>
-					</nav>
-					{{/data-tb}}
-				{{/data-portlets}}
 			</div>
-		</aside>
+
+			<!-- Navigation -->
+			{{#data-portlets-sidebar.data-portlets-first}}
+			<nav class="ii-nav-section" id="{{id}}">
+				<h3 class="ii-nav-heading">{{label}}</h3>
+				<ul class="ii-nav-list">{{{html-items}}}</ul>
+			</nav>
+			{{/data-portlets-sidebar.data-portlets-first}}
+
+			{{#data-portlets-sidebar.array-portlets-rest}}
+			<nav class="ii-nav-section" id="{{id}}">
+				<h3 class="ii-nav-heading">{{label}}</h3>
+				<ul class="ii-nav-list">{{{html-items}}}</ul>
+			</nav>
+			{{/data-portlets-sidebar.array-portlets-rest}}
+
+			{{#data-portlets}}
+				{{#data-tb}}
+				<nav class="ii-nav-section ii-tools" id="{{id}}">
+					<h3 class="ii-nav-heading">{{label}}</h3>
+					<ul class="ii-nav-list">{{{html-items}}}</ul>
+				</nav>
+				{{/data-tb}}
+			{{/data-portlets}}
+		</div>
+	</aside>
+
+	<!-- Main Container -->
+	<div class="ii-main-container">
+		<!-- Top Header -->
+		<header id="ii-header" class="ii-header">
+			<div class="ii-header-inner">
+				<!-- Logo (Left) -->
+				<div class="ii-header-left">
+					<a href="{{{link-mainpage}}}" class="ii-logo" title="IIWiki">
+						{{#data-logos}}
+							{{#icon}}<img src="{{.}}" alt="IIWiki" class="ii-logo-img">{{/icon}}
+							{{^icon}}{{#1x}}<img src="{{.}}" alt="IIWiki" class="ii-logo-img">{{/1x}}{{/icon}}
+						{{/data-logos}}
+						<span class="ii-logo-text">IIWiki</span>
+					</a>
+				</div>
+
+				<!-- Search (Center) -->
+				<div class="ii-header-center">
+					<form action="{{{page-action-search}}}" id="searchform" class="ii-search">
+						<input type="hidden" name="title" value="Special:Search">
+						<input type="search" name="search" id="searchInput" placeholder="Search the encyclopedia..." class="ii-search-input" autocomplete="off">
+						<button type="submit" class="ii-search-btn">
+							<span class="ii-search-icon">⌕</span>
+						</button>
+					</form>
+				</div>
+
+				<!-- User Area (Right) -->
+				<div class="ii-header-right">
+					<!-- Dark Mode Toggle -->
+					<button id="ii-theme-toggle" class="ii-theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+						<span class="ii-theme-icon-light">☀</span>
+						<span class="ii-theme-icon-dark">☽</span>
+					</button>
+
+					<!-- Notifications (Echo) -->
+					{{#data-portlets}}
+						{{#data-notifications}}
+						<div id="ii-notifications" class="ii-notifications">
+							{{{html-items}}}
+						</div>
+						{{/data-notifications}}
+					{{/data-portlets}}
+
+					<!-- User Menu -->
+					<nav class="ii-user-nav">
+						{{#data-portlets}}
+							{{#data-personal}}
+							<ul class="ii-user-links">
+								{{{html-items}}}
+							</ul>
+							{{/data-personal}}
+						{{/data-portlets}}
+					</nav>
+				</div>
+			</div>
+		</header>
+
+		<!-- Category Navigation Bar -->
+		<nav id="ii-categories-bar" class="ii-categories-bar">
+			<div class="ii-categories-inner">
+				<a href="/wiki/Category:Countries" class="ii-cat-btn">Countries</a>
+				<a href="/wiki/Category:Regions" class="ii-cat-btn">Regions</a>
+				<a href="/wiki/Category:Organizations" class="ii-cat-btn">Organizations</a>
+				<a href="/wiki/Category:People" class="ii-cat-btn">People</a>
+				<a href="/wiki/Category:Culture" class="ii-cat-btn">Culture</a>
+				<a href="/wiki/Category:History" class="ii-cat-btn">History</a>
+				<a href="/wiki/Category:Politics" class="ii-cat-btn">Politics</a>
+				<a href="/wiki/Category:Military" class="ii-cat-btn">Military</a>
+				<a href="/wiki/Category:Browse" class="ii-cat-btn ii-cat-btn--all">All Categories</a>
+			</div>
+		</nav>
 
 		<!-- Content Area -->
-		<main id="iiskin-content" class="iiskin-content">
+		<main id="ii-content" class="ii-content">
 			<!-- Page Actions Bar -->
-			<div class="iiskin-page-actions">
-				<div class="iiskin-tabs-left">
+			<div class="ii-page-actions">
+				<div class="ii-tabs-left">
 					{{#data-portlets}}
 						{{#data-namespaces}}
-						<ul class="iiskin-tabs">{{{html-items}}}</ul>
+						<ul class="ii-tabs">{{{html-items}}}</ul>
 						{{/data-namespaces}}
 					{{/data-portlets}}
 				</div>
-				<div class="iiskin-tabs-right">
+				<div class="ii-tabs-right">
 					{{#data-portlets}}
 						{{#data-views}}
-						<ul class="iiskin-tabs iiskin-views">{{{html-items}}}</ul>
+						<ul class="ii-tabs ii-views">{{{html-items}}}</ul>
 						{{/data-views}}
 					{{/data-portlets}}
 					{{#data-portlets}}
 						{{#data-actions}}
 						{{^is-empty}}
-						<div class="iiskin-more-menu">
-							<button class="iiskin-more-btn">More ▾</button>
-							<ul class="iiskin-more-dropdown">{{{html-items}}}</ul>
+						<div class="ii-more-menu">
+							<button class="ii-more-btn">More ▾</button>
+							<ul class="ii-more-dropdown">{{{html-items}}}</ul>
 						</div>
 						{{/is-empty}}
 						{{/data-actions}}
@@ -111,45 +142,46 @@
 				</div>
 			</div>
 
-			<!-- Article Header -->
-			<header class="iiskin-article-header">
-				{{#data-indicators}}
-				<div class="iiskin-indicators">{{{html}}}</div>
-				{{/data-indicators}}
-				<h1 id="firstHeading" class="iiskin-title">{{{html-title}}}</h1>
-			</header>
-
+			<!-- Site Notice -->
 			{{#data-sitenotice}}
-			<div id="siteNotice" class="iiskin-notice">{{{html}}}</div>
+			<div id="siteNotice" class="ii-notice">{{{html}}}</div>
 			{{/data-sitenotice}}
 
+			<!-- Article Header -->
+			<header class="ii-article-header">
+				{{#data-indicators}}
+				<div class="ii-indicators">{{{html}}}</div>
+				{{/data-indicators}}
+				<h1 id="firstHeading" class="ii-title">{{{html-title}}}</h1>
+			</header>
+
 			<!-- Article Body -->
-			<article id="bodyContent" class="iiskin-article">
+			<article id="bodyContent" class="ii-article mw-body-content">
 				{{{html-body-content}}}
 			</article>
 
 			{{#html-catlinks}}
-			<nav id="catlinks" class="iiskin-categories">{{{html-catlinks}}}</nav>
+			<nav id="catlinks" class="ii-catlinks">{{{html-catlinks}}}</nav>
 			{{/html-catlinks}}
 		</main>
-	</div>
 
-	<!-- Footer -->
-	<footer id="iiskin-footer" class="iiskin-footer">
-		<div class="iiskin-footer-inner">
-			<div class="iiskin-footer-brand">
-				<span class="iiskin-footer-logo">IIWiki</span>
-				<span class="iiskin-footer-tagline">SimFic & Alt-History Encyclopedia</span>
+		<!-- Footer -->
+		<footer id="ii-footer" class="ii-footer">
+			<div class="ii-footer-inner">
+				<div class="ii-footer-brand">
+					<span class="ii-footer-logo">IIWiki</span>
+					<span class="ii-footer-tagline">SimFic & Alt-History Encyclopedia</span>
+				</div>
+				<div class="ii-footer-links">
+					{{#data-footer.array-items}}
+					<ul class="ii-footer-list">
+						{{#array-items}}
+						<li>{{{html}}}</li>
+						{{/array-items}}
+					</ul>
+					{{/data-footer.array-items}}
+				</div>
 			</div>
-			<div class="iiskin-footer-links">
-				{{#data-footer.array-items}}
-				<ul class="iiskin-footer-list">
-					{{#array-items}}
-					<li>{{{html}}}</li>
-					{{/array-items}}
-				</ul>
-				{{/data-footer.array-items}}
-			</div>
-		</div>
-	</footer>
+		</footer>
+	</div>
 </div>

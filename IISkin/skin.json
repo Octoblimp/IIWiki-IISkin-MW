@@ -1,6 +1,6 @@
 {
 	"name": "IISkin",
-	"version": "3.1.0",
+	"version": "4.0.0",
 	"author": [
 		"Makko Oko"
 	],
@@ -21,7 +21,8 @@
 					"responsive": true,
 					"styles": [ "skins.iiskin" ],
 					"scripts": [ "skins.iiskin.js" ],
-					"templateDirectory": "templates"
+					"templateDirectory": "templates",
+					"toc": false
 				}
 			]
 		}
@@ -43,7 +44,7 @@
 				"interface-category": true,
 				"interface-message-box": true,
 				"logo": false,
-				"toc": true
+				"toc": false
 			},
 			"styles": [
 				"resources/skin.css"
@@ -52,6 +53,10 @@
 		"skins.iiskin.js": {
 			"scripts": [
 				"resources/skin.js"
+			],
+			"dependencies": [
+				"mediawiki.cookie",
+				"mediawiki.storage"
 			]
 		}
 	},
