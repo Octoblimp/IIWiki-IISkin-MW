@@ -581,14 +581,28 @@ a.new, a.new:visited {
 	border-color: var(--ii-accent);
 }
 
-/* Fallback pseudo-icons for notification anchors when Echo didn't insert visible content */
-#ii-notifications a:empty::before,
-#pt-notifications-alert a:empty::before,
-#pt-notifications-notice a:empty::before {
-	content: '🔔';
+/* Notification icons - always show via pseudo-element */
+#ii-notifications #pt-notifications-alert a::before,
+#pt-notifications-alert a::before {
+	content: '\1F514';
 	display: inline-block;
 	font-size: 16px;
 	line-height: 1;
+}
+
+#ii-notifications #pt-notifications-notice a::before,
+#pt-notifications-notice a::before {
+	content: '\2709';
+	display: inline-block;
+	font-size: 16px;
+	line-height: 1;
+}
+
+/* Hide pseudo icon when Echo provides its own visible icon/badge */
+#ii-notifications a:has(.oo-ui-iconElement-icon)::before,
+#ii-notifications a:has(img)::before,
+#ii-notifications a:has(svg)::before {
+	display: none;
 }
 
 /* General user-link icon area */
@@ -1212,8 +1226,7 @@ a.new, a.new:visited {
 .ii-article .infobox .infobox-title,
 .ii-article .infobox .infobox-header,
 .ii-article .infobox .infobox-above,
-.ii-article .infobox > tbody > tr:first-child th,
-.ii-article .infobox > tbody > tr:first-child td {
+.ii-article .infobox > tbody > tr:first-child th {
 	padding: 12px 14px;
 	font-family: var(--ii-font-serif);
 	font-weight: 600;
@@ -1222,6 +1235,16 @@ a.new, a.new:visited {
 	color: var(--ii-infobox-header-text);
 	text-align: center;
 	border-color: var(--ii-infobox-header-bg);
+}
+
+/* Ensure image cells always use the content background, not header */
+.ii-article .infobox .infobox-image,
+.ii-article .infobox td.infobox-image,
+.ii-article .infobox tr.infobox-image td,
+.ii-article .infobox td[colspan] {
+	background: var(--ii-infobox-body-bg);
+	text-align: center;
+	padding: 10px;
 }
 
 .ii-article .infobox .infobox-subheader {
@@ -1248,13 +1271,6 @@ a.new, a.new:visited {
 
 .ii-article .infobox td .image + .image {
 	margin-left: 4px;
-}
-
-/* Ensure image-only cells center their content */
-.ii-article .infobox .infobox-image,
-.ii-article .infobox td[colspan] {
-	text-align: center;
-	padding: 10px;
 }
 
 .ii-article .infobox .infobox-image img {
