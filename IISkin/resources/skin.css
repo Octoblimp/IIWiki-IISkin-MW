@@ -69,6 +69,13 @@
 	--ii-radius: 4px;
 	--ii-radius-sm: 3px;
 	
+	/* Infobox colors */
+	--ii-infobox-header-bg: #4a6fa5;
+	--ii-infobox-header-text: #ffffff;
+	--ii-infobox-subheader-bg: #dde6f0;
+	--ii-infobox-body-bg: #f8fafc;
+	--ii-infobox-border: #a8bdd0;
+	
 	/* Typography - Retro feel */
 	--ii-font-serif: 'Georgia', 'Times New Roman', serif;
 	--ii-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -109,6 +116,12 @@
 	--ii-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
 	--ii-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
 	--ii-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+	
+	--ii-infobox-header-bg: #364f73;
+	--ii-infobox-header-text: #e0ecf5;
+	--ii-infobox-subheader-bg: #1e3348;
+	--ii-infobox-body-bg: #1e293b;
+	--ii-infobox-border: #334155;
 }
 
 /* Remove Talk button from user menu */
@@ -404,18 +417,62 @@ a.new, a.new:visited {
 }
 
 .ii-search {
+	width: 100%;
+	position: relative;
+}
+
+.ii-search-inner {
 	display: flex;
 	width: 100%;
 	background: var(--ii-bg-header-accent);
 	border: 1px solid var(--ii-slate-600);
 	border-radius: var(--ii-radius);
-	overflow: hidden;
+	overflow: visible;
 	transition: all 0.2s ease;
+	position: relative;
 }
 
-.ii-search:focus-within {
+.ii-search-inner:focus-within {
 	border-color: var(--ii-accent-light);
 	box-shadow: 0 0 0 2px rgba(107, 143, 197, 0.3);
+}
+
+/* Search suggestions dropdown (provided by mediawiki.searchSuggest) */
+.ii-search .suggestions {
+	background: var(--ii-bg-content);
+	border: 1px solid var(--ii-border);
+	border-top: none;
+	border-radius: 0 0 var(--ii-radius) var(--ii-radius);
+	box-shadow: var(--ii-shadow-lg);
+	z-index: 1100;
+}
+
+.ii-search .suggestions .suggestions-results {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ii-search .suggestions .suggestions-result {
+	padding: 8px 14px;
+	font-size: 14px;
+	color: var(--ii-text);
+	cursor: pointer;
+}
+
+.ii-search .suggestions .suggestions-result-current,
+.ii-search .suggestions .suggestions-result:hover {
+	background: var(--ii-slate-100);
+}
+
+.ii-skin--dark .ii-search .suggestions {
+	background: var(--ii-slate-800);
+	border-color: var(--ii-border);
+}
+
+.ii-skin--dark .ii-search .suggestions .suggestions-result-current,
+.ii-skin--dark .ii-search .suggestions .suggestions-result:hover {
+	background: var(--ii-slate-700);
 }
 
 .ii-search-input {
@@ -672,8 +729,18 @@ a.new, a.new:visited {
 	color: white;
 }
 
-.ii-cat-btn--all {
+.ii-cat-btn--forum {
 	margin-left: auto;
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid var(--ii-slate-500);
+}
+
+.ii-cat-btn--forum:hover {
+	background: rgba(255, 255, 255, 0.15);
+	color: white;
+}
+
+.ii-cat-btn--all {
 	background: var(--ii-accent);
 	color: white;
 }
@@ -685,6 +752,15 @@ a.new, a.new:visited {
 /* ========================================
    Content Area
    ======================================== */
+
+/* VE and MW core integration */
+.mw-body {
+	padding: 0;
+	margin: 0;
+	border: none;
+	background: none;
+}
+
 .ii-content {
 	flex: 1;
 	background: var(--ii-bg-content);
@@ -872,6 +948,123 @@ a.new, a.new:visited {
 	line-height: 1.7;
 }
 
+/* Content clearfix for floated elements */
+.ii-article::after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+/* Parser output handling */
+.ii-article .mw-parser-output {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+}
+
+/* Wikitables */
+.ii-article .wikitable {
+	background: var(--ii-bg-content);
+	border: 1px solid var(--ii-border);
+	border-collapse: collapse;
+	margin: 1em 0;
+}
+
+.ii-article .wikitable th {
+	background: var(--ii-slate-100);
+	text-align: center;
+}
+
+.ii-article .wikitable td,
+.ii-article .wikitable th {
+	padding: 8px 12px;
+	border: 1px solid var(--ii-border);
+}
+
+.ii-skin--dark .ii-article .wikitable {
+	background: var(--ii-slate-800);
+}
+
+.ii-skin--dark .ii-article .wikitable th {
+	background: var(--ii-slate-700);
+}
+
+/* Navboxes */
+.ii-article .navbox {
+	margin: 1em 0;
+	background: var(--ii-slate-50);
+	border: 1px solid var(--ii-border);
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 13px;
+}
+
+.ii-article .navbox th {
+	background: var(--ii-slate-200);
+	padding: 6px 10px;
+	text-align: center;
+}
+
+.ii-article .navbox td {
+	padding: 4px 8px;
+}
+
+.ii-skin--dark .ii-article .navbox {
+	background: var(--ii-slate-800);
+}
+
+.ii-skin--dark .ii-article .navbox th {
+	background: var(--ii-slate-700);
+}
+
+/* Center class support */
+.ii-article .center {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.ii-article .floatright {
+	float: right;
+	clear: right;
+	margin: 0 0 1em 1em;
+}
+
+.ii-article .floatleft {
+	float: left;
+	clear: left;
+	margin: 0 1em 1em 0;
+}
+
+.ii-article .floatnone {
+	float: none;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+}
+
+/* Hatnotes */
+.ii-article .hatnote {
+	font-style: italic;
+	padding-left: 1.6em;
+	margin-bottom: 1em;
+	color: var(--ii-text-secondary);
+}
+
+/* Article message boxes */
+.ii-article .ambox {
+	margin: 1em 0;
+	border: 1px solid var(--ii-border);
+	border-radius: var(--ii-radius);
+	background: var(--ii-slate-100);
+}
+
+.ii-skin--dark .ii-article .ambox {
+	background: var(--ii-slate-800);
+}
+
+.ii-article .ambox td {
+	padding: 10px 14px;
+}
+
 /* Hide default TOC - we move it to sidebar */
 .ii-article .toc,
 .ii-article #toc {
@@ -908,8 +1101,59 @@ a.new, a.new:visited {
 
 .ii-article ul,
 .ii-article ol {
-	margin: 0 0 1em;
-	padding-left: 1.8em;
+	margin: 0.3em 0 1em 0;
+	padding-left: 2.4em;
+}
+
+.ii-article ul {
+	list-style-type: disc;
+}
+
+.ii-article ol {
+	list-style-type: decimal;
+}
+
+.ii-article ul ul {
+	list-style-type: circle;
+	margin: 0.2em 0 0.2em 0;
+}
+
+.ii-article ul ul ul {
+	list-style-type: square;
+}
+
+.ii-article ol ol,
+.ii-article ul ol,
+.ii-article ol ul {
+	margin: 0.2em 0 0.2em 0;
+}
+
+.ii-article li {
+	margin-bottom: 0.25em;
+}
+
+/* Definition lists */
+.ii-article dl {
+	margin: 0.3em 0 1em 0;
+}
+
+.ii-article dt {
+	font-weight: 600;
+	margin-bottom: 0.2em;
+}
+
+.ii-article dd {
+	margin-left: 2.4em;
+	margin-bottom: 0.5em;
+}
+
+.ii-article dd + dd {
+	margin-top: -0.25em;
+}
+
+/* Indented content (MediaWiki indent hack) */
+.ii-article dl dd dl dd {
+	margin-left: 2.4em;
 }
 
 /* Tables */
@@ -934,40 +1178,100 @@ a.new, a.new:visited {
 	background: var(--ii-slate-800);
 }
 
-/* Infobox - Retro styling */
+/* Infobox styling */
 .ii-article .infobox {
 	float: right;
 	clear: right;
 	margin: 0 0 20px 24px;
 	max-width: 320px;
-	background: var(--ii-slate-50);
-	border: 1px solid var(--ii-border);
+	width: 320px;
+	background: var(--ii-infobox-body-bg);
+	border: 1px solid var(--ii-infobox-border);
 	border-radius: var(--ii-radius);
 	font-size: 13px;
 	box-shadow: var(--ii-shadow-sm);
-}
-
-.ii-skin--dark .ii-article .infobox {
-	background: var(--ii-slate-800);
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
 }
 
 .ii-article .infobox th,
 .ii-article .infobox td {
 	padding: 8px 12px;
-	border-color: var(--ii-border-light);
+	border: 1px solid var(--ii-infobox-border);
+	vertical-align: middle;
+}
+
+.ii-article .infobox th {
+	background: var(--ii-infobox-subheader-bg);
+	text-align: left;
+	font-weight: 600;
 }
 
 .ii-article .infobox caption,
 .ii-article .infobox .infobox-title,
 .ii-article .infobox .infobox-header,
-.ii-article .infobox > tbody > tr:first-child th {
+.ii-article .infobox .infobox-above,
+.ii-article .infobox > tbody > tr:first-child th,
+.ii-article .infobox > tbody > tr:first-child td {
 	padding: 12px 14px;
 	font-family: var(--ii-font-serif);
 	font-weight: 600;
 	font-size: 1.1em;
-	background: var(--ii-bg-header);
-	color: var(--ii-text-inverse);
+	background: var(--ii-infobox-header-bg);
+	color: var(--ii-infobox-header-text);
 	text-align: center;
+	border-color: var(--ii-infobox-header-bg);
+}
+
+.ii-article .infobox .infobox-subheader {
+	padding: 8px 12px;
+	background: var(--ii-infobox-subheader-bg);
+	font-style: italic;
+	text-align: center;
+}
+
+/* Infobox images - centered and allow side-by-side */
+.ii-article .infobox img {
+	max-width: 100%;
+	height: auto;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.ii-article .infobox .image,
+.ii-article .infobox .floatnone {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.ii-article .infobox td .image + .image {
+	margin-left: 4px;
+}
+
+/* Ensure image-only cells center their content */
+.ii-article .infobox .infobox-image,
+.ii-article .infobox td[colspan] {
+	text-align: center;
+	padding: 10px;
+}
+
+.ii-article .infobox .infobox-image img {
+	border-radius: var(--ii-radius-sm);
+}
+
+/* Infobox label cells */
+.ii-article .infobox .infobox-label {
+	text-align: left;
+	font-weight: 600;
+	white-space: nowrap;
+	background: var(--ii-infobox-subheader-bg);
+}
+
+/* Infobox data cells */
+.ii-article .infobox .infobox-data {
+	text-align: left;
 }
 
 /* Thumbnails */
@@ -1104,19 +1408,72 @@ a.new, a.new:visited {
 /* ========================================
    Responsive Design
    ======================================== */
+
+/* Large screens */
+@media screen and (max-width: 1280px) {
+	.ii-header-inner {
+		max-width: 100%;
+		padding: 0 24px;
+	}
+	
+	.ii-content {
+		margin: 20px 24px;
+	}
+	
+	.ii-footer-inner {
+		max-width: 100%;
+		padding: 0 24px;
+	}
+}
+
+/* Tablets */
 @media screen and (max-width: 1024px) {
 	.ii-content {
 		margin: 16px;
 		border-radius: var(--ii-radius);
 	}
 	
-	.ii-article-header,
+	.ii-article-header {
+		padding: 20px 20px 16px;
+	}
+	
 	.ii-article {
-		padding-left: 20px;
-		padding-right: 20px;
+		padding: 20px;
+	}
+	
+	.ii-header-center {
+		max-width: 360px;
+	}
+	
+	.ii-page-actions {
+		flex-wrap: wrap;
+		padding: 0 16px;
+	}
+	
+	.ii-tabs a {
+		padding: 8px 12px;
+		font-size: 13px;
+	}
+	
+	.ii-article .infobox {
+		max-width: 280px;
+		width: 280px;
+	}
+	
+	.ii-categories-inner {
+		padding: 0 12px;
+	}
+	
+	.ii-notice {
+		margin: 16px 20px 0;
+	}
+	
+	.ii-catlinks {
+		margin: 0 20px 20px;
 	}
 }
 
+/* Small tablets / large phones */
 @media screen and (max-width: 768px) {
 	.ii-header-inner {
 		padding: 0 12px;
@@ -1124,7 +1481,7 @@ a.new, a.new:visited {
 	}
 	
 	.ii-header-center {
-		max-width: 280px;
+		max-width: 240px;
 	}
 	
 	.ii-logo-text {
@@ -1135,13 +1492,24 @@ a.new, a.new:visited {
 		display: none;
 	}
 	
+	.ii-categories-bar {
+		height: auto;
+		min-height: var(--ii-category-bar-height);
+	}
+	
 	.ii-categories-inner {
-		padding: 0 8px;
+		padding: 4px 8px;
+		flex-wrap: wrap;
+		gap: 4px;
 	}
 	
 	.ii-cat-btn {
-		padding: 8px 10px;
+		padding: 6px 10px;
 		font-size: 12px;
+	}
+	
+	.ii-cat-btn--forum {
+		margin-left: 0;
 	}
 	
 	.ii-content {
@@ -1152,12 +1520,37 @@ a.new, a.new:visited {
 	}
 	
 	.ii-page-actions {
-		padding: 0 12px;
+		padding: 8px 12px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 4px;
 	}
 	
-	.ii-article-header,
+	.ii-tabs-left,
+	.ii-tabs-right {
+		width: 100%;
+		flex-wrap: wrap;
+	}
+	
+	.ii-tabs {
+		flex-wrap: wrap;
+	}
+	
+	.ii-tabs a {
+		padding: 6px 10px;
+		font-size: 12px;
+	}
+	
+	.ii-article-header {
+		padding: 16px;
+	}
+	
 	.ii-article {
 		padding: 16px;
+	}
+	
+	.ii-notice {
+		margin: 12px 16px 0;
 	}
 	
 	.ii-catlinks {
@@ -1166,7 +1559,20 @@ a.new, a.new:visited {
 	
 	.ii-article .infobox {
 		float: none;
-		margin: 16px 0;
+		display: table;
+		margin: 16px auto;
+		max-width: 100%;
+		width: auto;
+	}
+	
+	.ii-article .thumb.tright,
+	.ii-article .thumb.tleft {
+		float: none;
+		margin: 1em auto;
+		display: table;
+	}
+	
+	.ii-article .thumbinner {
 		max-width: 100%;
 	}
 	
@@ -1178,21 +1584,63 @@ a.new, a.new:visited {
 		flex-direction: column;
 		text-align: center;
 	}
+	
+	.ii-footer-links {
+		flex-direction: column;
+		align-items: center;
+	}
 }
 
+/* Phones */
 @media screen and (max-width: 480px) {
 	.ii-header-center {
 		display: none;
 	}
 	
+	.ii-header-right {
+		gap: 6px;
+	}
+	
 	.ii-tabs a {
-		padding: 8px 10px;
-		font-size: 12px;
+		padding: 6px 8px;
+		font-size: 11px;
 	}
 	
 	.ii-cat-btn {
-		padding: 6px 8px;
+		padding: 5px 7px;
 		font-size: 11px;
+	}
+	
+	.ii-article-header {
+		padding: 12px;
+	}
+	
+	.ii-article {
+		padding: 12px;
+		font-size: 14px;
+		line-height: 1.6;
+	}
+	
+	.ii-title {
+		font-size: 1.5em;
+	}
+	
+	.ii-article h2 {
+		font-size: 1.3em;
+	}
+	
+	.ii-article h3 {
+		font-size: 1.1em;
+	}
+	
+	.ii-notice {
+		margin: 8px 12px 0;
+		padding: 10px 14px;
+	}
+	
+	.ii-catlinks {
+		margin: 0 12px 12px;
+		padding: 12px;
 	}
 }
 

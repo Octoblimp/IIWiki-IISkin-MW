@@ -57,13 +57,17 @@
 
 				<!-- Search (Center) -->
 				<div class="ii-header-center">
-					<form action="{{{page-action-search}}}" id="searchform" class="ii-search">
-						<input type="hidden" name="title" value="Special:Search">
-						<input type="search" name="search" id="searchInput" placeholder="Search the encyclopedia..." class="ii-search-input" autocomplete="off">
-						<button type="submit" class="ii-search-btn">
-							<span class="ii-search-icon">⌕</span>
-						</button>
+					{{#data-search-box}}
+					<form action="{{{form-action}}}" id="searchform" class="ii-search">
+						<input type="hidden" name="title" value="{{{page-title}}}">
+						<div id="simpleSearch" class="ii-search-inner">
+							<input type="search" name="search" id="searchInput" placeholder="Search the encyclopedia..." class="ii-search-input" autocomplete="off">
+							<button type="submit" class="ii-search-btn">
+								<span class="ii-search-icon">⌕</span>
+							</button>
+						</div>
 					</form>
+					{{/data-search-box}}
 				</div>
 
 				<!-- User Area (Right) -->
@@ -104,12 +108,13 @@
 				   <a href="index.php?title=Category:History" class="ii-cat-btn" data-category="History">History</a>
 				   <a href="index.php?title=Category:Politics" class="ii-cat-btn" data-category="Politics">Politics</a>
 				   <a href="index.php?title=Category:Military" class="ii-cat-btn" data-category="Military">Military</a>
+				<a href="#" class="ii-cat-btn ii-cat-btn--forum" data-category="Forum">Forum</a>
 				<a href="{{{link-mainpage}}}/../Special:Categories" class="ii-cat-btn ii-cat-btn--all" data-category="Browse">All Categories</a>
 			</div>
 		</nav>
 
 		<!-- Content Area -->
-		<main id="ii-content" class="ii-content">
+		<main id="content" class="ii-content mw-body" role="main" data-mw-ve-target-container>
 			<!-- Page Actions Bar -->
 			<div class="ii-page-actions">
 				<div class="ii-tabs-left">

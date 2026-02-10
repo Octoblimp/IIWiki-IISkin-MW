@@ -94,6 +94,9 @@
 				if ( category === 'Browse' ) {
 					// Special:Categories page
 					link.href = articlePath.replace( '$1', 'Special:Categories' );
+				} else if ( category === 'Forum' ) {
+					// WikiForum page
+					link.href = articlePath.replace( '$1', 'Special:WikiForum' );
 				} else {
 					// Category pages
 					link.href = articlePath.replace( '$1', 'Category:' + category );

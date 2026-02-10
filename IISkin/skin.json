@@ -19,6 +19,7 @@
 				{
 					"name": "iiskin",
 					"responsive": true,
+					"supportsMwHeading": true,
 					"styles": ["skins.iiskin"],
 					"scripts": ["skins.iiskin.js"],
 					"templateDirectory": "templates",
@@ -39,10 +40,14 @@
 				"normalize": true,
 				"elements": true,
 				"content": true,
+				"content-links": true,
 				"content-media": true,
+				"content-tables": true,
+				"content-parser-output": true,
 				"interface": true,
 				"interface-category": true,
 				"interface-message-box": true,
+				"interface-edit-section-links": true,
 				"logo": false,
 				"toc": false
 			},
@@ -56,6 +61,7 @@
 			],
 			"dependencies": [
 				"mediawiki.cookie",
+				"mediawiki.searchSuggest",
 				"mediawiki.storage",
 				"mediawiki.util"
 			]
