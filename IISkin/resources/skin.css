@@ -139,6 +139,7 @@
 html {
 	font-size: 15px;
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 body {
@@ -150,6 +151,7 @@ body {
 	color: var(--ii-text);
 	background: var(--ii-bg-page) !important;
 	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
 }
 
 a {
@@ -564,8 +566,8 @@ a.new, a.new:visited {
 }
 
 .ii-notifications a,
-#pt-notifications-alert a,
-#pt-notifications-notice a {
+#pt-notifications-alert > a,
+#pt-notifications-notice > a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -575,7 +577,9 @@ a.new, a.new:visited {
 	background: var(--ii-bg-header-accent);
 	border: 1px solid var(--ii-slate-600);
 	border-radius: 50%;
-	color: var(--ii-text-inverse);
+	color: transparent;
+	font-size: 0;
+	line-height: 0;
 	transition: all 0.15s ease;
 	position: relative;
 	overflow: visible;
@@ -593,6 +597,7 @@ a.new, a.new:visited {
 	display: inline-block;
 	font-size: 16px;
 	line-height: 1;
+	color: var(--ii-text-inverse);
 }
 
 #ii-notifications #pt-notifications-notice a::before,
@@ -601,6 +606,7 @@ a.new, a.new:visited {
 	display: inline-block;
 	font-size: 16px;
 	line-height: 1;
+	color: var(--ii-text-inverse);
 }
 
 /* Keep pseudo-icons as a stable fallback across Echo render states */
@@ -646,30 +652,32 @@ a.new, a.new:visited {
 .ii-user-links a img::before,
 .ii-user-links a img { vertical-align: middle; }
 
-/* Echo notification badges (limit to inner badge, never the anchor itself) */
-#pt-notifications-alert a .mw-echo-notifications-badge,
-#pt-notifications-notice a .mw-echo-notifications-badge {
+/* Echo notification badges */
+#pt-notifications-alert > a .mw-echo-notifications-badge-content,
+#pt-notifications-notice > a .mw-echo-notifications-badge-content {
 	position: absolute;
-	top: -4px;
-	right: -4px;
+	top: -5px;
+	right: -5px;
 	font-size: 10px !important;
 	min-width: 16px;
 	height: 16px;
 	line-height: 16px;
 	text-align: center;
 	padding: 0 4px;
-	border-radius: 8px;
+	border-radius: 999px;
 	font-weight: 700;
-}
-
-#pt-notifications-alert a .mw-echo-notifications-badge.mw-echo-unseen-notifications,
-#pt-notifications-notice a .mw-echo-notifications-badge.mw-echo-unseen-notifications {
 	background: var(--ii-notify-message) !important;
 	color: white !important;
+	border: 1px solid var(--ii-bg-header);
 }
 
-#pt-notifications-alert a .mw-echo-notifications-badge.mw-echo-unseen-notifications {
+#pt-notifications-alert > a .mw-echo-notifications-badge-content {
 	background: var(--ii-notify-alert) !important;
+}
+
+#pt-notifications-alert > a.mw-echo-notifications-badge-all-read .mw-echo-notifications-badge-content,
+#pt-notifications-notice > a.mw-echo-notifications-badge-all-read .mw-echo-notifications-badge-content {
+	display: none;
 }
 
 /* User Links */
@@ -1550,11 +1558,14 @@ a.new, a.new:visited {
 	
 	.ii-categories-inner {
 		padding: 4px 8px;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		gap: 4px;
+		width: max-content;
+		min-width: 100%;
 	}
 	
 	.ii-cat-btn {
+		flex: 0 0 auto;
 		padding: 6px 10px;
 		font-size: 12px;
 	}
@@ -1770,8 +1781,8 @@ a.new, a.new:visited {
 		min-width: 30px;
 	}
 
-	#pt-notifications-alert a .mw-echo-notifications-badge,
-	#pt-notifications-notice a .mw-echo-notifications-badge {
+	#pt-notifications-alert > a .mw-echo-notifications-badge-content,
+	#pt-notifications-notice > a .mw-echo-notifications-badge-content {
 		top: -3px;
 		right: -3px;
 	}
