@@ -571,11 +571,14 @@ a.new, a.new:visited {
 	justify-content: center;
 	width: 36px;
 	height: 36px;
+	min-width: 36px;
 	background: var(--ii-bg-header-accent);
 	border: 1px solid var(--ii-slate-600);
 	border-radius: 50%;
 	color: var(--ii-text-inverse);
 	transition: all 0.15s ease;
+	position: relative;
+	overflow: visible;
 }
 
 .ii-notifications a:hover {
@@ -648,22 +651,29 @@ a.new, a.new:visited {
 .ii-user-links a img::before,
 .ii-user-links a img { vertical-align: middle; }
 
-/* Echo notification badges */
-.mw-echo-notifications-badge {
+/* Echo notification badges (limit to inner badge, never the anchor itself) */
+#pt-notifications-alert a .mw-echo-notifications-badge,
+#pt-notifications-notice a .mw-echo-notifications-badge {
+	position: absolute;
+	top: -4px;
+	right: -4px;
 	font-size: 10px !important;
 	min-width: 16px;
 	height: 16px;
+	line-height: 16px;
+	text-align: center;
 	padding: 0 4px;
 	border-radius: 8px;
 	font-weight: 700;
 }
 
-.mw-echo-notifications-badge.mw-echo-unseen-notifications {
+#pt-notifications-alert a .mw-echo-notifications-badge.mw-echo-unseen-notifications,
+#pt-notifications-notice a .mw-echo-notifications-badge.mw-echo-unseen-notifications {
 	background: var(--ii-notify-message) !important;
 	color: white !important;
 }
 
-#pt-notifications-alert .mw-echo-notifications-badge.mw-echo-unseen-notifications {
+#pt-notifications-alert a .mw-echo-notifications-badge.mw-echo-unseen-notifications {
 	background: var(--ii-notify-alert) !important;
 }
 
@@ -1630,12 +1640,37 @@ a.new, a.new:visited {
 
 /* Phones */
 @media screen and (max-width: 480px) {
+	.ii-header-inner {
+		padding: 8px;
+		gap: 8px;
+	}
+
 	.ii-header-center {
-		display: none;
+		display: flex;
+		flex: 1 1 100%;
+		max-width: 100%;
 	}
 	
 	.ii-header-right {
-		gap: 6px;
+		gap: 4px;
+	}
+
+	.ii-notifications a,
+	#pt-notifications-alert a,
+	#pt-notifications-notice a {
+		width: 32px;
+		height: 32px;
+		min-width: 32px;
+	}
+
+	.ii-search-input {
+		padding: 8px 10px;
+		font-size: 13px;
+		min-width: 0;
+	}
+
+	.ii-search-btn {
+		padding: 8px 10px;
 	}
 	
 	.ii-tabs a {
