@@ -603,12 +603,7 @@ a.new, a.new:visited {
 	line-height: 1;
 }
 
-/* Hide pseudo icon when Echo provides its own visible icon/badge */
-#ii-notifications a:has(.oo-ui-iconElement-icon)::before,
-#ii-notifications a:has(img)::before,
-#ii-notifications a:has(svg)::before {
-	display: none;
-}
+/* Keep pseudo-icons as a stable fallback across Echo render states */
 
 /* General user-link icon area */
 .ii-user-links a::before {
@@ -981,6 +976,14 @@ a.new, a.new:visited {
 	clear: both;
 }
 
+.ii-content,
+.ii-article,
+.ii-page-actions,
+.ii-tabs-left,
+.ii-tabs-right {
+	min-width: 0;
+}
+
 /* Parser output handling */
 .ii-article .mw-parser-output {
 	overflow-wrap: break-word;
@@ -1186,6 +1189,7 @@ a.new, a.new:visited {
 .ii-article table {
 	border-collapse: collapse;
 	margin: 1em 0;
+	max-width: 100%;
 }
 
 .ii-article th,
@@ -1611,6 +1615,20 @@ a.new, a.new:visited {
 		max-width: 100%;
 		width: auto;
 	}
+
+	.ii-article .infobox .infobox-label,
+	.ii-article .infobox .infobox-data,
+	.ii-article .infobox td,
+	.ii-article .infobox th,
+	.ii-article .wikitable td,
+	.ii-article .wikitable th {
+		overflow-wrap: anywhere;
+		word-break: break-word;
+	}
+
+	.ii-article .infobox .infobox-label {
+		white-space: normal;
+	}
 	
 	.ii-article .thumb.tright,
 	.ii-article .thumb.tleft {
@@ -1672,6 +1690,23 @@ a.new, a.new:visited {
 	.ii-search-btn {
 		padding: 8px 10px;
 	}
+
+	.ii-article .infobox {
+		width: 100%;
+		max-width: 100%;
+		margin: 12px 0;
+		display: table;
+		table-layout: fixed;
+	}
+
+	.ii-article table,
+	.ii-article .wikitable,
+	.ii-article .navbox {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
 	
 	.ii-tabs a {
 		padding: 6px 8px;
@@ -1713,6 +1748,66 @@ a.new, a.new:visited {
 	.ii-catlinks {
 		margin: 0 12px 12px;
 		padding: 12px;
+	}
+}
+
+/* Galaxy S22 class tuning (360px viewport) */
+@media screen and (max-width: 390px) {
+	.ii-header-inner {
+		padding: 6px;
+		gap: 6px;
+	}
+
+	.ii-logo-img {
+		height: 28px;
+	}
+
+	.ii-notifications a,
+	#pt-notifications-alert a,
+	#pt-notifications-notice a {
+		width: 30px;
+		height: 30px;
+		min-width: 30px;
+	}
+
+	#pt-notifications-alert a .mw-echo-notifications-badge,
+	#pt-notifications-notice a .mw-echo-notifications-badge {
+		top: -3px;
+		right: -3px;
+	}
+}
+
+/* iPad portrait/landscape refinement */
+@media screen and (min-width: 768px) and (max-width: 1180px) {
+	.ii-header {
+		height: var(--ii-header-height);
+		min-height: 0;
+	}
+
+	.ii-header-inner {
+		height: 100%;
+		flex-wrap: nowrap;
+		padding: 0 14px;
+		gap: 10px;
+	}
+
+	.ii-header-left,
+	.ii-header-center,
+	.ii-header-right {
+		order: initial;
+	}
+
+	.ii-header-center {
+		flex: 1;
+		max-width: 420px;
+	}
+
+	.ii-header-right {
+		margin-left: 0;
+	}
+
+	.ii-user-nav {
+		display: block;
 	}
 }
 
