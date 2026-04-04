@@ -382,6 +382,7 @@ a.new, a.new:visited {
 /* Logo */
 .ii-header-left {
 	flex-shrink: 0;
+	min-width: 0;
 }
 
 .ii-logo {
@@ -513,6 +514,7 @@ a.new, a.new:visited {
 	align-items: center;
 	gap: 12px;
 	flex-shrink: 0;
+	min-width: 0;
 }
 
 /* Theme Toggle */
@@ -1490,14 +1492,33 @@ a.new, a.new:visited {
 }
 
 /* Small tablets / large phones */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 820px) {
+	.ii-header {
+		height: auto;
+		min-height: var(--ii-header-height);
+	}
+
 	.ii-header-inner {
-		padding: 0 12px;
+		height: auto;
+		padding: 8px 12px;
 		gap: 12px;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.ii-header-left {
+		order: 1;
+	}
+
+	.ii-header-right {
+		order: 2;
+		margin-left: auto;
 	}
 	
 	.ii-header-center {
-		max-width: 240px;
+		order: 3;
+		flex: 1 1 100%;
+		max-width: 100%;
 	}
 	
 	.ii-logo-text {
