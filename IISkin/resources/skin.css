@@ -1631,10 +1631,25 @@ a.new, a.new:visited {
 	.ii-article .infobox .infobox-data,
 	.ii-article .infobox td,
 	.ii-article .infobox th,
-	.ii-article .wikitable td,
-	.ii-article .wikitable th {
+	.ii-article table td,
+	.ii-article table th {
 		overflow-wrap: anywhere;
 		word-break: break-word;
+	}
+
+	.ii-article .wikitable {
+		display: block;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		width: max-content;
+		min-width: 100%;
+	}
+
+	.ii-article .wikitable td,
+	.ii-article .wikitable th {
+		overflow-wrap: normal;
+		word-break: normal;
+		white-space: nowrap;
 	}
 
 	.ii-article .infobox .infobox-label {
@@ -1717,6 +1732,11 @@ a.new, a.new:visited {
 		width: 100%;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
+	}
+
+	.ii-article .wikitable {
+		width: max-content;
+		min-width: 100%;
 	}
 	
 	.ii-tabs a {
